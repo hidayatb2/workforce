@@ -20,4 +20,10 @@ namespace Models
         Manager=4,
         Labour=5,
     }
+
+    public enum Skill:byte
+    {
+        Skilled=1,
+        NonSkilled=2,
+    }
 }

@@ -42,5 +42,13 @@ namespace DataAccess
 
 
         public Customer Customer { get; set; }
+
+        public Contractor Contractor { get; set; }
+
+        public Manager Manager { get; set; }
+
+        public Labour labour { get; set; }
+
+
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -7,16 +8,14 @@ using System.Threading.Tasks;
 
 namespace DataAccess
 {
-    public class Customer:BaseModel
+    public class Labour:BaseModel
     {
-
-        [ForeignKey(nameof(Id))]
-        public User User { get; set; }
-
         public string Name { get; set; }
 
-
         public string Address { get; set; }
+
+        public Skill Skill { get; set; }
+
 
     }
 }

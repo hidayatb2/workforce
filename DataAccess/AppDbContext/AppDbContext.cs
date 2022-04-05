@@ -14,5 +14,11 @@ namespace DataAccess
         }
 
         public DbSet<User> Users { get; set; }
+
+        public DbSet<Labour> Labour { get; set; }
+
+        public DbSet<Manager> Manager { get; set; }
+
+        public DbSet<Contractor> Contractor { get; set; }
     }
 }
