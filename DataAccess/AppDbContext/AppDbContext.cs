@@ -20,5 +20,7 @@ namespace DataAccess
         public DbSet<Manager> Manager { get; set; }
 
         public DbSet<Contractor> Contractor { get; set; }
+
+        public DbSet<ContactUs> ContactUs { get; set; }
     }
 }
