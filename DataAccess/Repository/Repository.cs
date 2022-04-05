@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -19,5 +20,12 @@ namespace DataAccess
             dbContext.Set<T>().Add(model);
             return dbContext.SaveChanges();
         }
+
+        IEnumerable<T> IRepository.FindBy<T>(Expression<Func<T, bool>> expression) where T : class
+        {
+            return dbContext.Set<T>().Where(expression);
+        }
+
+
     }
 }

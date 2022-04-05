@@ -27,5 +27,35 @@ namespace BusinessAccess
             user.Password = AppEncryption.CreatePasswordHash(userRequest.Password,user.Salt);
             return repository.AddandSave(user);
         }
+
+        public LoginResponse LogIn(LoginRequest loginRequest)
+        {
+            LoginResponse loginResponse = new LoginResponse();
+           var dbUser= repository.FindBy<User>(x=>x.UserName == loginRequest.UserName).FirstOrDefault();
+            if (dbUser != null)
+            {
+                if (dbUser.Password.Equals(AppEncryption.CreatePasswordHash(loginRequest.Password, dbUser.Salt)))
+                {
+                    loginResponse.Id = dbUser.Id;
+                    loginResponse.UserName = dbUser.UserName;
+                    loginResponse.Email = dbUser.Email;
+                    loginResponse.PhoneNo = dbUser.PhoneNo;
+                    loginResponse.UserRole = dbUser.UserRole;
+                    return loginResponse;
+                }
+                else
+                {
+                    loginResponse.HasError = true;
+                    return loginResponse;
+                }
+            }
+            else
+            {
+                loginResponse.HasError= true;
+                return loginResponse;
+            }
+        }
+
+
     }
 }
