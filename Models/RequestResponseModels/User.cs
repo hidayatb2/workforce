@@ -35,4 +35,26 @@ namespace Models
     {
 
     }
+
+    public class LoginRequest
+    {
+        [Required(ErrorMessage ="UserName id Required!")]
+        public string UserName { get; set; }
+
+
+        [Required(ErrorMessage ="Password id Required!")]
+        [DataType(DataType.Password)]
+        public string Password { get; set; }
+
+
+
+        public bool RememberMe { get; set; }
+    }
+
+    public class LoginResponse : UserRequest
+    {
+        public bool HasError { get; set; }
+
+        public UserRole UserRole { get; set; }
+    }
 }
