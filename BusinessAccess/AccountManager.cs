@@ -21,6 +21,8 @@ namespace BusinessAccess
                 Salt = AppEncryption.CreateSalt(),
                 PhoneNo = userRequest.PhoneNo,
                 Email = userRequest.Email,
+                UserStatus = UserStatus.Active,
+                UserRole = UserRole.Labour
             };
             user.Password = AppEncryption.CreatePasswordHash(userRequest.Password,user.Salt);
             return repository.AddandSave(user);

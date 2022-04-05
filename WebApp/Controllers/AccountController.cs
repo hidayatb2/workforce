@@ -1,9 +1,11 @@
 ﻿using BusinessAccess;
 using DataAccess;
 using Microsoft.AspNetCore.Mvc;
+using Models;
 
 namespace WebApp
 {
+    [Route("account")]
     public class AccountController : Controller
     {
         private readonly AccountManager accountManager;
@@ -19,11 +21,24 @@ namespace WebApp
             return View();
         }
 
-        //[HttpGet("signup")]
-        //dsf
+        [HttpGet("signup")]
         public IActionResult SignUp()
         {
             return View();
         }
+
+        [HttpPost("signup")]
+        public IActionResult SignUp(UserRequest userRequest)
+        {
+            int returnValue = accountManager.Add(userRequest);
+            if (returnValue > 0)
+                ViewBag.Success = true;
+            else
+                ModelState.AddModelError("","Try again after sometime");
+            
+            return View();
+        }
+
+
     }
 }
