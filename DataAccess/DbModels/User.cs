@@ -13,7 +13,7 @@ namespace DataAccess
     ///     Contractor=3
     ///     Manager=4
     ///     Labour=5
-    ///     
+    ///     end
     /// </summary>
     public class User :BaseModel
     {
