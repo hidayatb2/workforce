@@ -50,9 +50,15 @@ namespace WebApp
         [HttpPost("login")]
         public async Task<IActionResult> LogIn(LoginRequest loginRequest)
         {
+
             if (ModelState.IsValid)
             {
                 var loginResponse = accountManager.LogIn(loginRequest);
+
+            if (loginResponse.UserStatus != UserStatus.Inactive && loginResponse.UserStatus != null)
+            {
+
+
                 ClaimsIdentity identity = new ClaimsIdentity(CookieAuthenticationDefaults.AuthenticationScheme);
                 identity.AddClaim(new Claim(AppClaimTypes.UserId, loginResponse.Id.ToString()));
                 identity.AddClaim(new Claim(AppClaimTypes.UserName, loginResponse.UserName));
@@ -68,6 +74,7 @@ namespace WebApp
                     IsPersistent = loginRequest.RememberMe,
                     ExpiresUtc = DateTime.Now.AddMinutes(60),
                 });
+
                 if (loginResponse.UserRole == UserRole.Admin)
                 {
                     return RedirectToAction("DashBoard", "Admin");
@@ -89,6 +96,13 @@ namespace WebApp
                     return RedirectToAction("index", "Labour");
                 }
 
+            }
+
+
+            }
+            else
+            {
+                ViewBag.Message = "User not found";
             }
             return View();
 

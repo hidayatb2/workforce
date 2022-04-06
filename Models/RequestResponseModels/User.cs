@@ -56,5 +56,8 @@ namespace Models
         public bool HasError { get; set; }
 
         public UserRole UserRole { get; set; }
+
+
+        public UserStatus UserStatus { get; set; }
     }
 }

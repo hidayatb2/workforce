@@ -42,6 +42,7 @@ namespace BusinessAccess
                     loginResponse.Email = dbUser.Email;
                     loginResponse.PhoneNo = dbUser.PhoneNo;
                     loginResponse.UserRole = dbUser.UserRole;
+                    loginResponse.UserStatus= dbUser.UserStatus;
                     return loginResponse;
                 }
                 else
