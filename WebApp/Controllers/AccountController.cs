@@ -37,7 +37,7 @@ namespace WebApp
             if (returnValue > 0)
                 ViewBag.Success = true;
             else
-                ModelState.AddModelError("", "Try again after sometime");
+                ModelState.AddModelError("", "UserName already taken");
 
             return View();
         }

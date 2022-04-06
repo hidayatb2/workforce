@@ -25,6 +25,7 @@ namespace BusinessAccess
                 UserRole = UserRole.Labour
             };
             user.Password = AppEncryption.CreatePasswordHash(userRequest.Password,user.Salt);
+            if (repository.IsExist<User>(x => x.UserName == user.UserName)) return -1;
             return repository.AddandSave(user);
         }
 

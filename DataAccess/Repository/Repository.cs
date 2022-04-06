@@ -26,6 +26,9 @@ namespace DataAccess
             return dbContext.Set<T>().Where(expression);
         }
 
-
+         bool IRepository.IsExist<T>(Expression<Func<T, bool>> expression)
+        {
+            return dbContext.Set<T>().Any(expression);
+        }
     }
 }
