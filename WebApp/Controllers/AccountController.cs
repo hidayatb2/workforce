@@ -8,7 +8,7 @@ using System.Security.Claims;
 
 namespace WebApp
 {
-    [Route("account")]
+    //[Route("account")]
     public class AccountController : Controller
     {
         private readonly AccountManager accountManager;
@@ -35,41 +35,65 @@ namespace WebApp
         {
             int returnValue = accountManager.Add(userRequest);
             if (returnValue > 0)
-                ViewBag.Success = true;
+                ViewBag.Message = "1";
             else
-                ModelState.AddModelError("", "UserName already taken");
-
+                ViewBag.Message = "0";
             return View();
         }
 
-        [HttpGet]
+        [HttpGet("login")]
         public IActionResult LogIn()
         {
             return View();
         }
 
-        [HttpPost]
+        [HttpPost("login")]
         public async Task<IActionResult> LogIn(LoginRequest loginRequest)
         {
-            var loginResponse = accountManager.LogIn(loginRequest);
-            ClaimsIdentity identity = new ClaimsIdentity(CookieAuthenticationDefaults.AuthenticationScheme);
-            identity.AddClaim(new Claim(AppClaimTypes.UserId, loginResponse.Id.ToString()));
-            identity.AddClaim(new Claim(AppClaimTypes.UserName, loginResponse.UserName));
-            identity.AddClaim(new Claim(AppClaimTypes.UserEmail, loginResponse.Email));
-            identity.AddClaim(new Claim(AppClaimTypes.PhoneNo, loginResponse.PhoneNo));
-            identity.AddClaim(new Claim(AppClaimTypes.UserRole, loginResponse.UserRole.ToString()));
-
-            ClaimsPrincipal principal = new ClaimsPrincipal(identity);
-
-            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal, new AuthenticationProperties
+            if (ModelState.IsValid)
             {
-                AllowRefresh = true,
-                IsPersistent = loginRequest.RememberMe,
-                ExpiresUtc = DateTime.Now.AddMinutes(60),
-            });
+                var loginResponse = accountManager.LogIn(loginRequest);
+                ClaimsIdentity identity = new ClaimsIdentity(CookieAuthenticationDefaults.AuthenticationScheme);
+                identity.AddClaim(new Claim(AppClaimTypes.UserId, loginResponse.Id.ToString()));
+                identity.AddClaim(new Claim(AppClaimTypes.UserName, loginResponse.UserName));
+                identity.AddClaim(new Claim(AppClaimTypes.UserEmail, loginResponse.Email));
+                identity.AddClaim(new Claim(AppClaimTypes.PhoneNo, loginResponse.PhoneNo));
+                identity.AddClaim(new Claim(AppClaimTypes.UserRole, loginResponse.UserRole.ToString()));
 
+                ClaimsPrincipal principal = new ClaimsPrincipal(identity);
 
+                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal, new AuthenticationProperties
+                {
+                    AllowRefresh = true,
+                    IsPersistent = loginRequest.RememberMe,
+                    ExpiresUtc = DateTime.Now.AddMinutes(60),
+                });
+                if (loginResponse.UserRole == UserRole.Admin)
+                {
+                    return RedirectToAction("DashBoard", "Admin");
+                }
+                else if (loginResponse.UserRole == UserRole.Customer)
+                {
+                    return RedirectToAction("index", "Customer");
+                }
+                else if (loginResponse.UserRole == UserRole.Contractor)
+                {
+                    return RedirectToAction("index", "Contractor");
+                }
+                else if (loginResponse.UserRole == UserRole.Manager)
+                {
+                    return RedirectToAction("index", "Manager");
+                }
+                else if (loginResponse.UserRole == UserRole.Labour)
+                {
+                    return RedirectToAction("index", "Labour");
+                }
+
+            }
             return View();
+
+
+
 
 
         }
