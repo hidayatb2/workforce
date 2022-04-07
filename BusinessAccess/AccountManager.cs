@@ -33,9 +33,9 @@ namespace BusinessAccess
             {
                 To = { user.Email },
                 Subject = "Welcome to WorkForce",
-                Body = @"<a>Please verify you account </a> <br>
-                        "
-
+                Body = @"<h1>Welcome to world of </h1> <a>Please verify you account </a> <br>
+                    ",
+                IsBodyHtml = true,
             }) ;
             return repository.AddandSave(user);
         }
