@@ -26,12 +26,4 @@
     <Folder Include="wwwroot\Images\" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Include="wwwroot\css\material-dashboard.css" />
-    <None Include="wwwroot\css\material-dashboard.css.map" />
-    <None Include="wwwroot\css\material-dashboard.min.css" />
-    <None Include="wwwroot\css\nucleo-icons.css" />
-    <None Include="wwwroot\css\nucleo-svg.css" />
-  </ItemGroup>
-
 </Project>
