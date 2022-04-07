@@ -1,15 +1,18 @@
 ﻿using DataAccess;
 using Models;
+using SharedLibrary;
 
 namespace BusinessAccess
 {
     public class AccountManager
     {
         private readonly IRepository repository;
+        private readonly IEmailService emailService;
 
-        public AccountManager(IRepository repository)
+        public AccountManager(IRepository repository, IEmailService emailService)
         {
             this.repository = repository;
+            this.emailService = emailService;
         }
 
         public int Add(UserRequest userRequest)
@@ -26,6 +29,14 @@ namespace BusinessAccess
             };
             user.Password = AppEncryption.CreatePasswordHash(userRequest.Password,user.Salt);
             if (repository.IsExist<User>(x => x.UserName == user.UserName)) return -1;
+            emailService.SendMailAsync(new MailSetting
+            {
+                To = { user.Email },
+                Subject = "Welcome to WorkForce",
+                Body = @"<a>Please verify you account </a> <br>
+                        "
+
+            }) ;
             return repository.AddandSave(user);
         }
 

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Models;
+using SharedLibrary;
 using System.Security.Claims;
 
 namespace WebApp
@@ -13,9 +14,9 @@ namespace WebApp
     {
         private readonly AccountManager accountManager;
 
-        public AccountController(IRepository repository)
+        public AccountController(IRepository repository,IEmailService emailService)
         {
-            accountManager = new AccountManager(repository);
+            accountManager = new AccountManager(repository,emailService);
         }
 
         [HttpGet("index")]
@@ -62,9 +63,9 @@ namespace WebApp
                 ClaimsIdentity identity = new ClaimsIdentity(CookieAuthenticationDefaults.AuthenticationScheme);
                 identity.AddClaim(new Claim(AppClaimTypes.UserId, loginResponse.Id.ToString()));
                 identity.AddClaim(new Claim(AppClaimTypes.UserName, loginResponse.UserName));
-                identity.AddClaim(new Claim(AppClaimTypes.UserEmail, loginResponse.Email));
-                identity.AddClaim(new Claim(AppClaimTypes.PhoneNo, loginResponse.PhoneNo));
-                identity.AddClaim(new Claim(AppClaimTypes.UserRole, loginResponse.UserRole.ToString()));
+                identity.AddClaim(new Claim(AppClaimTypes.Email, loginResponse.Email));
+                //identity.AddClaim(new Claim(AppClaimTypes.PhoneNo, loginResponse.PhoneNo));
+                identity.AddClaim(new Claim(AppClaimTypes.Role, loginResponse.UserRole.ToString()));
 
                 ClaimsPrincipal principal = new ClaimsPrincipal(identity);
 
