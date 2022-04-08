@@ -4,8 +4,6 @@
     ViewData["Title"] = "SignUp";
 }
 
-<h1>SignUp</h1>
-
 @if(ViewBag.Message != null)
 {
     if (ViewBag.Message =="1")
@@ -14,7 +12,7 @@
     }
     else
     {
-        <h2 class="alert alert-danger">Something went wrong</h2>
+        <h2 class="alert alert-danger">UserName already exists</h2>
     }
 }
 

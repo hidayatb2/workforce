@@ -29,11 +29,17 @@ namespace Models
 
         [Required(ErrorMessage = "PhoneNo is required")]
         public string PhoneNo { get; set; }
+
     }
 
     public class UserResponse:UserRequest
     {
 
+    }
+
+    public class SignupRequest:UserRequest
+    {
+        public UserRole UserRole { get; set; }
     }
 
     public class LoginRequest

@@ -24,6 +24,7 @@ namespace DataAccess
         IEnumerable<T> IRepository.FindBy<T>(Expression<Func<T, bool>> expression) where T : class
         {
             return dbContext.Set<T>().Where(expression);
+        
         }
 
          bool IRepository.IsExist<T>(Expression<Func<T, bool>> expression)

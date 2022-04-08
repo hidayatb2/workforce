@@ -1,12 +1,21 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using BusinessAccess;
+using DataAccess;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Models;
 
 namespace WebApp
 {
-    //[Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
+        private readonly IRepository repository;
+        private readonly AdminManager adminManager;
+
+        public AdminController(IRepository repository)
+        {
+            adminManager = new AdminManager(repository);
+        }
         public IActionResult Index()
         {
             return View();
@@ -15,6 +24,23 @@ namespace WebApp
         [HttpGet("admindashboard")]
         public IActionResult DashBoard()
         {
+            return View();
+        }
+
+        [HttpGet("create")]
+        public IActionResult CreateUser()
+        {
+            return View();
+        }
+
+        [HttpPost("create")]
+        public IActionResult CreateUser(SignupRequest signupRequest)
+        {
+            var result = adminManager.CreateUser(signupRequest);
+            if(result > 0)
+                ViewBag.Message = "1";
+            else
+                ViewBag.Message = "0";
             return View();
         }
     }

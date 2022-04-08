@@ -29,14 +29,14 @@ namespace BusinessAccess
             };
             user.Password = AppEncryption.CreatePasswordHash(userRequest.Password,user.Salt);
             if (repository.IsExist<User>(x => x.UserName == user.UserName)) return -1;
-            emailService.SendMailAsync(new MailSetting
-            {
-                To = { user.Email },
-                Subject = "Welcome to WorkForce",
-                Body = @"<h1>Welcome to world of </h1> <a>Please verify you account </a> <br>
-                    ",
-                IsBodyHtml = true,
-            }) ;
+            //emailService.SendMailAsync(new MailSetting
+            //{
+            //    To = { user.Email },
+            //    Subject = "Welcome to WorkForce",
+            //    Body = @"<h1>Welcome to world of </h1> <a>Please verify you account </a> <br>
+            //        ",
+            //    IsBodyHtml = true,
+            //}) ;
             return repository.AddandSave(user);
         }
 
