@@ -34,12 +34,16 @@ namespace WebApp
         [HttpPost("signup")]
         public IActionResult SignUp(UserRequest userRequest)
         {
-            int returnValue = accountManager.Add(userRequest);
-            if (returnValue > 0)
-                ViewBag.Message = "1";
-            else
-                ViewBag.Message = "0";
-            return View();
+            if (ModelState.IsValid)
+            {
+                int returnValue = accountManager.Add(userRequest);
+                if (returnValue > 0)
+                    ViewBag.Message = "1";
+                else
+                    ViewBag.Message = "0";
+            }
+                return View();
+            
         }
 
         [HttpGet("login")]

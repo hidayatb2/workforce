@@ -36,7 +36,7 @@ namespace BusinessAccess
             //    Body = @"<h1>Welcome to world of </h1> <a>Please verify you account </a> <br>
             //        ",
             //    IsBodyHtml = true,
-            //}) ;
+            //});
             return repository.AddandSave(user);
         }
 

@@ -3,6 +3,7 @@ using DataAccess;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Models;
+using SharedLibrary;
 
 namespace WebApp
 {
@@ -11,10 +12,11 @@ namespace WebApp
     {
         private readonly IRepository repository;
         private readonly AdminManager adminManager;
+        private readonly IEmailService emailService;
 
-        public AdminController(IRepository repository)
+        public AdminController(IRepository repository,IEmailService emailService)
         {
-            adminManager = new AdminManager(repository);
+            adminManager = new AdminManager(repository,emailService);
         }
         public IActionResult Index()
         {

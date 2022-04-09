@@ -22,7 +22,7 @@ namespace Models
         public string ConfirmPassword { get; set; }
 
 
-        [EmailAddress(ErrorMessage = "Invalid Email Format")]
+        [RegularExpression("[a-z0-9][-a-z0-9._]+@([-a-z0-9]+.)+[a-z]{2,5}$", ErrorMessage = "Please enter a valid format for email"), MinLength(6), MaxLength(30)]
         [Required(ErrorMessage = "Email is required")]
         public string Email { get; set; }
 
