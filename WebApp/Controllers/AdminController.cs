@@ -23,10 +23,22 @@ namespace WebApp
             return View();
         }
 
-        [HttpGet("admindashboard")]
-        public IActionResult DashBoard()
+        [HttpGet("dashboard")]
+        public IActionResult DashBoard(string searchString)
         {
-            return View();
+            var users = accountManager.SearchUserBy(searchString);
+            return View(users);
+        }
+        
+
+        [HttpGet("getuserby/{searchString?}")]
+        public PartialViewResult getuserby(string searchString)
+        {
+            DashBoard(searchString);
+            var users = accountManager.SearchUserBy(searchString);  
+            
+            return PartialView("_searchPartial", users);
+
         }
 
         [HttpGet("create")]

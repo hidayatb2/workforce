@@ -34,7 +34,10 @@ namespace Models
 
     public class UserResponse:UserRequest
     {
-
+        public Guid CreatedBy { get; set; }
+        public DateTime CreatedOn { get; set; }
+        public UserRole UserRole { get; set; }
+        public UserStatus UserStatus { get; set; }
     }
 
     public class SignupRequest:UserRequest

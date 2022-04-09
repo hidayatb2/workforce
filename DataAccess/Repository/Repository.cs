@@ -15,6 +15,14 @@ namespace DataAccess
         {
             this.dbContext = dbContext;
         }
+
+
+        public IEnumerable<T> GetAllUsers<T>() where T : class
+        {
+           return dbContext.Set<T>();
+        }
+
+
         public int AddandSave<T>(T model) where T : class
         {
             dbContext.Set<T>().Add(model);
