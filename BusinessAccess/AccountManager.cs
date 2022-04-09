@@ -12,6 +12,59 @@ namespace BusinessAccess
             this.repository = repository;
         }
 
+        
+        //public IEnumerable<User> FindBy(string searchString)
+        //{
+            
+        //    return repository.FindBy<User>(x => x.UserName == searchString || x.Email == searchString || x.PhoneNo == searchString,
+           
+        //}
+
+        public IEnumerable<UserResponse> SearchUserBy(string searchString)
+        {
+          List<UserResponse> userResponses = new List<UserResponse>();
+            
+            foreach (var item in repository.FindBy<User>(x => x.UserName.StartsWith(searchString) || x.Email.StartsWith(searchString) || x.PhoneNo.StartsWith(searchString)))
+            {
+                UserResponse response = new UserResponse();
+                response.UserName = item.UserName;
+                response.Email = item.Email;
+                response.PhoneNo = item.PhoneNo;
+                response.PhoneNo = item.PhoneNo;
+                response.CreatedBy = item.CreatedBy;
+                response.CreatedOn = item.CreatedOn;
+                response.UserRole = item.UserRole;
+                response.UserStatus = item.UserStatus;
+                userResponses.Add(response);
+            };
+
+             return userResponses;
+        }
+
+
+
+        public IEnumerable<UserResponse> GetAllUsers( )
+        {
+            List<UserResponse> userResponses = new List<UserResponse>();
+
+            foreach (var item in repository.GetAllUsers<User>())
+            {
+                UserResponse response = new UserResponse();
+                response.UserName = item.UserName;
+                response.Email = item.Email;
+                response.PhoneNo = item.PhoneNo;
+                response.PhoneNo = item.PhoneNo;
+                response.CreatedBy = item.CreatedBy;
+                response.CreatedOn = item.CreatedOn;
+                response.UserRole = item.UserRole;
+                response.UserStatus = item.UserStatus;
+                userResponses.Add(response);
+            };
+
+            return userResponses;
+        }
+
+
         public int Add(UserRequest userRequest)
         {
             User user = new User()
