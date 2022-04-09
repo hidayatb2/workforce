@@ -8,15 +8,18 @@ using SharedLibrary;
 namespace WebApp
 {
     [Authorize(Roles = "Admin")]
+    [Route("admin")]
     public class AdminController : Controller
     {
         private readonly IRepository repository;
         private readonly AdminManager adminManager;
         private readonly IEmailService emailService;
+        private readonly AccountManager accountManager;
 
         public AdminController(IRepository repository,IEmailService emailService)
         {
             adminManager = new AdminManager(repository,emailService);
+            accountManager = new AccountManager(repository,emailService);
         }
         public IActionResult Index()
         {
@@ -31,15 +34,15 @@ namespace WebApp
         }
         
 
-        [HttpGet("getuserby/{searchString?}")]
-        public PartialViewResult getuserby(string searchString)
-        {
-            DashBoard(searchString);
-            var users = accountManager.SearchUserBy(searchString);  
+        //[HttpGet("getuserby/{searchString?}")]
+        //public PartialViewResult getuserby(string searchString)
+        //{
+        //    DashBoard(searchString);
+        //    var users = accountManager.SearchUserBy(searchString);  
             
-            return PartialView("_searchPartial", users);
+        //    return PartialView("_searchPartial", users);
 
-        }
+        //}
 
         [HttpGet("create")]
         public IActionResult CreateUser()

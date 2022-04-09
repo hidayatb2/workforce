@@ -9,7 +9,7 @@ using System.Security.Claims;
 
 namespace WebApp
 {
-    //[Route("account")]
+    [Route("account")]
     public class AccountController : Controller
     {
         private readonly AccountManager accountManager;

@@ -108,7 +108,7 @@
             <div class="form">
                 <form asp-action="SignUp" asp-controller="Account" method="post">
                     <span asp-validation-summary="ModelOnly"></span>
-                    <input asp-for="Id" class="text" hidden />
+                    
 
                     <input asp-for="UserName" placeholder='Username' class='text' required><br>
                     <span asp-validation-for="UserName" ></span><br />
@@ -126,7 +126,7 @@
                     <input asp-for="PhoneNo" placeholder="Enter Phone No" class="text" />
                     <span asp-validation-for="PhoneNo" ></span><br />
 
-                    <button type="submit" asp-action="SignUp" asp-controller="account" class='btn-login mt-5' id="do-login">Sign Up</button>
+                    <button type="submit" asp-action="signup" asp-controller="account" class='btn-login mt-5' id="do-login">Sign Up</button>
                 </form>
             </div>
         </div>
