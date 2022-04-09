@@ -99,8 +99,14 @@
         @RenderBody()
     </div>
   <!--   Core JS Files   -->
- <script src="~/lib/jquery/dist/jquery.min.js"></script>
-
+  <script src="./assets/js/core/popper.min.js"></script>
+  <script src="./assets/js/core/bootstrap.min.js"></script>
+  <script src="./assets/js/plugins/perfect-scrollbar.min.js"></script>
+  <script src="./assets/js/plugins/smooth-scrollbar.min.js"></script>
+  <script src="./assets/js/plugins/chartjs.min.js"></script>
+ 
+  <script src="~/js/material-dashboard.min.js"></script>
+     @await RenderSectionAsync("Scripts", required: false)
     
 </body>
 </html>

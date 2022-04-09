@@ -57,5 +57,26 @@ namespace WebApp
                 ViewBag.Message = "0";
             return View();
         }
+        
+
+        [HttpGet("getuserby/{searchString?}")]
+        public PartialViewResult getuserby(string searchString)
+        {
+            DashBoard(searchString);
+            var users = accountManager.SearchUserBy(searchString);  
+            
+            return PartialView("_searchPartial", users);
+
+        }
+
+        [HttpGet("getallusersbyrole/{roleVal?}")]
+        public PartialViewResult GetAllUsersByRole(UserRole roleVal)
+        {
+            var users = accountManager.GetAllUsers().Where(x => x.UserRole == roleVal);
+            return PartialView("_searchPartial", users);
+
+        }
+
+
     }
 }
