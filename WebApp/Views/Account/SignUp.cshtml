@@ -1,4 +1,32 @@
 ﻿@model UserRequest
+
+@{
+    ViewData["Title"] = "SignUp";
+}
+
+@{
+    var x = ViewBag.Message;
+    if (x != null)
+    {
+        if (x > 0 )
+        {    
+            <script>
+            swal("Account Created Successfully", "", "success");
+            </script>
+
+        }
+        else
+        {
+             <script>
+            swal("Username already taken", "", "error");
+            </script>
+        }
+    }
+}
+
+
+
+
 <style>
 
     .minminmin {

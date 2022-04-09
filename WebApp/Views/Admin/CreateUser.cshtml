@@ -4,17 +4,29 @@
     .row{
         margin-top:100px;
     }
+
+    .btn{
+
+    }
 </style>
 
-@if(ViewBag.Message != null)
-{
-    if (ViewBag.Message =="1")
+@{
+    var x = ViewBag.Message;
+    if (x != null)
     {
-        <h2 class="alert alert-success">Account Created Successfully</h2>
-    }
-    else
-    {
-        <h2 class="alert alert-danger">UserName already exists</h2>
+        if (x > 0 )
+        {    
+            <script>
+            swal("Account Created Successfully", "", "success");
+            </script>
+
+        }
+        else
+        {
+             <script>
+            swal("Username already taken", "", "error");
+            </script>
+        }
     }
 }
 
@@ -23,32 +35,21 @@
     <h1>Create User</h1>
     <div>
         <form asp-action="CreateUser" asp-controller="Admin" method="post">
+
             <div>
-                <input asp-for="Id" hidden />
+                <input asp-for="Email" class="form-control col-md-6 " placeholder="Enter Email" />
             </div>
 
             <div>
-                <input asp-for="UserName" hidden />
+                <input asp-for="PhoneNo" class="form-control col-md-6 mt-3" placeholder="Enter Phone No" />
             </div>
 
             <div>
-                <input asp-for="Password" hidden />
-            </div>
-
-            <div>
-                <input asp-for="Email" placeholder="Enter Email" />
-            </div>
-
-            <div>
-                <input asp-for="PhoneNo" placeholder="Enter Phone No" />
-            </div>
-
-            <div>
-                <select asp-for="UserRole" asp-items="Html.GetEnumSelectList<UserRole>()">
+                <select asp-for="UserRole" class="form-control col-md-6 mt-3" asp-items="Html.GetEnumSelectList<UserRole>()">
                     <option value="">Select Role</option>
                 </select>
             </div>
-            <button asp-action="CreateUser" asp-controller="Admin" class="btn btn-primary">Create</button>
+            <button asp-action="CreateUser" asp-controller="Admin" class="btn btn-primary mt-3">Create</button>
         </form>
     </div>
 </div>

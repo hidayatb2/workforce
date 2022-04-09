@@ -28,7 +28,7 @@ namespace BusinessAccess
             User user = new User()
             {
                 Id = Guid.NewGuid(),
-                UserName = signupRequest.Email.Split('@')[0],
+                UserName = signupRequest.Email.Split('@')[0].ToLower(),
                 Email = signupRequest.Email,
                 PhoneNo = signupRequest.PhoneNo,
                 UserStatus = UserStatus.Active,
@@ -37,7 +37,7 @@ namespace BusinessAccess
             };
             string randomPass = "WF" + random.Next(1, 100000).ToString();
             user.Password = AppEncryption.CreatePasswordHash(randomPass, user.Salt);
-            if (repository.IsExist<User>(x => x.UserName == user.UserName)) return -1;
+            if (repository.IsExist<User>(x => x.Email == user.Email)) return -1;
 
             var list = new List<string>();
             list.Add(user.Email);

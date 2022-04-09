@@ -38,9 +38,9 @@ namespace WebApp
             {
                 int returnValue = accountManager.Add(userRequest);
                 if (returnValue > 0)
-                    ViewBag.Message = "1";
+                    ViewBag.Message = 1;
                 else
-                    ViewBag.Message = "0";
+                    ViewBag.Message = 0;
             }
                 return View();
             

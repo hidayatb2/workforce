@@ -73,7 +73,7 @@ namespace BusinessAccess
             User user = new User()
             {
                 Id = Guid.NewGuid(),
-                UserName = userRequest.UserName,
+                UserName = userRequest.UserName.ToLower(),
                 Salt = AppEncryption.CreateSalt(),
                 PhoneNo = userRequest.PhoneNo,
                 Email = userRequest.Email,
@@ -82,14 +82,17 @@ namespace BusinessAccess
             };
             user.Password = AppEncryption.CreatePasswordHash(userRequest.Password,user.Salt);
             if (repository.IsExist<User>(x => x.UserName == user.UserName)) return -1;
-            //emailService.SendMailAsync(new MailSetting
-            //{
-            //    To = { user.Email },
-            //    Subject = "Welcome to WorkForce",
-            //    Body = @"<h1>Welcome to world of </h1> <a>Please verify you account </a> <br>
-            //        ",
-            //    IsBodyHtml = true,
-            //});
+            var list = new List<string>();
+            list.Add(user.Email);
+
+            var emailSetting = new MailSetting();
+            emailSetting.To = list;
+            emailSetting.Subject = "Welcome to WorkForce";
+            emailSetting.Body = @$"<h1>Welcome to world of Work Force </h1>  <br>
+                                    <p>Your account has been created successfully</p>";
+            emailSetting.IsBodyHtml = true;
+
+            emailService.SendMailAsync(emailSetting);
             return repository.AddandSave(user);
         }
 

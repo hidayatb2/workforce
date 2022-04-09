@@ -55,9 +55,9 @@ namespace WebApp
         {
             var result = adminManager.CreateUser(signupRequest);
             if(result > 0)
-                ViewBag.Message = "1";
+                ViewBag.Message = 1;
             else
-                ViewBag.Message = "0";
+                ViewBag.Message = 0;
             return View();
         }
         

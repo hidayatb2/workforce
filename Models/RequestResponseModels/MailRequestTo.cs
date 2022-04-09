@@ -1,5 +1,4 @@
-﻿
-namespace ModelLayer
+﻿namespace ModelLayer
 {
     public class MailRequestTo
     {
