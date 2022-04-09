@@ -33,20 +33,24 @@ namespace BusinessAccess
                 PhoneNo = signupRequest.PhoneNo,
                 UserStatus = UserStatus.Active,
                 UserRole = signupRequest.UserRole,
-                //Salt = AppEncryption.CreateSalt(),
-                Password = "WF" + random.Next(1, 1000000).ToString(),
+                Salt = AppEncryption.CreateSalt()
             };
-            //user.Password = AppEncryption.CreatePasswordHash(user.Password, user.Salt);
-            if (repository.IsExist<User>(x => x.UserName == signupRequest.UserName)) return -1;
-            emailService.SendMailAsync(new MailSetting
-            {
-                To = { user.Email },
-                Subject = "Welcome to WorkForce",
-                Body = @$"<h1>Welcome to world of </h1> <a>Please verify you account </a> <br>
-                     <p> Your username is {user.UserName} and Password is {user.Password}</p>",
-                IsBodyHtml = true,
-            });
-            
+            string randomPass = "WF" + random.Next(1, 100000).ToString();
+            user.Password = AppEncryption.CreatePasswordHash(randomPass, user.Salt);
+            if (repository.IsExist<User>(x => x.UserName == user.UserName)) return -1;
+
+            var list = new List<string>();
+            list.Add(user.Email);
+
+            var emailSetting = new MailSetting();
+            emailSetting.To = list;
+            emailSetting.Subject = "Welcome to WorkForce";
+            emailSetting.Body = @$"<h1>Welcome to world of </h1> <a>Please verify you account </a> <br>
+                     <p> Your username is {user.UserName} and Password is {randomPass}</p>";
+            emailSetting.IsBodyHtml = true;
+
+            emailService.SendMailAsync(emailSetting);
+
             return repository.AddandSave(user);
         }
     }

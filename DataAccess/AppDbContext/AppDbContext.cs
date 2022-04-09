@@ -11,7 +11,22 @@ namespace DataAccess
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
+            ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
+            ChangeTracker.AutoDetectChangesEnabled = false;
         }
+
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            var dbContextHandler = new DbContextHandler();
+
+            dbContextHandler.SetModelBuilderSettings(modelBuilder);
+
+            dbContextHandler.SeedInitialData(modelBuilder);
+        }
+
 
         public DbSet<User> Users { get; set; }
 
