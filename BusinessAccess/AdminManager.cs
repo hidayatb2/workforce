@@ -45,8 +45,12 @@ namespace BusinessAccess
             var emailSetting = new MailSetting();
             emailSetting.To = list;
             emailSetting.Subject = "Welcome to WorkForce";
-            emailSetting.Body = @$"<h1>Welcome to world of </h1> <a>Please verify you account </a> <br>
-                     <p> Your username is {user.UserName} and Password is {randomPass}</p>";
+            emailSetting.Body = @$"<h1>Welcome to World of WorkForce</h1>
+                                  <div>Please verify you account </div>
+                                  <div> Your Username is {user.UserName} and Password is {randomPass}.</div>
+                                  <div></div>
+                                  <h5> Thank You,</h5>
+                                  <h5> Team WorkForce</h5>";
             emailSetting.IsBodyHtml = true;
 
             emailService.SendMailAsync(emailSetting);
