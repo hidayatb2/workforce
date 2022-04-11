@@ -18,5 +18,6 @@ namespace DataAccess
         public bool IsExist<T>(Expression<Func<T,bool>> expression) where T : class;
 
 
+
     }
 }

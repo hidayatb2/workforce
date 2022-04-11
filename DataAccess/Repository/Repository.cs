@@ -19,7 +19,7 @@ namespace DataAccess
 
         public IEnumerable<T> GetAllUsers<T>() where T : class
         {
-           return dbContext.Set<T>();
+            return dbContext.Set<T>();
         }
 
 
@@ -32,12 +32,18 @@ namespace DataAccess
         IEnumerable<T> IRepository.FindBy<T>(Expression<Func<T, bool>> expression) where T : class
         {
             return dbContext.Set<T>().Where(expression);
-        
+
         }
 
-         bool IRepository.IsExist<T>(Expression<Func<T, bool>> expression)
+        bool IRepository.IsExist<T>(Expression<Func<T, bool>> expression)
         {
             return dbContext.Set<T>().Any(expression);
         }
+
+
+       
+
+
+
     }
 }

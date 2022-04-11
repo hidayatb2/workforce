@@ -30,6 +30,7 @@ namespace BusinessAccess
             foreach (var item in repository.FindBy<User>(x => x.UserName.StartsWith(searchString) || x.Email.StartsWith(searchString) || x.PhoneNo.StartsWith(searchString)))
             {
                 UserResponse response = new UserResponse();
+                response.Id=item.Id;
                 response.UserName = item.UserName;
                 response.Email = item.Email;
                 response.PhoneNo = item.PhoneNo;
@@ -53,6 +54,7 @@ namespace BusinessAccess
             foreach (var item in repository.GetAllUsers<User>())
             {
                 UserResponse response = new UserResponse();
+                response.Id = item.Id;
                 response.UserName = item.UserName;
                 response.Email = item.Email;
                 response.PhoneNo = item.PhoneNo;

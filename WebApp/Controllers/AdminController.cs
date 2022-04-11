@@ -27,10 +27,11 @@ namespace WebApp
         }
 
         [HttpGet("dashboard")]
-        public IActionResult DashBoard(string searchString)
+        public IActionResult DashBoard()
         {
-            var users = accountManager.SearchUserBy(searchString);
-            return View(users);
+            //var users = accountManager.SearchUserBy(searchString);
+            //return View(users);
+            return View();
         }
         
 
@@ -44,9 +45,26 @@ namespace WebApp
 
         //}
 
+
+        [HttpGet("Search")]
+        public IActionResult SearchBox(string searchString)
+        {
+            var users = accountManager.SearchUserBy(searchString);
+            return View(users);
+        }
+
+        [HttpGet("details/{Id}")]
+        public IActionResult GetDetailsById(Guid Id)
+        {
+           var user= accountManager.GetAllUsers().FirstOrDefault(x => x.Id == Id);
+            return View(user);
+        }
+
+
         [HttpGet("create")]
         public IActionResult CreateUser()
         {
+
             return View();
         }
 
@@ -69,7 +87,7 @@ namespace WebApp
         [HttpGet("getuserby/{searchString?}")]
         public PartialViewResult getuserby(string searchString)
         {
-            DashBoard(searchString);
+            SearchBox(searchString);
             var users = accountManager.SearchUserBy(searchString);  
             
             return PartialView("_searchPartial", users);

@@ -1,6 +1,7 @@
 import apiHelper from "./apiHelper.js";
 document.getElementById('searchBox').addEventListener('keyup', function (event) {
      let searchString = event.target.value;
+  if (event.key==="Enter") {
     apiHelper.get({
         url: "/admin/getuserby/" + searchString,
         accept: "text/html",
@@ -8,14 +9,26 @@ document.getElementById('searchBox').addEventListener('keyup', function (event) 
             let userListDiv = document.getElementById('mainD');
             userListDiv.innerHTML = users;
             
-            if (event.key == "Backspace") {
-                if (document.getElementById('searchBox').value == "") {
-                    userListDiv.innerHTML="";
-                }
-            }
+            
     
         }
     });
+  }
+  if (event.key === "Backspace") {
+    
+    apiHelper.get({
+        url: "/admin/getuserby/" + searchString,
+        accept: "text/html",
+        success: (users) => {
+            let userListDiv = document.getElementById('mainD');
+            userListDiv.innerHTML = users;
+            
+            
+    
+        }
+    });
+ 
+}
 })
 
 document.getElementById('roleDiv').addEventListener('change', function (event) {
