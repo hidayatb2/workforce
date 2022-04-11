@@ -14,19 +14,27 @@
     var x = ViewBag.Message;
     if (x != null)
     {
-        if (x > 0 )
+        if (x == -2 )
         {    
             <script>
-            swal("Account Created Successfully", "", "success");
+            swal("Phone Number Already Taken", "", "error");
             </script>
 
         }
-        else
+        else if(x == -1)
         {
              <script>
             swal("Username already taken", "", "error");
             </script>
         }
+        else if(x > 0)
+        {
+             <script>
+            swal("Account Created Successfully", "", "success");
+            </script>
+        }
+
+
     }
 }
 

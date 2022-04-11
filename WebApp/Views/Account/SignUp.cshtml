@@ -1,4 +1,4 @@
-﻿@model UserRequest
+﻿@model SignupRequest
 
 @{
     ViewData["Title"] = "SignUp";
@@ -154,6 +154,9 @@
                     <input asp-for="PhoneNo" placeholder="Enter Phone No" class="text" />
                     <span asp-validation-for="PhoneNo" ></span><br />
 
+                    <select asp-for="UserRole" class="form-control col-md-6 mt-3" asp-items="Html.GetEnumSelectList<UserRole>().Skip(1)">
+                    <option value="">Select Role</option>
+                    </select>
                     <button type="submit" asp-action="signup" asp-controller="account" class='btn-login mt-5' id="do-login">Sign Up</button>
                 </form>
             </div>

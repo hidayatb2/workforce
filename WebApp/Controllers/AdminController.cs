@@ -54,10 +54,14 @@ namespace WebApp
         public IActionResult CreateUser(SignupRequest signupRequest)
         {
             var result = adminManager.CreateUser(signupRequest);
-            if(result > 0)
-                ViewBag.Message = 1;
+            if (result == -2)
+                ViewBag.Message = -2;
             else
-                ViewBag.Message = 0;
+                if (result == -1)
+                ViewBag.Message = -1;
+            else
+                if (result > 0)
+                ViewBag.Message = 1;
             return View();
         }
         

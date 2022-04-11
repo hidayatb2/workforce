@@ -31,14 +31,14 @@ namespace BusinessAccess
                 UserName = signupRequest.Email.Split('@')[0].ToLower(),
                 Email = signupRequest.Email,
                 PhoneNo = signupRequest.PhoneNo,
-                UserStatus = UserStatus.Active,
+                UserStatus = UserStatus.Inactive,
                 UserRole = signupRequest.UserRole,
                 Salt = AppEncryption.CreateSalt()
             };
             string randomPass = "WF" + random.Next(1, 100000).ToString();
             user.Password = AppEncryption.CreatePasswordHash(randomPass, user.Salt);
             if (repository.IsExist<User>(x => x.Email == user.Email)) return -1;
-
+            if (repository.IsExist<User>(x => x.PhoneNo == user.PhoneNo)) return -2;
             var list = new List<string>();
             list.Add(user.Email);
 
@@ -46,8 +46,8 @@ namespace BusinessAccess
             emailSetting.To = list;
             emailSetting.Subject = "Welcome to WorkForce";
             emailSetting.Body = @$"<h1>Welcome to World of WorkForce</h1>
-                                  <div>Please verify you account </div>
                                   <div> Your Username is {user.UserName} and Password is {randomPass}.</div>
+                                  <a href="" >Please Verify Your Account</a>
                                   <div></div>
                                   <h5> Thank You,</h5>
                                   <h5> Team WorkForce</h5>";

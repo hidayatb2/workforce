@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Newtonsoft.Json;
+using System.ComponentModel.DataAnnotations;
 
 namespace Models
 {
@@ -42,6 +43,7 @@ namespace Models
 
     public class SignupRequest:UserRequest
     {
+        [Required(ErrorMessage ="Please Enter Role")]
         public UserRole UserRole { get; set; }
     }
 

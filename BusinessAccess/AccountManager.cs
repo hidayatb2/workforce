@@ -68,19 +68,19 @@ namespace BusinessAccess
         }
 
 
-        public int Add(UserRequest userRequest)
+        public int Add(SignupRequest signupRequest)
         {
             User user = new User()
             {
                 Id = Guid.NewGuid(),
-                UserName = userRequest.UserName.ToLower(),
+                UserName = signupRequest.UserName.ToLower(),
                 Salt = AppEncryption.CreateSalt(),
-                PhoneNo = userRequest.PhoneNo,
-                Email = userRequest.Email,
-                UserStatus = UserStatus.Active,
+                PhoneNo = signupRequest.PhoneNo,
+                Email = signupRequest.Email,
+                UserStatus = UserStatus.Inactive,
                 UserRole = UserRole.Labour
             };
-            user.Password = AppEncryption.CreatePasswordHash(userRequest.Password,user.Salt);
+            user.Password = AppEncryption.CreatePasswordHash(signupRequest.Password,user.Salt);
             if (repository.IsExist<User>(x => x.UserName == user.UserName)) return -1;
             var list = new List<string>();
             list.Add(user.Email);
