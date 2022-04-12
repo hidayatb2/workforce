@@ -110,6 +110,7 @@
         <form  asp-action="login" asp-controller="Account" method="post">
       <input asp-for="UserName" placeholder='Username' class='text' required><br>
       <input asp-for="Password" placeholder='Password' class='password'><br>
+      <input asp-for="RememberMe"  /> Remember Me<br/><br />
       <button type="submit" asp-action="login" asp-controller="Account" class='btn-login' id="do-login">Login</button>
       <a href="#" class='forgot'>Forgot?</a>
         </form>

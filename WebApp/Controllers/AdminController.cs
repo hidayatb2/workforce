@@ -11,9 +11,9 @@ namespace WebApp
     [Route("admin")]
     public class AdminController : Controller
     {
-        private readonly IRepository repository;
+        //private readonly IRepository repository;
+        //private readonly IEmailService emailService;
         private readonly AdminManager adminManager;
-        private readonly IEmailService emailService;
         private readonly AccountManager accountManager;
 
         public AdminController(IRepository repository,IEmailService emailService)
@@ -52,6 +52,15 @@ namespace WebApp
             var users = accountManager.SearchUserBy(searchString);
             return View(users);
         }
+
+
+        [HttpGet("users")]
+        public IActionResult AllUsers()
+        {
+            var allUsers = accountManager.GetAllUsers();
+            return View(allUsers);    
+        }
+
 
         [HttpGet("details/{Id}")]
         public IActionResult GetDetailsById(Guid Id)

@@ -47,7 +47,7 @@ namespace BusinessAccess
 
 
 
-        public IEnumerable<UserResponse> GetAllUsers( )
+        public IEnumerable<UserResponse> GetAllUsers()
         {
             List<UserResponse> userResponses = new List<UserResponse>();
 
