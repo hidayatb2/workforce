@@ -84,13 +84,26 @@ namespace WebApp
         }
         
 
-        [HttpGet("getuserby/{searchString?}")]
-        public PartialViewResult getuserby(string searchString)
+        [HttpGet("getuserby/{searchString?}/{roleValue?}")]
+        public PartialViewResult getuserby(string searchString,UserRole roleValue)
         {
+
+
             SearchBox(searchString);
-            var users = accountManager.SearchUserBy(searchString);  
+            if (roleValue == 0)
+            {
+                var users = accountManager.SearchUserBy(searchString);
+
+                return PartialView("_searchPartial", users);
+            }
+            else
+            {
+                var users = accountManager.SearchUserBy(searchString);
+                var filteredOnRoleUsers=users.Where(x => x.UserRole == roleValue);
+
+                return PartialView("_searchPartial", filteredOnRoleUsers);
+            }
             
-            return PartialView("_searchPartial", users);
 
         }
 

@@ -1,9 +1,10 @@
 import apiHelper from "./apiHelper.js";
 document.getElementById('searchBox').addEventListener('keyup', function (event) {
      let searchString = event.target.value;
+     let roleValue=ddlVal.value;
   if (event.key==="Enter") {
     apiHelper.get({
-        url: "/admin/getuserby/" + searchString,
+        url: "/admin/getuserby/" + searchString +"/"+ roleValue ,
         accept: "text/html",
         success: (users) => {
             let userListDiv = document.getElementById('mainD');
@@ -31,7 +32,9 @@ document.getElementById('searchBox').addEventListener('keyup', function (event) 
 }
 })
 
-document.getElementById('roleDiv').addEventListener('change', function (event) {
+
+let ddlVal=document.getElementById('roleDiv');
+ddlVal.addEventListener('change', function (event) {
     let roleVal = event.target.value;
     apiHelper.get({
         url: "/admin/getallusersbyrole/" + roleVal,
