@@ -1,10 +1,8 @@
 ﻿@model IEnumerable<UserResponse>
 @{
-    Layout="_AdminLayout";
+    Layout="_UserLayout";
 }
-
-
-<h1 style="margin-top:100px">Welcome to Admin Dashboard</h1>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
  @*<div class="row">
      <select class="form-control  col-5" asp-items="@Html.GetEnumSelectList<UserRole>()"id="roleDiv"  style="display:inline;width:30%;">
       <option value="">Select Role</option>  
@@ -19,7 +17,128 @@
 
 </div>*@
 
+<div class="container-fluid pt-4 px-4" id="dashboardDiv" style="margin-right:100px">
+                <div class="row ">
+                    <div class="col-sm-6 col-xl-3 " style="margin-right:50px">
+                        <div class="bg-dark text-white rounded d-flex align-items-center justify-content-between p-4 ">
+                            <ion-icon name="people" style="font-size:70px"></ion-icon>
+                            <div class="ms-3">
+                                <p class="mb-2">Total Users</p>
+                                <h6 class="mb-0">@Model.Count()</h6>
+                            </div>
+                        </div>
+                    </div>
+           
+                    <div class="col-sm-6 col-xl-3" style="margin-right:50px">
+                        <div class="bg-dark text-white rounded d-flex align-items-center justify-content-between p-4">
+                            <ion-icon name="body" style="font-size:70px"></ion-icon>
+                            <div class="ms-3">
+                                <p class="mb-2">Contractors</p>
+                                <h6 class="mb-0">@ViewBag.Contractor</h6>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3 col-xl-3" >
+                        <div class="bg-dark text-white rounded d-flex align-items-center justify-content-between p-4">
+                            <ion-icon name="man" style="font-size:70px"></ion-icon>
+                            <div class="ms-3">
+                                <p class="mb-2">Managers</p>
+                                <h6 class="mb-0">@ViewBag.Manager</h6>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                </div>
+                <div class="row" style="margin-top:50px">
+                    <div class="col-5">
+                <canvas id="myChart" class="card text-light"style="height:800px;" ></canvas>
+                    </div>
+                    <div class="col-5">
+                <canvas id="myChart2" class="card text-light" ></canvas>
+
+                    </div>
+                </div>
+                <div class="bg-light mt-5">
+                <table class="table table-hover bg-light">
+                    <h3 class="text-center">Recently Added Users</h3>
+                    <thead>
+                        <tr>
+                            <th>UserName</th>
+                            <th>Email</th>
+                            <th>UserRole</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                @{
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                        <td>@item.UserName</td>
+                        <td>@item.Email</td>
+                        <td>@item.UserRole</td>
+                        </tr>
+                    }
+                }
+                </tbody>
+                </table>
+                </div>
+            </div>
+
 @section Scripts
 {
-         <script type="module" src="~/client/adminService.js" asp-append-version="true"></script>
+         
+         <script>
+var xValues = [50,60,70,80,90,100,110,120,130,140,150];
+var yValues = [7,8,8,9,9,9,10,11,14,14,15];
+
+var barColors = ["red", "green","blue","orange","brown"];
+
+
+new Chart("myChart", {
+  type: "line",
+  data: {
+    labels: xValues,
+    datasets: [{
+      fill: false,
+      lineTension: 0,
+      backgroundColor: "#0000FF",
+      borderColor: "#0000FF",
+      data: yValues
+    }]
+  },
+  options: {
+    legend: {display: false},
+    title:{
+    display: true,
+      text: "Line Chart"
+    },
+    scales: {
+      yAxes: [{ticks: {min: 6, max:16}}],
+
+    }
+  }
+});
+
+
+
+new Chart("myChart2", {
+  type: "bar",
+  data: {
+    labels: xValues,
+    datasets: [{
+      backgroundColor: barColors,
+      data: yValues
+    }]
+  },
+  options: {
+    legend: {display: false},
+    title: {
+      display: true,
+      text: "Bar Chart"
+    }
+  }
+});
+</script>
 }
