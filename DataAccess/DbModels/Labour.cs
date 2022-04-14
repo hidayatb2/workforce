@@ -12,9 +12,38 @@ namespace DataAccess
     {
         public string Name { get; set; }
 
-        public string Address { get; set; }
 
-        public Skill Skill { get; set; }
+        public Gender Gender{ get; set; }
+
+
+        public DateTime DOB { get; set; }
+
+
+        public string AdhaarNo { get; set; }
+
+
+        public string Address1 { get; set; }
+
+
+        public string Address2 { get; set; }
+
+
+        public string PhoneNo2 { get; set; }
+
+
+        public string Bank { get; set; }
+
+
+        public string AccountNo { get; set; }
+
+
+        public string IFSC { get; set; }
+
+
+        public bool IsSkilled { get; set; }
+
+
+        public ICollection<Skill> Skills { get; set; }
 
 
     }

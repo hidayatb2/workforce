@@ -21,9 +21,24 @@ namespace Models
         Labour=5,
     }
 
+    public enum Gender : byte
+    {
+        Male = 1,
+        Female = 2,
+    }
+
     public enum Skill:byte
     {
         Skilled=1,
         NonSkilled=2,
+    }
+
+    public enum WagesType : byte
+    {
+        Daily = 1,
+
+        Monthly = 2,
+
+        Contract=3,
     }
 }

@@ -29,6 +29,9 @@ namespace DataAccess
         public string PhoneNo { get; set; }
 
 
+        public string ImagePath { get; set; }
+
+
         public string Salt { get; set; }
 
 
@@ -39,6 +42,8 @@ namespace DataAccess
 
 
         public UserStatus UserStatus { get; set; }
+
+
 
 
         public Customer Customer { get; set; }

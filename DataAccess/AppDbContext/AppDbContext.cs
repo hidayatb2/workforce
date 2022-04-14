@@ -37,5 +37,7 @@ namespace DataAccess
         public DbSet<Contractor> Contractor { get; set; }
 
         public DbSet<ContactUs> ContactUs { get; set; }
+
+        public DbSet<Skill> Skills { get; set; }
     }
 }
