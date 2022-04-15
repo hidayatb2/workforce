@@ -33,7 +33,7 @@ namespace BusinessAccess
 
         public IEnumerable<SkillResponse> GetUserSkills()
         {
-            return repository.GetAllUsers<DataAccess.Skill>().Select(x=>new SkillResponse
+            return repository.GetAll<DataAccess.Skill>().Select(x=>new SkillResponse
             {
                 Id=x.Id,
                 SkillName=x.SkillName,

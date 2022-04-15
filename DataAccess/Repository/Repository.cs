@@ -18,11 +18,6 @@ namespace DataAccess
             this.dbContext = dbContext;
         }
 
-        public T GetById<T>(Guid id) where T : class
-        {
-            return dbContext.Set<T>().Find(id);
-        }
-
 
         public int AddandSave<T>(T model) where T : class
         {
@@ -40,14 +35,21 @@ namespace DataAccess
             return dbContext.Set<T>().Any(predicate);
         }
 
-        public int Delete<T>(T model) where T : class
+        public void Delete<T>(Guid id) where T : class, IBaseModel, new()
         {
-            throw new NotImplementedException();
+            dbContext.Entry<T>(new T { Id = id }).State = EntityState.Deleted;
         }
 
-        public IEnumerable<T> GetAllUsers<T>() where T : class
+        public IQueryable<T> GetAll<T>() where T : class
         {
-            throw new NotImplementedException();
+            return dbContext.Set<T>();
+        }
+
+
+        public T GetById<T>(Guid id) where T : class
+        {
+
+            return dbContext.Set<T>().Find(id);
         }
     }
    

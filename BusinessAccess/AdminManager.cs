@@ -62,7 +62,7 @@ namespace BusinessAccess
         {
             List<ContactUsResponse> contactUsResponses = new List<ContactUsResponse>();
 
-            foreach (var item in repository.GetAllUsers<ContactUs>())
+            foreach (var item in repository.GetAll<ContactUs>())
             {
                 ContactUsResponse response = new ContactUsResponse();
                  response.Email = item.Email;
@@ -79,7 +79,7 @@ namespace BusinessAccess
         public IEnumerable<FeedbackResponse> GetFeedback()
         {
             List<FeedbackResponse> feedbackResponses = new List<FeedbackResponse>();
-            foreach (var item in repository.GetAllUsers<Feedback>())
+            foreach (var item in repository.GetAll<Feedback>())
             {
                 FeedbackResponse response = new FeedbackResponse();
                 response.Id = item.Id;

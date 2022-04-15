@@ -53,7 +53,7 @@ namespace BusinessAccess
         {
             List<UserResponse> userResponses = new List<UserResponse>();
 
-            foreach (var item in repository.GetAllUsers<User>())
+            foreach (var item in repository.GetAll<User>())
             {
                 UserResponse response = new UserResponse();
                 response.Id = item.Id;

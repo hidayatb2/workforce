@@ -36,11 +36,11 @@ namespace WebApp
             return View();
         }
 
-        public IActionResult Delete(Guid id)
-        {
-            var x = customerManager.Delete(id);
-            return RedirectToAction("Feedbacks", "Admin", x);
-        }
+        //public IActionResult Delete(Guid id)
+        //{
+        //    var x = customerManager.Delete(id);
+        //    return RedirectToAction("Feedbacks", "Admin", x);
+        //}
 
 
     }

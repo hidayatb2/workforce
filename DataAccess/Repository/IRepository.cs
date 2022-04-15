@@ -10,14 +10,14 @@ namespace DataAccess
 {
     public interface IRepository
     {
-        IEnumerable<T> GetAllUsers<T>() where T : class;
+        IQueryable<T> GetAll<T>() where T : class;
 
         T GetById<T>(Guid id) where T : class;
 
 
         int AddandSave<T>(T model) where T : class;
 
-        public int Delete<T>(T model) where T : class;
+        void Delete<T>(Guid id) where T : class, IBaseModel, new();
 
         IQueryable<T> FindBy<T>(System.Linq.Expressions.Expression<Func<T, bool>> predicate) where T : class;
 

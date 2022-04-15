@@ -33,11 +33,12 @@ namespace BusinessAccess
            return  repository.AddandSave(feedback);
         }
 
-        public int Delete(Guid id)
-        {
-           var x = repository.GetById<Feedback>(id);
-           return repository.Delete(x);
-        }
+        //public int Delete(Guid id)
+        //{
+        //   var x = repository.GetById<Feedback>(id);
+        //    repository.Delete(x);
+        //    return 1;
+        //}
 
     }
 }
