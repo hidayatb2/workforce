@@ -83,15 +83,19 @@ namespace WebApp
         [HttpPost("create")]
         public IActionResult CreateUser(SignupRequest signupRequest)
         {
-            var result = adminManager.CreateUser(signupRequest);
-            if (result == -2)
-                ViewBag.Message = -2;
-            else
-                if (result == -1)
-                ViewBag.Message = -1;
-            else
-                if (result > 0)
-                ViewBag.Message = 1;
+            if (ModelState.IsValid)
+            {
+                var result = adminManager.CreateUser(signupRequest);
+                if (result == -2)
+                    ViewBag.Message = -2;
+                else
+                    if (result == -1)
+                    ViewBag.Message = -1;
+                else
+                    if (result > 0)
+                    ViewBag.Message = 1;
+            }
+            
             return View();
         }
         

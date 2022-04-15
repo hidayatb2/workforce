@@ -36,7 +36,7 @@ namespace WebApp
         {
             if (ModelState.IsValid)
             {
-                int returnValue = accountManager.Add(signupRequest);
+                var returnValue = accountManager.Add(signupRequest);
                 if (returnValue > 0)
                     ViewBag.Message = 1;
                 else

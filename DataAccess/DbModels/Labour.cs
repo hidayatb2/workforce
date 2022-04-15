@@ -16,8 +16,6 @@ namespace DataAccess
         public Gender Gender{ get; set; }
 
 
-        public DateTime DOB { get; set; }
-
 
         public string AdhaarNo { get; set; }
 

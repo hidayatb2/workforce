@@ -152,7 +152,11 @@
                     <span asp-validation-for="Email" ></span><br />
 
                     <input asp-for="PhoneNo" placeholder="Enter Phone No" class="text" />
-                    <span asp-validation-for="PhoneNo" ></span><br />
+                    <span asp-validation-for="PhoneNo" ></span><br /><br />
+
+                    
+                    <input asp-for="DOB" placeholder="Enter DOB" class="form form-control" />
+                    <span asp-validation-for="DOB" class="text-danger" ></span><br />
 
                     <select asp-for="UserRole" class="form-control col-md-6 mt-3" asp-items="Html.GetEnumSelectList<UserRole>().Skip(1)">
                     <option value="">Select Role</option>

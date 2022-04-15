@@ -74,7 +74,6 @@ namespace BusinessAccess
         {
             User user = new User()
             {
-                Id = Guid.NewGuid(),
                 UserName = signupRequest.UserName.ToLower(),
                 Salt = AppEncryption.CreateSalt(),
                 PhoneNo = signupRequest.PhoneNo,
