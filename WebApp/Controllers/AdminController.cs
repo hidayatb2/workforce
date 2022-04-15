@@ -11,44 +11,35 @@ namespace WebApp
     [Route("admin")]
     public class AdminController : Controller
     {
-        private readonly IRepository repository;
+        //private readonly IRepository repository;
         //private readonly IEmailService emailService;
         private readonly AdminManager adminManager;
         private readonly AccountManager accountManager;
+        private readonly CustomerManager customerManager;
 
         public AdminController(IRepository repository,IEmailService emailService)
         {
             adminManager = new AdminManager(repository,emailService);
             accountManager = new AccountManager(repository,emailService);
+            customerManager = new CustomerManager(repository);
         }
+
+
         public IActionResult Index()
         {
             return View();
         }
 
+
         [HttpGet("dashboard")]
         public IActionResult DashBoard()
         {
-            //var users = accountManager.SearchUserBy(searchString);
-            //return View(users);
            var users= accountManager.GetAllUsers();
-           //ViewBag.Contractor= repository.GetAllUsers<Contractor>().Count();
-           //ViewBag.Manager= repository.GetAllUsers<Manager>().Count();
             return View(users);
         }
         
 
-        //[HttpGet("getuserby/{searchString?}")]
-        //public PartialViewResult getuserby(string searchString)
-        //{
-        //    DashBoard(searchString);
-        //    var users = accountManager.SearchUserBy(searchString);  
-            
-        //    return PartialView("_searchPartial", users);
-
-        //}
-
-
+   
         [HttpGet("Search")]
         public IActionResult SearchBox(string searchString)
         {
@@ -131,6 +122,19 @@ namespace WebApp
 
         }
 
+        [HttpGet("messages")]
+        public IActionResult GetAllMessages()
+        {
+            var allMessages = adminManager.GetAllMessages();
+            return View(allMessages);
+        }
 
+
+        [HttpGet("feedback")]
+        public IActionResult Feedbacks()
+        {
+            var feedbackMessages = adminManager.GetFeedback();
+            return View(feedbackMessages);
+        }
     }
 }

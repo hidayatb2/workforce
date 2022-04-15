@@ -82,4 +82,27 @@ namespace Models
 
         public UserStatus UserStatus { get; set; }
     }
+
+    public class SkillRequest
+    {
+        public Guid Id { get; set; }
+
+        public string SkillName { get; set; }
+
+
+        public string Experience { get; set; }
+
+
+        public WagesType WagesType { get; set; }
+
+
+        public float Wages { get; set; }
+
+        public Guid LabourId { get; set; }
+    }
+
+    public class SkillResponse : SkillRequest
+    {
+
+    }
 }

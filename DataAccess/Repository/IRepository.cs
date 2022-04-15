@@ -17,6 +17,10 @@ namespace DataAccess
 
         public bool IsExist<T>(Expression<Func<T,bool>> expression) where T : class;
 
+        public int Delete<T>(T model) where T : class;
+
+        T GetById<T>(Guid id) where T : class;
+
 
 
     }

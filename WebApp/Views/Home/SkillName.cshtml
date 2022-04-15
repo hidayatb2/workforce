@@ -1,0 +1,22 @@
+﻿@model IEnumerable<SkillResponse>
+
+    <table>
+        <tr>
+            <th>SkillName</th>
+            <th>Experience</th>
+            <th>Wages Type</th>
+            <th>Wages</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            
+            <tr>
+                <td>@item.SkillName</td>
+                <td>@item.Experience</td>
+                <td>@item.WagesType</td>
+                <td>@item.Wages</td>
+            </tr>
+
+        }
+    </table>
+
