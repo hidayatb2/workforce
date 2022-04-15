@@ -12,13 +12,15 @@ namespace WebApp
     [Route("account")]
     public class AccountController : Controller
     {
+        private readonly IRepository repository;
         private readonly AccountManager accountManager;
         private readonly IEmailService emailService;
 
-        public AccountController(AccountRepository repository,IEmailService emailService)
+        public AccountController(IRepository repository,IEmailService emailService)
         {
             accountManager = new AccountManager(repository,emailService);
             this.emailService = emailService;
+            this.repository = repository;
         }
 
         [HttpGet("index")]

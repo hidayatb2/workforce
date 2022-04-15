@@ -7,23 +7,23 @@ namespace WebApp
 {
     public class LabourController : Controller
     {
-        private readonly AccountRepository repository;
+        //private readonly AccountRepository repository;
 
-        public LabourController(AccountRepository repository)
-        {
-            this.repository = repository;
-        }
-        public IActionResult Index()
-        {
-            return View();
-        }
+        //public LabourController(AccountRepository repository)
+        //{
+        //    this.repository = repository;
+        //}
+        //public IActionResult Index()
+        //{
+        //    return View();
+        //}
 
-        [HttpGet]
-        public IActionResult Profile()
-        {
+        //[HttpGet]
+        //public IActionResult Profile()
+        //{
            
-            return View();
-        }
+        //    return View();
+        //}
 
     }
 }

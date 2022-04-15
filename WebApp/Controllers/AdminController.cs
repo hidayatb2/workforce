@@ -11,21 +11,13 @@ namespace WebApp
     [Route("admin")]
     public class AdminController : Controller
     {
-        //private readonly IRepository repository;
-        //private readonly IEmailService emailService;
         private readonly AdminManager adminManager;
         private readonly AccountManager accountManager;
-        private readonly CustomerManager customerManager;
 
-        public AdminController(IRepository repository,IEmailService emailService,AccountRepository repository1)
+        public AdminController(IRepository repository,IEmailService emailService)
         {
             adminManager = new AdminManager(repository,emailService);
-<<<<<<< Updated upstream
             accountManager = new AccountManager(repository,emailService);
-            customerManager = new CustomerManager(repository);
-=======
-            accountManager = new AccountManager(repository1, emailService);
->>>>>>> Stashed changes
         }
 
 
