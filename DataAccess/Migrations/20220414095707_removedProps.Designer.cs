@@ -4,6 +4,7 @@ using DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220414095707_removedProps")]
+    partial class removedProps
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -102,26 +104,6 @@ namespace DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Customer");
-                });
-
-            modelBuilder.Entity("DataAccess.Feedback", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("FeedbackMessage")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<byte>("status")
-                        .HasColumnType("tinyint");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("feedbacks");
                 });
 
             modelBuilder.Entity("DataAccess.Labour", b =>
@@ -304,11 +286,11 @@ namespace DataAccess.Migrations
                         {
                             Id = new Guid("87843532-0b93-492d-824b-68be17a82037"),
                             CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
-                            CreatedOn = new DateTime(2022, 4, 14, 19, 51, 31, 894, DateTimeKind.Local).AddTicks(8770),
+                            CreatedOn = new DateTime(2022, 4, 14, 15, 27, 6, 993, DateTimeKind.Local).AddTicks(2413),
                             Email = "admin@yopmail.com",
-                            Password = "3iFBuxjXEGwZqnE3oZfIXD/CqdtJ5gshnJm7rbsqH7g=",
+                            Password = "gK11+cy+94jKYv95X0NajFKIK2liYZJuxJmsblxCLmI=",
                             PhoneNo = "8825084050",
-                            Salt = "oNoyei33ysn3hPBeVPW02uTugBM=",
+                            Salt = "YsaNLUmv1Z6b6PZ+vkYgLVg/GEA=",
                             UpdatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             UpdatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserName = "admin",

@@ -31,5 +31,18 @@ namespace BusinessAccess
 
         }
 
+        public IEnumerable<SkillResponse> GetUserSkills()
+        {
+            return repository.GetAllUsers<DataAccess.Skill>().Select(x=>new SkillResponse
+            {
+                Id=x.Id,
+                SkillName=x.SkillName,
+                Experience=x.Experience,
+                LabourId=x.LabourId,
+                Wages=x.Wages,
+                WagesType=x.WagesType,
+            });
+        }
+
     }
 }

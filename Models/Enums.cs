@@ -41,4 +41,11 @@ namespace Models
 
         Contract=3,
     }
+
+    public enum FeedbackStatus : byte
+    {
+        Published = 1,
+
+        Hidden = 2,
+    }
 }

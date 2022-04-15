@@ -39,5 +39,7 @@ namespace DataAccess
         public DbSet<ContactUs> ContactUs { get; set; }
 
         public DbSet<Skill> Skills { get; set; }
+
+        public DbSet<Feedback> feedbacks { get; set; }
     }
 }

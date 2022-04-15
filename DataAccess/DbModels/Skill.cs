@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess
 {
-    public class Skill:BaseModel,IBaseModel
+    public class Skill:IBaseModel
     {
         public Guid Id { get; set; }
 

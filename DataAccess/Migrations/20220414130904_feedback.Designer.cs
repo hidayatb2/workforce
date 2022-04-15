@@ -4,6 +4,7 @@ using DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220414130904_feedback")]
+    partial class feedback
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -115,9 +117,6 @@ namespace DataAccess.Migrations
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<byte>("status")
-                        .HasColumnType("tinyint");
 
                     b.HasKey("Id");
 
@@ -304,11 +303,11 @@ namespace DataAccess.Migrations
                         {
                             Id = new Guid("87843532-0b93-492d-824b-68be17a82037"),
                             CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
-                            CreatedOn = new DateTime(2022, 4, 14, 19, 51, 31, 894, DateTimeKind.Local).AddTicks(8770),
+                            CreatedOn = new DateTime(2022, 4, 14, 18, 39, 3, 999, DateTimeKind.Local).AddTicks(3342),
                             Email = "admin@yopmail.com",
-                            Password = "3iFBuxjXEGwZqnE3oZfIXD/CqdtJ5gshnJm7rbsqH7g=",
+                            Password = "Z9FM4iYWOxiEFhrdwGEGQ4eUMs/tvPrN7AIbEgXOaWE=",
                             PhoneNo = "8825084050",
-                            Salt = "oNoyei33ysn3hPBeVPW02uTugBM=",
+                            Salt = "bSWJXq4KcxZCZbIJDxvdSfwP1lE=",
                             UpdatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             UpdatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserName = "admin",

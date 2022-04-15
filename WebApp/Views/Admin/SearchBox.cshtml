@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<UserResponse>
 @{
-    Layout="_AdminLayout";
+    Layout="_UserLayout";
 }
 
 
@@ -9,7 +9,7 @@
      <select class="form-control  col-5" asp-items="@Html.GetEnumSelectList<UserRole>()"id="roleDiv"  style="display:inline;width:30%;">
       <option value=0>Select Role</option>  
     </select>
-    <div class="col-2">|OR|</div>
+    <div class="col-2"> </div>
     <div class="col-5"><input class="form-control ml-5" id="searchBox" placeholder="Search by Name/Email/Phone" type="search" style="width:100%;display:inline"/></div>
  </div> 
 

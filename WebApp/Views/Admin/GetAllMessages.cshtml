@@ -1,0 +1,14 @@
+﻿@model IEnumerable<ContactUsResponse>
+
+<table class="table" style="margin-top:100px">
+    <tr>
+        <th>Messages</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+             <td>@item.Message</td>
+        </tr>
+       
+    }
+</table>

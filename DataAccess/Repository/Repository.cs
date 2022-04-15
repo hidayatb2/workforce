@@ -40,10 +40,16 @@ namespace DataAccess
             return dbContext.Set<T>().Any(expression);
         }
 
+        public T GetById<T>(Guid id) where T : class
+        {
+            return dbContext.Set<T>().Find(id);
+        }
 
-       
-
-
+         int IRepository.Delete<T>(T model)
+        {
+            dbContext.Set<T>().Remove(model);
+           return dbContext.SaveChanges();
+        }
 
     }
 }

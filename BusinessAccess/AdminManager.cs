@@ -57,5 +57,40 @@ namespace BusinessAccess
 
             return repository.AddandSave(user);
         }
+
+        public IEnumerable<ContactUsResponse> GetAllMessages()
+        {
+            List<ContactUsResponse> contactUsResponses = new List<ContactUsResponse>();
+
+            foreach (var item in repository.GetAllUsers<ContactUs>())
+            {
+                ContactUsResponse response = new ContactUsResponse();
+                 response.Email = item.Email;
+                 response.Name = item.Name;
+                 response.PhoneNo = item.PhoneNo;
+                response.Message = item.Message;
+                contactUsResponses.Add(response);
+            };
+
+            return contactUsResponses;
+
+        }
+
+        public IEnumerable<FeedbackResponse> GetFeedback()
+        {
+            List<FeedbackResponse> feedbackResponses = new List<FeedbackResponse>();
+            foreach (var item in repository.GetAllUsers<Feedback>())
+            {
+                FeedbackResponse response = new FeedbackResponse();
+                response.Id = item.Id;
+                response.Name = item.Name;
+                response.FeedbackMessage= item.FeedbackMessage;
+                response.Status = FeedbackStatus.Hidden;
+                feedbackResponses.Add(response);
+            }
+            return feedbackResponses;
+        }
+
+
     }
 }

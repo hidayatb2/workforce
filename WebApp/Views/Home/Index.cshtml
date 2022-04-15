@@ -1,4 +1,6 @@
-﻿@{
+﻿@model HomeModel
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -59,45 +61,19 @@
       <div class="container">
 
         <div class="row">
-          <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up">
+
+            @foreach (var item in Model.skillResponses)
+            {
+                   <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up">
             <div class="icon-box icon-box-pink">
               <!-- <div class="icon"><i class="bx bxl-dribbble"></i></div> -->
             <div class="icon"><i> <img src="~/Images/pngegg.png" style="height: 70px;width: 70px;margin-top: -16px;"></i></div>
-              <h4 class="title"><a href="">Adil Zargar</a></h4>
+              <h4 class="title"><a asp-action="SkillName" asp-route-skillName="@item.SkillName">@item.SkillName</a></h4>
               <p class="description">Many novice writers tend to make a sharp distinction between content and style,
                 thinking that a paper can be strong in one and weak in the other.</p>
             </div>
-          </div>
-
-          <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
-            <div class="icon-box icon-box-cyan">
-              <!-- <div class="icon"><i class="bx bx-file"></i></div> -->
-              <div class="icon"><i> <img src="~/Images/pngegg.png" style="height: 70px;width: 70px;margin-top: -16px;"></i></div>
-              <h4 class="title"><a href="">Owais Ashraf</a></h4>
-              <p class="description">Many novice writers tend to make a sharp distinction between content and style,
-                thinking that a paper can be strong in one and weak in the other.</p>
-            </div>
-          </div>
-
-          <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
-            <div class="icon-box icon-box-green">
-              <!-- <div class="icon"><i class="bx bx-tachometer"></i></div> -->
-              <div class="icon"><i> <img src="~/Images/pngegg.png" style="height: 70px;width: 70px;margin-top: -16px;"></i></div>
-              <h4 class="title"><a href="">Danish Nazir</a></h4>
-              <p class="description">Many novice writers tend to make a sharp distinction between content and style,
-                thinking that a paper can be strong in one and weak in the other.</p>
-            </div>
-          </div>
-
-          <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
-            <div class="icon-box icon-box-blue">
-              <!-- <div class="icon"><i class="bx bx-world"></i></div> -->
-              <div class="icon"><i> <img src="~/Images/pngegg.png" style="height: 70px;width: 70px;margin-top: -16px;"></i></div>
-              <h4 class="title"><a href="">Adnan Shalla</a></h4>
-              <p class="description">Many novice writers tend to make a sharp distinction between content and style,
-                thinking that a paper can be strong in one and weak in the other.</p>
-            </div>
-          </div>
+          </div>           
+            }
 
         </div>
 
@@ -137,91 +113,75 @@
       </div>
     </section><!-- End Why Us Section -->
 
-    <!-- ======= Features Section ======= -->
-    <section class="features">
+   <!-- ======= Tetstimonials Section ======= -->
+    <section class="testimonials" data-aos="fade-up">
       <div class="container">
 
         <div class="section-title">
-          <h2>Features</h2>
+          <h2>Tetstimonials</h2>
           <p>Many novice writers tend to make a sharp distinction between content and style, thinking that a paper can
             be strong in one and weak in the other, but focusing on organization shows how content and style converge in
             deliberative academic writing.</p>
         </div>
 
-        <div class="row" data-aos="fade-up">
-          <div class="col-md-5">
-            <img src="~/Images/pngegg.png" class="img-fluid" alt="">
-          </div>
-          <div class="col-md-7 pt-4">
-            <h3>This is the main para dummy text.</h3>
-            <p class="fst-italic">
-              Many novice writers tend to make a sharp distinction between content and style, thinking that a paper can
-              be strong in one and weak in the other.
-            </p>
-            <ul>
-              <li><i class="bi bi-check"></i>This is the dummy text</li>
-              <li><i class="bi bi-check"></i>This is the dummy text</li>
-            </ul>
-          </div>
-        </div>
+        <div class="testimonials-carousel swiper">
+          <div class="swiper-wrapper">
+            <div class="testimonial-item swiper-slide">
+              <img src="~/Images/pngegg.png" class="testimonial-img" alt="">
+              <h3>Adil Zargar</h3>
 
-        <div class="row" data-aos="fade-up">
-          <div class="col-md-5 order-1 order-md-2">
-            <img src="~/Images/pngegg.png" class="img-fluid" alt="">
-          </div>
-          <div class="col-md-7 pt-5 order-2 order-md-1">
-            <h3>This is the main para dummy text.</h3>
-            <p class="fst-italic">
-              Many novice writers tend to make a sharp distinction between content and style, thinking that a paper can
-              be strong in one and weak in the other.
-            </p>
-            <p>
-              Many novice writers tend to make a sharp distinction between content and style, thinking that a paper can
-              be strong in one and weak in the other, but focusing on organization shows how content and style converge
-              in
-              deliberative academic writing.
-            </p>
-          </div>
-        </div>
+              <p>
+                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                Many novice writers tend to make a sharp distinction between content and style,
+                thinking that a paper can be strong in one and weak in the other.
+                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+              </p>
+            </div>
 
-        <div class="row" data-aos="fade-up">
-          <div class="col-md-5">
-            <img src="~/Images/pngegg.png" class="img-fluid" alt="">
-          </div>
-          <div class="col-md-7 pt-5">
-            <h3>This is the main para dummy text.</h3>
-            <p> Many novice writers tend to make a sharp distinction between content and style, thinking that a paper
-              can
-              be strong in one and weak in the other.</p>
-            <ul>
-              <li><i class="bi bi-check"></i>This is the dummy text</li>
-              <li><i class="bi bi-check"></i>This is the dummy text</li>
-            </ul>
-          </div>
-        </div>
+            <div class="testimonial-item swiper-slide">
+              <img src="~/Images/pngegg.png" class="testimonial-img" alt="">
+              <h3>Owais Ashraf</h3>
 
-        <div class="row" data-aos="fade-up">
-          <div class="col-md-5 order-1 order-md-2">
-            <img src="~/Images/pngegg.png" class="img-fluid" alt="">
+              <p>
+                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                Many novice writers tend to make a sharp distinction between content and style,
+                thinking that a paper can be strong in one and weak in the other.
+                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+              </p>
+            </div>
+
+            <div class="testimonial-item swiper-slide">
+              <img src="~/Images/pngegg.png" class="testimonial-img" alt="">
+              <h3>Danish Mir</h3>
+
+              <p>
+                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                Many novice writers tend to make a sharp distinction between content and style,
+                thinking that a paper can be strong in one and weak in the other.
+                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+              </p>
+            </div>
+
+            <div class="testimonial-item swiper-slide">
+              <img src="~/Images/pngegg.png" class="testimonial-img" alt="">
+              <h3>Adnan Shalla</h3>
+
+              <p>
+                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                Many novice writers tend to make a sharp distinction between content and style,
+                thinking that a paper can be strong in one and weak in the other.
+                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+              </p>
+            </div>
+
+
           </div>
-          <div class="col-md-7 pt-5 order-2 order-md-1">
-            <h3>This is the main para dummy text</h3>
-            <p class="fst-italic">
-              Many novice writers tend to make a sharp distinction between content and style, thinking that a paper can
-              be strong in one and weak in the other.
-            </p>
-            <p>
-              Many novice writers tend to make a sharp distinction between content and style, thinking that a paper can
-              be strong in one and weak in the other, but focusing on organization shows how content and style converge
-              in
-              deliberative academic writing.
-            </p>
-          </div>
+          <div class="swiper-pagination"></div>
         </div>
 
       </div>
-    </section><!-- End Features Section -->
+    </section><!-- End Ttstimonials Section -->
 
   </main>
-  <!-- End #main -->
+  @*<!-- End #main -->*@
 
