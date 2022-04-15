@@ -125,6 +125,14 @@ namespace WebApp
 
             return View(user);
         }
+
+        [HttpGet("logout")]
+        public async Task<IActionResult> Logout()
+        {
+
+            await HttpContext.SignOutAsync();
+            return Redirect("/");
+        }
     }
 }
 
