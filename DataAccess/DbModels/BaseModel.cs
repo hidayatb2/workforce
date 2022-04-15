@@ -6,11 +6,8 @@ using System.Threading.Tasks;
 
 namespace DataAccess
 {
-    public class BaseModel:IBaseModel
+    public class BaseModel
     {
-        public Guid Id { get; set; }
-
-
         public Guid CreatedBy { get; set; }
 
 

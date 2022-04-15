@@ -17,11 +17,15 @@ namespace WebApp
         private readonly AccountManager accountManager;
         private readonly CustomerManager customerManager;
 
-        public AdminController(IRepository repository,IEmailService emailService)
+        public AdminController(IRepository repository,IEmailService emailService,AccountRepository repository1)
         {
             adminManager = new AdminManager(repository,emailService);
+<<<<<<< Updated upstream
             accountManager = new AccountManager(repository,emailService);
             customerManager = new CustomerManager(repository);
+=======
+            accountManager = new AccountManager(repository1, emailService);
+>>>>>>> Stashed changes
         }
 
 

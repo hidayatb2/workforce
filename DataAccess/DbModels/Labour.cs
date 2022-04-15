@@ -8,8 +8,13 @@ using System.Threading.Tasks;
 
 namespace DataAccess
 {
-    public class Labour:BaseModel
+    public class Labour:BaseModel,IBaseModel
     {
+        public Guid Id { get; set; }
+
+        [ForeignKey(nameof(Id))]
+        public User User { get; set; }
+
         public string Name { get; set; }
 
 

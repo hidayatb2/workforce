@@ -15,9 +15,11 @@ namespace DataAccess
     ///     Labour=5
     ///     end
     /// </summary>
-    public class User :BaseModel
+    public class User : BaseModel , IBaseModel
     {
-       
+
+        public Guid Id { get; set; }
+
         public string UserName { get; set; }
 
 
@@ -45,9 +47,6 @@ namespace DataAccess
 
 
         public UserStatus UserStatus { get; set; }
-
-
-
 
         public Customer Customer { get; set; }
 

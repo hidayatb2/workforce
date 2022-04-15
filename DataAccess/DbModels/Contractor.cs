@@ -7,11 +7,12 @@ using System.Threading.Tasks;
 
 namespace DataAccess
 {
-    public class Contractor:BaseModel
+    public class Contractor:BaseModel,IBaseModel
     {
 
-        public string Name { get; set; }
+        public Guid Id { get; set; }
 
+        public string Name { get; set; }
 
         public int Experience { get; set; }
 

@@ -6,23 +6,16 @@ namespace BusinessAccess
 {
     public class AccountManager
     {
-        private readonly IRepository repository;
+        private readonly AccountRepository repository;
         private readonly IEmailService emailService;
 
-        public AccountManager(IRepository repository, IEmailService emailService)
+        public AccountManager(AccountRepository repository, IEmailService emailService)
         {
             this.repository = repository;
             this.emailService = emailService;
         }
 
         
-        //public IEnumerable<User> FindBy(string searchString)
-        //{
-            
-        //    return repository.FindBy<User>(x => x.UserName == searchString || x.Email == searchString || x.PhoneNo == searchString,
-           
-        //}
-
         public IEnumerable<UserResponse> SearchUserBy(string searchString)
         {
           List<UserResponse> userResponses = new List<UserResponse>();
@@ -45,6 +38,19 @@ namespace BusinessAccess
              return userResponses;
         }
 
+
+        public UserResponse GetUserById(Guid id)
+        {
+            var user = repository.GetById<User>(id);
+            return new UserResponse
+            {
+                Id = user.Id,
+                UserName = user.UserName,
+                Email = user.Email,
+                PhoneNo = user.PhoneNo,
+
+            };
+        }
 
 
         public IEnumerable<UserResponse> GetAllUsers()
@@ -69,7 +75,6 @@ namespace BusinessAccess
             return userResponses;
         }
 
-
         public int Add(SignupRequest signupRequest)
         {
             User user = new User()
@@ -79,7 +84,7 @@ namespace BusinessAccess
                 PhoneNo = signupRequest.PhoneNo,
                 Email = signupRequest.Email,
                 UserStatus = UserStatus.Inactive,
-                UserRole = UserRole.Labour
+                UserRole = signupRequest.UserRole,
             };
             user.Password = AppEncryption.CreatePasswordHash(signupRequest.Password,user.Salt);
             if (repository.IsExist<User>(x => x.UserName == user.UserName)) return -1;

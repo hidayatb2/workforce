@@ -13,10 +13,12 @@ namespace WebApp
     public class AccountController : Controller
     {
         private readonly AccountManager accountManager;
+        private readonly IEmailService emailService;
 
-        public AccountController(IRepository repository,IEmailService emailService)
+        public AccountController(AccountRepository repository,IEmailService emailService)
         {
             accountManager = new AccountManager(repository,emailService);
+            this.emailService = emailService;
         }
 
         [HttpGet("index")]
@@ -110,11 +112,16 @@ namespace WebApp
                 ViewBag.Message = "User not found";
             }
             return View();
+        }
 
+        [HttpGet("profile")]
+        public IActionResult Profile()
+        {
+            Guid id = User.GetUserId();
 
+            var user =  accountManager.GetUserById(id);
 
-
-
+            return View(user);
         }
     }
 }

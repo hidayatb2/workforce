@@ -1,0 +1,44 @@
+﻿@model UserResponse
+@{
+    Layout = "_UserLayout";
+}
+
+<form class="form ">
+
+    <div class="offset-4">
+        <img src="~/Images/hero-bg.jpg" width=150px; height=200px style="border-radius:50px" />
+    </div>
+
+    <div>
+        <input asp-for="Id" hidden />
+    </div>
+
+    <div class="col-md-3">
+        <label asp-for="UserName" class="label-control"></label>
+        <input asp-for="UserName" class="form-control " />
+    </div>
+
+    <div class="col-md-3" >
+        <label asp-for="Email" class="label-control"></label>
+        <input asp-for="Email" class="form-control col-md-3" />
+    </div>
+
+     <div class="col-md-3" >
+        <label asp-for="PhoneNo" class="label-control"></label>
+        <input asp-for="PhoneNo" class="form-control" />
+    </div>
+
+     <div class="col-md-3" >
+        <label asp-for="UserRole" class="label-control"></label>
+        <select asp-for="UserRole" asp-items="Html.GetEnumSelectList<UserRole>()" class="form-control">
+            <option value="">Select Role</option>
+        </select>
+    </div>
+
+    <div class="col-md-3" >
+        <label asp-for="UserStatus" class="label-control"></label>
+        <select asp-for="UserStatus" asp-items="Html.GetEnumSelectList<UserStatus>()" class="form-control">
+            <option value="">Select Status</option>
+        </select>
+    </div>
+</form>

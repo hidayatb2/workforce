@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace DataAccess
 {
-    public class Customer:BaseModel
+    public class Customer:BaseModel,IBaseModel
     {
+        public Guid Id { get; set; }
 
         [ForeignKey(nameof(Id))]
         public User User { get; set; }
