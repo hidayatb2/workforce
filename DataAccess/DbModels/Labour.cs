@@ -8,46 +8,26 @@ using System.Threading.Tasks;
 
 namespace DataAccess
 {
-    public class Labour:BaseModel,IBaseModel
+    public class Labour:UserBaseModel,IBaseModel
     {
         public Guid Id { get; set; }
 
+
         [ForeignKey(nameof(Id))]
         public User User { get; set; }
-
-        public string Name { get; set; }
-
-
-        public Gender Gender{ get; set; }
-
 
 
         public string AdhaarNo { get; set; }
 
 
-        public string Address1 { get; set; }
-
-
-        public string Address2 { get; set; }
-
-
-        public string PhoneNo2 { get; set; }
-
-
-        public string Bank { get; set; }
-
-
-        public string AccountNo { get; set; }
-
-
-        public string IFSC { get; set; }
-
-
         public bool IsSkilled { get; set; }
 
 
-        public ICollection<Skill> Skills { get; set; }
+        public Guid ManagerId { get; set; }
 
+
+        [ForeignKey(nameof(ManagerId))]
+        public Manager  Manager { get; set; }
 
     }
 }

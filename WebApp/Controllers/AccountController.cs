@@ -12,13 +12,13 @@ namespace WebApp
     [Route("account")]
     public class AccountController : Controller
     {
-        private readonly IRepository repository;
+        private readonly AccountRepository repository;
         private readonly AccountManager accountManager;
         private readonly IEmailService emailService;
 
-        public AccountController(IRepository repository,IEmailService emailService)
+        public AccountController(AccountRepository repository, IEmailService emailService)
         {
-            accountManager = new AccountManager(repository,emailService);
+            accountManager = new AccountManager(repository, emailService);
             this.emailService = emailService;
             this.repository = repository;
         }
@@ -46,8 +46,8 @@ namespace WebApp
                 else
                     ViewBag.Message = 0;
             }
-                return View();
-            
+            return View();
+
         }
 
         [HttpGet("login")]
@@ -64,50 +64,47 @@ namespace WebApp
             {
                 var loginResponse = accountManager.LogIn(loginRequest);
 
-            if (loginResponse.UserStatus != UserStatus.Inactive && loginResponse.UserStatus != null)
-            {
-
-
-                ClaimsIdentity identity = new ClaimsIdentity(CookieAuthenticationDefaults.AuthenticationScheme);
-                identity.AddClaim(new Claim(AppClaimTypes.UserId, loginResponse.Id.ToString()));
-                identity.AddClaim(new Claim(AppClaimTypes.UserName, loginResponse.UserName));
-                identity.AddClaim(new Claim(AppClaimTypes.Email, loginResponse.Email));
-                //identity.AddClaim(new Claim(AppClaimTypes.PhoneNo, loginResponse.PhoneNo));
-                identity.AddClaim(new Claim(AppClaimTypes.Role, loginResponse.UserRole.ToString()));
-
-                ClaimsPrincipal principal = new ClaimsPrincipal(identity);
-
-                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal, new AuthenticationProperties
+                if (loginResponse.UserStatus != UserStatus.Inactive && loginResponse.UserStatus != null)
                 {
-                    AllowRefresh = true,
-                    IsPersistent = loginRequest.RememberMe,
-                    ExpiresUtc = DateTime.Now.AddMinutes(60),
-                });
 
-                if (loginResponse.UserRole == UserRole.Admin)
-                {
-                    return RedirectToAction("DashBoard", "Admin");
+
+                    ClaimsIdentity identity = new ClaimsIdentity(CookieAuthenticationDefaults.AuthenticationScheme);
+                    identity.AddClaim(new Claim(AppClaimTypes.UserId, loginResponse.Id.ToString()));
+                    identity.AddClaim(new Claim(AppClaimTypes.UserName, loginResponse.UserName));
+                    identity.AddClaim(new Claim(AppClaimTypes.Email, loginResponse.Email));
+                    //identity.AddClaim(new Claim(AppClaimTypes.PhoneNo, loginResponse.PhoneNo));
+                    identity.AddClaim(new Claim(AppClaimTypes.Role, loginResponse.UserRole.ToString()));
+
+                    ClaimsPrincipal principal = new ClaimsPrincipal(identity);
+
+                    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal, new AuthenticationProperties
+                    {
+                        AllowRefresh = true,
+                        IsPersistent = loginRequest.RememberMe,
+                        ExpiresUtc = DateTime.Now.AddMinutes(60),
+                    });
+
+                    if (loginResponse.UserRole == UserRole.Admin)
+                    {
+                        return RedirectToAction("DashBoard", "Admin");
+                    }
+                    else if (loginResponse.UserRole == UserRole.Customer)
+                    {
+                        return RedirectToAction("index", "Customer");
+                    }
+                    else if (loginResponse.UserRole == UserRole.Contractor)
+                    {
+                        return RedirectToAction("index", "Contractor");
+                    }
+                    else if (loginResponse.UserRole == UserRole.Manager)
+                    {
+                        return RedirectToAction("index", "Manager");
+                    }
+                    else if (loginResponse.UserRole == UserRole.Labour)
+                    {
+                        return RedirectToAction("index", "Labour");
+                    }
                 }
-                else if (loginResponse.UserRole == UserRole.Customer)
-                {
-                    return RedirectToAction("index", "Customer");
-                }
-                else if (loginResponse.UserRole == UserRole.Contractor)
-                {
-                    return RedirectToAction("index", "Contractor");
-                }
-                else if (loginResponse.UserRole == UserRole.Manager)
-                {
-                    return RedirectToAction("index", "Manager");
-                }
-                else if (loginResponse.UserRole == UserRole.Labour)
-                {
-                    return RedirectToAction("index", "Labour");
-                }
-
-            }
-
-
             }
             else
             {
@@ -120,16 +117,14 @@ namespace WebApp
         public IActionResult Profile()
         {
             Guid id = User.GetUserId();
-
-            var user =  accountManager.GetUserById(id);
-
+            var userRole = User.GetUserRole(); //Save in Claims
+            var user = accountManager.GetUserById(id, userRole);
             return View(user);
         }
 
         [HttpGet("logout")]
         public async Task<IActionResult> Logout()
         {
-
             await HttpContext.SignOutAsync();
             return Redirect("/");
         }

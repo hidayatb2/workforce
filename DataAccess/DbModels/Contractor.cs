@@ -7,20 +7,20 @@ using System.Threading.Tasks;
 
 namespace DataAccess
 {
-    public class Contractor:BaseModel,IBaseModel
+    public class Contractor: UserBaseModel, IBaseModel
     {
 
         public Guid Id { get; set; }
 
-        public string Name { get; set; }
-
-        public int Experience { get; set; }
-
-
-        public string Address { get; set; }
-
 
         [ForeignKey(nameof(Id))]
         public User User { get; set; }
+
+
+        public string Title { get; set; }
+
+
+        public ICollection<Manager> Managers { get; set; }
+
     }
 }

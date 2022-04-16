@@ -40,9 +40,88 @@ namespace Models
     public class UserResponse:UserRequest
     {
         public Guid CreatedBy { get; set; }
+
+
         public DateTime CreatedOn { get; set; }
+
+
         public UserRole UserRole { get; set; }
+
+
         public UserStatus UserStatus { get; set; }
+    }
+
+
+    public class UserCompact : UserResponse
+    {
+        public string Name { get; set; }
+
+
+        public Gender Gender { get; set; }
+
+
+        public string Address { get; set; }
+
+
+        public string Bank { get; set; }
+
+
+        public string AccountNo { get; set; }
+
+
+        public string IFSC { get; set; }
+
+
+        public string JobProfile { get; set; }
+
+
+        public string Experience { get; set; }
+
+
+        public WagesType WagesType { get; set; }
+
+
+        public float Wages { get; set; }
+
+
+        public string Discription { get; set; }
+
+
+    }
+
+    public class LabourResponse :UserResponse
+    {
+     
+       
+
+        public string AdhaarNo { get; set; }
+
+
+        public string Address1 { get; set; }
+
+
+        public string Address2 { get; set; }
+
+
+        public string PhoneNo2 { get; set; }
+
+
+        public string Bank { get; set; }
+
+
+        public string AccountNo { get; set; }
+
+
+        public string IFSC { get; set; }
+
+
+        public bool IsSkilled { get; set; }
+    }
+
+
+    public class ManagerResponse :UserResponse
+    {
+
     }
 
     public class SignupRequest:UserRequest

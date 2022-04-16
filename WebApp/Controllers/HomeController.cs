@@ -24,7 +24,7 @@ namespace WebApp
         {
             HomeModel homeModel = new HomeModel()
             {
-                skillResponses = homeManager.GetUserSkills().DistinctBy(x=>x.SkillName)
+                //skillResponses = homeManager.GetUserSkills().DistinctBy(x=>x.SkillName)
             };
             return View(homeModel);
         }
@@ -65,11 +65,11 @@ namespace WebApp
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        [HttpGet("skills")]
-        public IActionResult SkillName(string skillname)
-        {
-           return View(homeManager.GetUserSkills().Where(x => x.SkillName == skillname));
-        }
+        //[HttpGet("skills")]
+        //public IActionResult SkillName(string skillname)
+        //{
+        //   return View(homeManager.GetUserSkills().Where(x => x.SkillName == skillname));
+        //}
 
     }
 }

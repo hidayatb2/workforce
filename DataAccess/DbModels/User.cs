@@ -54,7 +54,7 @@ namespace DataAccess
 
         public Manager Manager { get; set; }
 
-        public Labour labour { get; set; }
+        public Labour Labour { get; set; }
 
 
     }

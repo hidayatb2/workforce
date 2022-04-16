@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220415091515_relationshipbugfixed")]
-    partial class relationshipbugfixed
+    [Migration("20220416064724_initialmig")]
+    partial class initialmig
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -52,75 +52,10 @@ namespace DataAccess.Migrations
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Address")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("CreatedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("Experience")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("UpdatedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("UpdatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Contractor");
-                });
-
-            modelBuilder.Entity("DataAccess.Customer", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Address")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("CreatedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("UpdatedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("UpdatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Customer");
-                });
-
-            modelBuilder.Entity("DataAccess.Labour", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("AccountNo")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Address1")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Address2")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("AdhaarNo")
+                    b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Bank")
@@ -132,8 +67,11 @@ namespace DataAccess.Migrations
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("DOB")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("Discription")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Experience")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<byte>("Gender")
                         .HasColumnType("tinyint");
@@ -141,76 +79,13 @@ namespace DataAccess.Migrations
                     b.Property<string>("IFSC")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("IsSkilled")
-                        .HasColumnType("bit");
+                    b.Property<string>("JobProfile")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PhoneNo2")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("UpdatedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("UpdatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Labour");
-                });
-
-            modelBuilder.Entity("DataAccess.Manager", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Address")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("CreatedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("Experience")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("UpdatedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("UpdatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Manager");
-                });
-
-            modelBuilder.Entity("DataAccess.Skill", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("CreatedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Experience")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("LabourId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("SkillName")
+                    b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid>("UpdatedBy")
@@ -227,9 +102,199 @@ namespace DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("LabourId");
+                    b.ToTable("Contractor");
+                });
 
-                    b.ToTable("Skills");
+            modelBuilder.Entity("DataAccess.Customer", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("AccountNo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AdhaarNo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Bank")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<byte>("Gender")
+                        .HasColumnType("tinyint");
+
+                    b.Property<string>("IFSC")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("UpdatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("UpdatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Customer");
+                });
+
+            modelBuilder.Entity("DataAccess.Feedback", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("FeedbackMessage")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte>("status")
+                        .HasColumnType("tinyint");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("feedbacks");
+                });
+
+            modelBuilder.Entity("DataAccess.Labour", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("AccountNo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AdhaarNo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Bank")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Discription")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Experience")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte>("Gender")
+                        .HasColumnType("tinyint");
+
+                    b.Property<string>("IFSC")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsSkilled")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("JobProfile")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("ManagerId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("UpdatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("UpdatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<float>("Wages")
+                        .HasColumnType("real");
+
+                    b.Property<byte>("WagesType")
+                        .HasColumnType("tinyint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ManagerId");
+
+                    b.ToTable("Labour");
+                });
+
+            modelBuilder.Entity("DataAccess.Manager", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("AccountNo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AdhaarNo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Bank")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("ContractorId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Discription")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Experience")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte>("Gender")
+                        .HasColumnType("tinyint");
+
+                    b.Property<string>("IFSC")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("JobProfile")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("UpdatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("UpdatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<float>("Wages")
+                        .HasColumnType("real");
+
+                    b.Property<byte>("WagesType")
+                        .HasColumnType("tinyint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ContractorId");
+
+                    b.ToTable("Manager");
                 });
 
             modelBuilder.Entity("DataAccess.User", b =>
@@ -242,6 +307,9 @@ namespace DataAccess.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DOB")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
@@ -286,11 +354,12 @@ namespace DataAccess.Migrations
                         {
                             Id = new Guid("87843532-0b93-492d-824b-68be17a82037"),
                             CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
-                            CreatedOn = new DateTime(2022, 4, 15, 14, 45, 15, 417, DateTimeKind.Local).AddTicks(1286),
+                            CreatedOn = new DateTime(2022, 4, 16, 12, 17, 23, 852, DateTimeKind.Local).AddTicks(7216),
+                            DOB = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "admin@yopmail.com",
-                            Password = "b3iH2u28KVEVU1/4QJGEes+e0lvyKJM+vzBgeWgj1rI=",
+                            Password = "f4+Spep6rIeSAP/Y+NwTDJGWzdylJzxe0S/7f44hvkQ=",
                             PhoneNo = "8825084050",
-                            Salt = "6rEHyWkXNpS3h4pejU8Wkijy2OQ=",
+                            Salt = "nfhr6IK5+x88yF3tXNXwevahIKM=",
                             UpdatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             UpdatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserName = "admin",
@@ -324,39 +393,49 @@ namespace DataAccess.Migrations
             modelBuilder.Entity("DataAccess.Labour", b =>
                 {
                     b.HasOne("DataAccess.User", "User")
-                        .WithOne("labour")
+                        .WithOne("Labour")
                         .HasForeignKey("DataAccess.Labour", "Id")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+
+                    b.HasOne("DataAccess.Manager", "Manager")
+                        .WithMany("Labours")
+                        .HasForeignKey("ManagerId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Manager");
 
                     b.Navigation("User");
                 });
 
             modelBuilder.Entity("DataAccess.Manager", b =>
                 {
+                    b.HasOne("DataAccess.Contractor", "Contractor")
+                        .WithMany("Managers")
+                        .HasForeignKey("ContractorId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.HasOne("DataAccess.User", "User")
                         .WithOne("Manager")
                         .HasForeignKey("DataAccess.Manager", "Id")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.Navigation("Contractor");
+
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("DataAccess.Skill", b =>
+            modelBuilder.Entity("DataAccess.Contractor", b =>
                 {
-                    b.HasOne("DataAccess.Labour", "Labour")
-                        .WithMany("Skills")
-                        .HasForeignKey("LabourId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Labour");
+                    b.Navigation("Managers");
                 });
 
-            modelBuilder.Entity("DataAccess.Labour", b =>
+            modelBuilder.Entity("DataAccess.Manager", b =>
                 {
-                    b.Navigation("Skills");
+                    b.Navigation("Labours");
                 });
 
             modelBuilder.Entity("DataAccess.User", b =>
@@ -365,9 +444,9 @@ namespace DataAccess.Migrations
 
                     b.Navigation("Customer");
 
-                    b.Navigation("Manager");
+                    b.Navigation("Labour");
 
-                    b.Navigation("labour");
+                    b.Navigation("Manager");
                 });
 #pragma warning restore 612, 618
         }

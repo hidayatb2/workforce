@@ -6,10 +6,10 @@ namespace BusinessAccess
 {
     public class AccountManager
     {
-        private readonly IRepository repository;
+        private readonly AccountRepository repository;
         private readonly IEmailService emailService;
 
-        public AccountManager(IRepository repository, IEmailService emailService)
+        public AccountManager(AccountRepository repository, IEmailService emailService)
         {
             this.repository = repository;
             this.emailService = emailService;
@@ -37,17 +37,9 @@ namespace BusinessAccess
 
             return userResponses;
         }
-        public UserResponse GetUserById(Guid id)
+        public UserCompact GetUserById(Guid id,UserRole userRole)
         {
-            var user = repository.GetById<User>(id);
-            return new UserResponse
-            {
-                Id = user.Id,
-                UserName = user.UserName,
-                Email = user.Email,
-                PhoneNo = user.PhoneNo,
-
-            };
+            return repository.GetProfile(id, userRole);
         }
         public IEnumerable<UserResponse> GetAllUsers()
         {

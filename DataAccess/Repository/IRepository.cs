@@ -22,5 +22,11 @@ namespace DataAccess
         IQueryable<T> FindBy<T>(System.Linq.Expressions.Expression<Func<T, bool>> predicate) where T : class;
 
         bool IsExist<T>(System.Linq.Expressions.Expression<Func<T, bool>> predicate) where T : class;
+
+        IQueryable<T> FromQuery<T>(string sql, params object[] parameters) where T : class;
+
+
+        T GetObject<T>(string sql, params object[] parameters) where T : class;
+
     }
 }

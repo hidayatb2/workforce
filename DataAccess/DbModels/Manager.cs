@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -7,17 +8,26 @@ using System.Threading.Tasks;
 
 namespace DataAccess
 {
-    public class Manager : BaseModel , IBaseModel
+    public class Manager : UserBaseModel,IBaseModel
     {
         public Guid Id { get; set; }
 
+
         [ForeignKey(nameof(Id))]
         public User User { get; set; }
-        public string Name { get; set; }
 
-        public string Address { get; set; }
 
-        public int Experience { get; set; }
+        public string AdhaarNo { get; set; }
 
+
+        public Guid ContractorId { get; set; }
+
+
+        [ForeignKey(nameof(ContractorId))]
+        public Contractor Contractor { get; set; }
+
+
+
+        public ICollection<Labour> Labours { get; set; }
     }
 }
