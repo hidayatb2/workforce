@@ -11,5 +11,15 @@ namespace WebApp
                 return userId;
             return Guid.Empty;
         }
+
+        public static string GetName(this ClaimsPrincipal principal)
+        {
+            return principal?.Claims?.FirstOrDefault(x => x.Type == AppClaimTypes.Name).Value;
+        }
+
+        public static string GetRole(this ClaimsPrincipal principal)
+        {
+            return principal?.Claims?.FirstOrDefault(x => x.Type == AppClaimTypes.Role).Value;
+        }
     }
 }
