@@ -14,7 +14,7 @@ namespace WebApp
         private readonly AdminManager adminManager;
         private readonly AccountManager accountManager;
 
-        public AdminController(IRepository repository,IEmailService emailService)
+        public AdminController(AccountRepository repository,IEmailService emailService)
         {
             adminManager = new AdminManager(repository,emailService);
             accountManager = new AccountManager(repository,emailService);

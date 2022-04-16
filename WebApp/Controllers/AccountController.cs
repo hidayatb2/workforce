@@ -15,11 +15,13 @@ namespace WebApp
         private readonly AccountRepository repository;
         private readonly AccountManager accountManager;
         private readonly IEmailService emailService;
+        private readonly IWebHostEnvironment environment;
 
-        public AccountController(AccountRepository repository, IEmailService emailService)
+        public AccountController(AccountRepository repository, IEmailService emailService, IWebHostEnvironment environment)
         {
             accountManager = new AccountManager(repository, emailService);
             this.emailService = emailService;
+            this.environment = environment;
             this.repository = repository;
         }
 
@@ -117,7 +119,7 @@ namespace WebApp
         public IActionResult Profile()
         {
             Guid id = User.GetUserId();
-            var userRole = User.GetUserRole(); //Save in Claims
+            var userRole = UserRole.Labour;//User.GetUserRole(); //Save in Claims
             var user = accountManager.GetUserById(id, userRole);
             return View(user);
         }
