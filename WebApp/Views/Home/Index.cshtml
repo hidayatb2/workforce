@@ -62,18 +62,18 @@
 
         <div class="row">
             
-            @*@foreach (var item in Model.skillResponses)
+            @foreach (var item in Model.skillResponses)
             {
                    <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up">
             <div class="icon-box icon-box-pink">
               <!-- <div class="icon"><i class="bx bxl-dribbble"></i></div> -->
             <div class="icon"><i> <img src="~/Images/pngegg.png" style="height: 70px;width: 70px;margin-top: -16px;"></i></div>
-              <h4 class="title"><a asp-action="SkillName" asp-route-skillName="@item.SkillName">@item.SkillName</a></h4>
+              <h4 class="title"><a asp-action="SkillName" asp-route-jobprofile="@item.JobProfile">@item.JobProfile</a></h4>
               <p class="description">Many novice writers tend to make a sharp distinction between content and style,
                 thinking that a paper can be strong in one and weak in the other.</p>
             </div>
           </div>           
-            }*@
+            }
 
         </div>
 

@@ -4,6 +4,7 @@ using DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220417093355_try")]
+    partial class @try
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -207,6 +209,9 @@ namespace DataAccess.Migrations
                     b.Property<string>("JobProfile")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid?>("ManagerId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
@@ -223,6 +228,8 @@ namespace DataAccess.Migrations
                         .HasColumnType("tinyint");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ManagerId");
 
                     b.ToTable("Labour");
                 });
@@ -347,12 +354,12 @@ namespace DataAccess.Migrations
                         {
                             Id = new Guid("87843532-0b93-492d-824b-68be17a82037"),
                             CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
-                            CreatedOn = new DateTime(2022, 4, 17, 15, 8, 58, 38, DateTimeKind.Local).AddTicks(468),
+                            CreatedOn = new DateTime(2022, 4, 17, 15, 3, 53, 839, DateTimeKind.Local).AddTicks(4718),
                             DOB = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "admin@yopmail.com",
-                            Password = "XfUyBvJHy58kwNrClBtSA90e6bV47PWYWrXnLPxgN3c=",
+                            Password = "ylTPBD4EC58q3zbyqLNLcLulwJ6ixXpkAv2kweMjONw=",
                             PhoneNo = "8825084050",
-                            Salt = "+MlQdaAWfOL2tqmZKMT7hfT34oI=",
+                            Salt = "sIbhA3XH20l3wmspAyqE8vfLs0Y=",
                             UpdatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             UpdatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserName = "admin",
@@ -391,6 +398,11 @@ namespace DataAccess.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.HasOne("DataAccess.Manager", null)
+                        .WithMany("Labours")
+                        .HasForeignKey("ManagerId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
                     b.Navigation("User");
                 });
 
@@ -416,6 +428,11 @@ namespace DataAccess.Migrations
             modelBuilder.Entity("DataAccess.Contractor", b =>
                 {
                     b.Navigation("Managers");
+                });
+
+            modelBuilder.Entity("DataAccess.Manager", b =>
+                {
+                    b.Navigation("Labours");
                 });
 
             modelBuilder.Entity("DataAccess.User", b =>

@@ -22,12 +22,12 @@ namespace DataAccess
 
         public bool IsSkilled { get; set; }
 
+        
+        //public Guid ManagerId { get; set; }
 
-        public Guid ManagerId { get; set; }
 
-
-        [ForeignKey(nameof(ManagerId))]
-        public Manager  Manager { get; set; }
+        //[ForeignKey(nameof(ManagerId))]
+        //public Manager  Manager { get; set; }
 
     }
 }

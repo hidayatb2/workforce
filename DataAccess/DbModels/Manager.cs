@@ -28,6 +28,6 @@ namespace DataAccess
 
 
 
-        public ICollection<Labour> Labours { get; set; }
+        //public ICollection<Labour> Labours { get; set; }
     }
 }

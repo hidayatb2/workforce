@@ -31,18 +31,34 @@ namespace BusinessAccess
 
         }
 
-        //public IEnumerable<SkillResponse> GetUserSkills()
-        //{
-        //    return repository.GetAll<DataAccess.Skill>().Select(x=>new SkillResponse
-        //    {
-        //        Id=x.Id,
-        //        SkillName=x.SkillName,
-        //        Experience=x.Experience,
-        //        LabourId=x.LabourId,
-        //        Wages=x.Wages,
-        //        WagesType=x.WagesType,
-        //    });
-        //}
+        public IEnumerable<SkillResponse> GetUserSkills()
+        {
+            return repository.GetAll<Labour>().Select(x => new SkillResponse
+            {
+                LabourId=x.Id,
+                Name=x.Name,
+                JobProfile=x.JobProfile,
+                Experience=x.Experience,
+                WagesType=x.WagesType,
+                Wages=x.Wages,
+                //ManagerId=x.ManagerId,
+                Discription=x.Discription
+            });
+        }
+
+        public IEnumerable<SkillResponse> FindBy(string jobProfile)
+        {
+            return repository.FindBy<Labour>(x => x.JobProfile == jobProfile).Select(x => new SkillResponse
+            {
+                LabourId = x.Id,
+                Name = x.Name,
+                JobProfile = x.JobProfile,
+                Experience = x.Experience,
+                WagesType = x.WagesType,
+                Wages = x.Wages,
+                Discription = x.Discription
+            });
+        }
 
     }
 }

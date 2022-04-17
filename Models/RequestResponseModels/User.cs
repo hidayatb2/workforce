@@ -128,8 +128,8 @@ namespace Models
     {
 
         [Required(ErrorMessage = "DOB Required")]
-        [DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:dd/mm/yyy}", ApplyFormatInEditMode = true)]
-        [RegularExpression("^(0[1 - 9] | 1[012])[- /.](0[1 - 9] |[12][0 - 9] | 3[01])[- /.](19 | 20)\\d\\d$", ErrorMessage="User is Below 18 or Above 60" )]
+        //[DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:dd/mm/yyy}", ApplyFormatInEditMode = true)]
+        //[RegularExpression("^(0[1 - 9] | 1[012])[- /.](0[1 - 9] |[12][0 - 9] | 3[01])[- /.](19 | 20)\\d\\d$", ErrorMessage="User is Below 18 or Above 60" )]
         public DateTime DOB { get; set; }
 
 
@@ -164,9 +164,16 @@ namespace Models
 
     public class SkillRequest
     {
-        public Guid Id { get; set; }
+        public Guid LabourId { get; set; }
 
-        public string SkillName { get; set; }
+
+        public string Name { get; set; }
+
+
+        //public Guid ManagerId { get; set; }
+
+
+        public string JobProfile { get; set; }
 
 
         public string Experience { get; set; }
@@ -177,7 +184,8 @@ namespace Models
 
         public float Wages { get; set; }
 
-        public Guid LabourId { get; set; }
+
+        public string Discription { get; set; }
     }
 
     public class SkillResponse : SkillRequest

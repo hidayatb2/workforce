@@ -1,20 +1,29 @@
 ﻿@model IEnumerable<SkillResponse>
 
-    <table>
+
+    <div style="margin-top:200px">
+        <input type="search" class="form-control" />
+    </div>
+
+    <table style="margin-top:110px" class="table table-hover">
         <tr>
-            <th>SkillName</th>
-            <th>Experience</th>
+            <th>Name</th>
+            <th>Job Profile</th>
             <th>Wages Type</th>
             <th>Wages</th>
+            <th>Experience</th>
+            <th>Other skills</th>
         </tr>
         @foreach (var item in Model)
         {
             
             <tr>
-                <td>@item.SkillName</td>
-                <td>@item.Experience</td>
+                <td>@item.Name</td>
+                <td>@item.JobProfile</td>
                 <td>@item.WagesType</td>
                 <td>@item.Wages</td>
+                <td>@item.Experience</td>
+                <td>@item.Discription</td>
             </tr>
 
         }
