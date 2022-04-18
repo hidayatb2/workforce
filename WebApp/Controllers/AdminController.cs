@@ -132,5 +132,11 @@ namespace WebApp
             var testimonials = adminManager.GetTestimonial();
             return View(testimonials);
         }
+
+        //[HttpGet("managers")]
+        //public IActionResult Managers()
+        //{
+        //    adminManager.GetManagers();
+        //}
     }
 }

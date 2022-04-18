@@ -93,5 +93,16 @@ namespace BusinessAccess
         }
 
 
+        public IEnumerable<ManagerResponses> GetManagers()
+        {
+           return repository.GetAll<Manager>().Select(x => new ManagerResponses
+            {
+                Id = x.Id,
+                Name = x.Name
+            });
+        }
+
+
+
     }
 }

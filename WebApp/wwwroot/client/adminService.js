@@ -63,7 +63,29 @@ ddlVal.addEventListener('change', function (event) {
 // })
 
 
+let ddlRole=document.getElementById('role');
+ddlRole.addEventListener('change', function (event) {
+    document.getElementById('role1').style="display:block";
+    // apiHelper.get({
+    //     url: "/admin/getallusersbyrole/" + roleVal,
+    //     accept: "text/html",
+    //     success: (users) => {
+    //         let userListDiv = document.getElementById('mainD');
+    //         userListDiv.innerHTML = users;
+    //         userListDiv.style = "display:block"
+
+    //     }
+    // });
+})
+
+
+
+
+
+
 $(document).on('change','.chkStatus',function(e){
    let id= e.target.value;
     alert('hi');
 })
+
+
