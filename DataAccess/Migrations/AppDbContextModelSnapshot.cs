@@ -350,21 +350,21 @@ namespace DataAccess.Migrations
                         {
                             Id = new Guid("87843532-0b93-492d-824b-68be17a82037"),
                             CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
-<<<<<<< Updated upstream
+
                             CreatedOn = new DateTime(2022, 4, 17, 15, 8, 58, 38, DateTimeKind.Local).AddTicks(468),
                             DOB = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "admin@yopmail.com",
                             Password = "XfUyBvJHy58kwNrClBtSA90e6bV47PWYWrXnLPxgN3c=",
                             PhoneNo = "8825084050",
                             Salt = "+MlQdaAWfOL2tqmZKMT7hfT34oI=",
-=======
-                            CreatedOn = new DateTime(2022, 4, 17, 20, 28, 47, 112, DateTimeKind.Local).AddTicks(8653),
-                            DOB = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "admin@yopmail.com",
-                            Password = "2JS6lKUR/YmM4s5AJHQgRWHoNzxDnsPRmeOPtboOcoo=",
-                            PhoneNo = "8825084050",
-                            Salt = "rcJZ2H9M/ie6iOwoD87X5mUaxg8=",
->>>>>>> Stashed changes
+
+                            //CreatedOn = new DateTime(2022, 4, 17, 20, 28, 47, 112, DateTimeKind.Local).AddTicks(8653),
+                            //DOB = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            //Email = "admin@yopmail.com",
+                            //Password = "2JS6lKUR/YmM4s5AJHQgRWHoNzxDnsPRmeOPtboOcoo=",
+                            //PhoneNo = "8825084050",
+                            //Salt = "rcJZ2H9M/ie6iOwoD87X5mUaxg8=",
+
                             UpdatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             UpdatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserName = "admin",

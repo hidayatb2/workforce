@@ -20,14 +20,14 @@ namespace BusinessAccess
         }
 
         
-        public int Feedback(TestimonialRequest feedbackRequest)
+        public int Testimonial(TestimonialRequest testimonialRequest)
         {
             Testimonial feedback = new Testimonial()
             {
-                Id = feedbackRequest.Id,
-                Name = feedbackRequest.Name,
-                FeedbackMessage = feedbackRequest.FeedbackMessage,
-                status = feedbackRequest.Status,
+                Id = testimonialRequest.Id,
+                Name = testimonialRequest.Name,
+                FeedbackMessage = testimonialRequest.FeedbackMessage,
+                status = testimonialRequest.Status,
             };
            return  repository.AddandSave(feedback);
         }

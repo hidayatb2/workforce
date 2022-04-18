@@ -24,9 +24,9 @@ namespace WebApp
 
 
         [HttpPost]
-        public IActionResult Feedback(FeedbackRequest feedbackRequest)
+        public IActionResult Testimonial(TestimonialRequest testimonialRequest)
         {
-            var returnValue = customerManager.Feedback(feedbackRequest);
+            var returnValue = customerManager.Testimonial(testimonialRequest);
             ViewBag.returnValue = returnValue;
             return View();
         }

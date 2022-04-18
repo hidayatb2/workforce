@@ -78,7 +78,7 @@ namespace BusinessAccess
 
         public IEnumerable<TestimonialResponse> GetTestimonial()
         {
-            List<TestimonialResponse> feedbackResponses = new List<TestimonialResponse>();
+            List<TestimonialResponse> testimonialResponses = new List<TestimonialResponse>();
             foreach (var item in repository.GetAll<Testimonial>())
             {
                 TestimonialResponse response = new TestimonialResponse();
@@ -87,9 +87,9 @@ namespace BusinessAccess
                 response.FeedbackMessage= item.FeedbackMessage;
                 response.Status = FeedbackStatus.Hidden;
                 response.UserRole = item.UserRole;
-                feedbackResponses.Add(response);
+                testimonialResponses.Add(response);
             }
-            return feedbackResponses;
+            return testimonialResponses;
         }
 
 
