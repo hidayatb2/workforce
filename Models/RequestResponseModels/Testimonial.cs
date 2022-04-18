@@ -1,22 +1,31 @@
-﻿using Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccess
+namespace Models
 {
-    public class Feedback : IBaseModel
+    public class TestimonialRequest
     {
         public Guid Id { get; set; }
 
+
         public string Name { get; set; }
+
 
         public string FeedbackMessage { get; set; }
 
-        public FeedbackStatus status { get; set; }
 
+        public FeedbackStatus Status { get; set; } 
+
+        public UserRole UserRole { get; set; }
+
+    }
+
+
+    public class TestimonialResponse : TestimonialRequest
+    {
 
     }
 }

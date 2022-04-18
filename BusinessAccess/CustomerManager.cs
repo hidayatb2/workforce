@@ -18,9 +18,11 @@ namespace BusinessAccess
         {
             this.repository = repository;
         }
-        public int Feedback(FeedbackRequest feedbackRequest)
+
+        
+        public int Feedback(TestimonialRequest feedbackRequest)
         {
-            Feedback feedback = new Feedback()
+            Testimonial feedback = new Testimonial()
             {
                 Id = feedbackRequest.Id,
                 Name = feedbackRequest.Name,
@@ -29,13 +31,6 @@ namespace BusinessAccess
             };
            return  repository.AddandSave(feedback);
         }
-
-        //public int Delete(Guid id)
-        //{
-        //   var x = repository.GetById<Feedback>(id);
-        //    repository.Delete(x);
-        //    return 1;
-        //}
 
     }
 }

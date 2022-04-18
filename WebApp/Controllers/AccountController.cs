@@ -66,7 +66,7 @@ namespace WebApp
             {
                 var loginResponse = accountManager.LogIn(loginRequest);
 
-                if (loginResponse.UserStatus != UserStatus.Inactive && loginResponse.UserStatus != null)
+                if (loginResponse.UserStatus != UserStatus.Inactive && loginResponse?.UserStatus != null)
                 {
 
 
@@ -92,7 +92,7 @@ namespace WebApp
                     }
                     else if (loginResponse.UserRole == UserRole.Customer)
                     {
-                        return RedirectToAction("index", "Customer");
+                        return RedirectToAction(nameof(Index), nameof(CustomerController));
                     }
                     else if (loginResponse.UserRole == UserRole.Contractor)
                     {

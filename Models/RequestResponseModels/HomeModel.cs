@@ -9,7 +9,7 @@ namespace Models
     public class HomeModel
     {
 
-        public IEnumerable<FeedbackResponse> feedbackResponses { get; set; }
+        public IEnumerable<TestimonialResponse> feedbackResponses { get; set; }
 
         public IEnumerable<SkillResponse> skillResponses { get; set; }  
 

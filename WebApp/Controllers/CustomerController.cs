@@ -21,11 +21,6 @@ namespace WebApp
         }
 
 
-        [HttpGet]
-        public IActionResult Feedback()
-        {
-            return View();
-        }
 
 
         [HttpPost]

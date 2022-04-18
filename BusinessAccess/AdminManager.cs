@@ -76,16 +76,17 @@ namespace BusinessAccess
 
         }
 
-        public IEnumerable<FeedbackResponse> GetFeedback()
+        public IEnumerable<TestimonialResponse> GetTestimonial()
         {
-            List<FeedbackResponse> feedbackResponses = new List<FeedbackResponse>();
-            foreach (var item in repository.GetAll<Feedback>())
+            List<TestimonialResponse> feedbackResponses = new List<TestimonialResponse>();
+            foreach (var item in repository.GetAll<Testimonial>())
             {
-                FeedbackResponse response = new FeedbackResponse();
+                TestimonialResponse response = new TestimonialResponse();
                 response.Id = item.Id;
                 response.Name = item.Name;
                 response.FeedbackMessage= item.FeedbackMessage;
                 response.Status = FeedbackStatus.Hidden;
+                response.UserRole = item.UserRole;
                 feedbackResponses.Add(response);
             }
             return feedbackResponses;

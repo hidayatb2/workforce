@@ -1,4 +1,5 @@
-﻿using SharedLibrary;
+﻿using Models;
+using SharedLibrary;
 using System.Security.Claims;
 
 namespace WebApp
@@ -12,14 +13,18 @@ namespace WebApp
             return Guid.Empty;
         }
 
-        public static string GetName(this ClaimsPrincipal principal)
+        public static string? GetName(this ClaimsPrincipal principal)
         {
-            return principal?.Claims?.FirstOrDefault(x => x.Type == AppClaimTypes.Name).Value;
+            return principal?.Claims?.FirstOrDefault(x => x.Type == AppClaimTypes.Name)?.Value;
         }
 
-        public static string GetRole(this ClaimsPrincipal principal)
+        public static string? GetRole(this ClaimsPrincipal principal)
         {
-            return principal?.Claims?.FirstOrDefault(x => x.Type == AppClaimTypes.Role).Value;
+            
+              var x =  principal?.Claims?.FirstOrDefault(x => x.Type == AppClaimTypes.Role)?.Value;
+            return x;
         }
+
+     
     }
 }

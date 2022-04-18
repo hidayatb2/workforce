@@ -1,11 +1,11 @@
-﻿@model IEnumerable<FeedbackResponse>
+﻿@model IEnumerable<TestimonialResponse>
 
 <table class="table table-hover table-light container" style="margin-top:110px">
     <tr>
         <th>Name</th>
         <th>Feedback</th>
         <th>Status</th>
-        <th></th>
+        <th>UserRole</th>
         <th>Action</th>
         <th></th>
     </tr>
@@ -15,7 +15,8 @@
             <td>@item.Name</td>
             <td>@item.FeedbackMessage</td>
             <td>@item.Status</td>
-            <td></td>
+            <td>@item.UserRole.ToString()</td>
+            
             <td>
                 <span class="form-check form-switch">
                     <label class="form-check-label" for="flexSwitchCheckChecked"></label>
@@ -24,9 +25,9 @@
 
             </td>
             <td>
-                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id" asp-controller="Customer">Delete</a>
+                <a class="btn btn-danger anchr" asp-action="Delete" asp-route-id="@item.Id" asp-controller="Testimonial">Delete</a>
             </td>
-           
+
         </tr>
     }
 </table>
