@@ -118,6 +118,51 @@ namespace Models
         public bool IsSkilled { get; set; }
     }
 
+        public class ProfileResponse
+        {
+            public Guid Id { get; set; }
+
+            public string UserName { get; set; }
+
+            public string Email { get; set; }
+
+            public DateTime DOB { get; set; }
+
+            public string PhoneNo { get; set; }
+
+            public string ImagePath { get; set; }
+
+            public string AdhaarNo { get; set; }
+
+            public string Name { get; set; }
+
+            public Gender Gender { get; set; }
+
+            public string Address { get; set; }
+
+            public string Bank { get; set; }
+
+
+            public string AccountNo { get; set; }
+
+
+            public string IFSC { get; set; }
+
+
+            public string Experience { get; set; }
+
+            public string JobProfile { get; set; }
+
+
+            public WagesType WagesType { get; set; }
+
+
+            public float Wages { get; set; }
+
+
+            public string Discription { get; set; }
+        }
+
 
 
     public class SignupRequest:UserRequest
