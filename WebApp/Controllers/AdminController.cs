@@ -63,7 +63,6 @@ namespace WebApp
         [HttpGet("create")]
         public IActionResult CreateUser()
         {
-
             return View();
         }
 
@@ -133,10 +132,11 @@ namespace WebApp
             return View(testimonials);
         }
 
-        //[HttpGet("managers")]
-        //public IActionResult Managers()
-        //{
-        //    adminManager.GetManagers();
-        //}
+        [HttpGet("managers/{userRole?}")]
+        public JsonResult GetRoles(UserRole userRole)
+        {
+            var roles=adminManager.GetRoles(userRole);
+            return Json(roles);
+        }
     }
 }

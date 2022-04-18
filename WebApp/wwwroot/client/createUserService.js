@@ -1,29 +1,23 @@
 ﻿import apiHelpers from "./apiHelper.js";
+
 let ddlVal=document.getElementById('role');
+let ddl= document.getElementById('role1');
 ddlVal.addEventListener('change', function (event) {
-    document.getElementById('role1').style="display:block"
     let roleVal = event.target.value;
-    if (roleVal == "Labour") {
         apiHelpers.get({
-            url: "/admin/getallusersbyrole/" + roleVal,
-            accept: "text/html",
-            success: (users) => {
-                let userListDiv = document.getElementById('mainD');
-                userListDiv.innerHTML = users;
-                userListDiv.style = "display:block"
+            url: "/admin/managers/" + roleVal,
+            success: (roles) => {
+               if (roles != null) {
+               ddl.style="display:block";
+               ddl.innerText="";
+               let slct=new Option("Select","");
+               ddl.appendChild(slct);
+                roles.map(role=>{
+                    let options =new Option(role.name,role.id);
+                    ddl.appendChild(options);
+                })
+               }
     
             }
         });
-    }
-
-    apiHelper.get({
-        url: "/admin/getallusersbyrole/" + roleVal,
-        accept: "text/html",
-        success: (users) => {
-            let userListDiv = document.getElementById('mainD');
-            userListDiv.innerHTML = users;
-            userListDiv.style = "display:block"
-
-        }
-    });
 })

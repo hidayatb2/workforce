@@ -93,13 +93,31 @@ namespace BusinessAccess
         }
 
 
-        public IEnumerable<ManagerResponse> GetManagers()
+        public IEnumerable<GeneralResponse> GetRoles(UserRole role)
         {
-           return repository.GetAll<Manager>().Select(x => new ManagerResponse
+            if (role == UserRole.Manager)
             {
-                Id = x.Id,
-                Name = x.Name
-            });
+                return repository.GetAll<Contractor>().Select(x => new GeneralResponse
+                {
+                    Id = x.Id,
+                    Name = x.Name
+                });
+            }
+            else if(role == UserRole.Labour)
+            {
+                return repository.GetAll<Manager>().Select(x => new GeneralResponse
+                {
+                    Id = x.Id,
+                    Name = x.Name
+                });
+            }
+
+            else
+            {
+                return null;
+            }
+            
+
         }
 
 
