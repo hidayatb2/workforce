@@ -93,9 +93,9 @@ namespace BusinessAccess
         }
 
 
-        public IEnumerable<ManagerResponses> GetManagers()
+        public IEnumerable<ManagerResponse> GetManagers()
         {
-           return repository.GetAll<Manager>().Select(x => new ManagerResponses
+           return repository.GetAll<Manager>().Select(x => new ManagerResponse
             {
                 Id = x.Id,
                 Name = x.Name

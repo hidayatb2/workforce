@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    public class ManagerRequests
+    public class ManangerRequest
     {
         public Guid Id { get; set; }
 
@@ -14,8 +14,10 @@ namespace Models
         public string Name { get; set; }
     };
 
-    public class ManagerResponses : ManagerRequests
+    public class ManagerResponse : ManangerRequest
     {
+
+        public string Address { get; set; }
 
     }
 }

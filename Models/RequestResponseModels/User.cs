@@ -119,10 +119,6 @@ namespace Models
     }
 
 
-    public class ManagerResponse :UserResponse
-    {
-
-    }
 
     public class SignupRequest:UserRequest
     {
