@@ -37,9 +37,9 @@ namespace BusinessAccess
 
             return userResponses;
         }
-        public UserCompact GetUserById(Guid id,UserRole userRole)
+        public ProfileResponse GetUserById(Guid id,string userRole)
         {
-            return repository.GetProfile(id, userRole);
+            return repository.GetProfile(id, userRole); 
         }
         public IEnumerable<UserResponse> GetAllUsers()
         {
