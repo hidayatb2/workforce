@@ -1,0 +1,48 @@
+﻿@model IEnumerable<SliderResponse>
+
+<style>
+    .card{
+        width:255px;
+        margin-top:10px;
+        margin-left:9px
+    }
+    .slides {
+        display: inline-flex;
+        flex-wrap: nowrap;
+    }
+    .card-body{
+        width:255px;
+        height:200px;
+        overflow-x:scroll;
+        text-align:justify;
+    }
+
+    .bi{
+        margin-left:114px;
+    }
+</style>
+
+
+<div>
+
+    @if (Model != null)
+    {
+
+        <div>
+            @foreach (var item in Model)
+            {
+                <div class="slides card row col-md-5">
+                    <img src="@item.ImagePath" style="width:100px;height:100px;" class="card-img-top" alt="...">
+
+                    <p class="card-body">@item.Caption</p>
+                    <div>
+                        <a asp-action="DeleteSlider" asp-controller="Slider" asp-route-id="@item.Id">
+                            <i class="bi bi-trash text-danger">Delete</i>
+                        </a>
+                    </div>
+                </div>
+            }
+        </div>
+
+    }
+</div>

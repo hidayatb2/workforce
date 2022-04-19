@@ -78,6 +78,12 @@ namespace DataAccess
             return dbContext.SaveChanges();
         }
 
+        public int DeleteAndSave<T>(Guid id) where T : class, IBaseModel, new()
+        {
+            dbContext.Entry(new T { Id = id }).State = EntityState.Deleted;
+            return dbContext.SaveChanges();
+        }
+
     }
     public static class EFExtensions
     {
@@ -124,6 +130,7 @@ namespace DataAccess
             modelBuilder.Entity<T>().HasNoKey();
             base.OnModelCreating(modelBuilder);
         }
+        
     }
 
 }

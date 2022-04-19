@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220419091658_UserRole")]
-    partial class UserRole
+    [Migration("20220419125806_inimig")]
+    partial class inimig
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,6 +23,40 @@ namespace DataAccess.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+
+            modelBuilder.Entity("DataAccess.Bid", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("BidNumber")
+                        .HasColumnType("int");
+
+                    b.Property<string>("BidRate")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte>("BidStatus")
+                        .HasColumnType("tinyint");
+
+                    b.Property<string>("BidType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("CustomerId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Discription")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CustomerId");
+
+                    b.ToTable("Bids");
+                });
 
             modelBuilder.Entity("DataAccess.ContactUs", b =>
                 {
@@ -152,6 +186,9 @@ namespace DataAccess.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("CurrentUserId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Message")
@@ -292,6 +329,44 @@ namespace DataAccess.Migrations
                     b.ToTable("Manager");
                 });
 
+            modelBuilder.Entity("DataAccess.Participant", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("BidId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("BidRate")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BidId");
+
+                    b.ToTable("Participants");
+                });
+
+            modelBuilder.Entity("DataAccess.Slider", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Caption")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ImagePath")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Sliders");
+                });
+
             modelBuilder.Entity("DataAccess.Testimonial", b =>
                 {
                     b.Property<Guid>("Id")
@@ -372,18 +447,29 @@ namespace DataAccess.Migrations
                         {
                             Id = new Guid("87843532-0b93-492d-824b-68be17a82037"),
                             CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
-                            CreatedOn = new DateTime(2022, 4, 19, 14, 46, 58, 81, DateTimeKind.Local).AddTicks(9702),
+                            CreatedOn = new DateTime(2022, 4, 19, 18, 28, 5, 166, DateTimeKind.Local).AddTicks(887),
                             DOB = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "admin@yopmail.com",
-                            Password = "EVc7zZq4k9c9B3sNE5xUCFAYt/rDCARX8dQ/PyFV2rg=",
+                            Password = "6jJJ2jeoHyxlayXXWEJaOrXAJi3OBZXUyT0J6TNtJec=",
                             PhoneNo = "8825084050",
-                            Salt = "HK48+//UEyHMDnpZZvT/kaFLxQ4=",
+                            Salt = "sLVdZtgA5BmssEtVrB3P/qxjgDY=",
                             UpdatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             UpdatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserName = "admin",
                             UserRole = (byte)1,
                             UserStatus = (byte)1
                         });
+                });
+
+            modelBuilder.Entity("DataAccess.Bid", b =>
+                {
+                    b.HasOne("DataAccess.Customer", "Customer")
+                        .WithMany("Bids")
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Customer");
                 });
 
             modelBuilder.Entity("DataAccess.Contractor", b =>
@@ -438,9 +524,38 @@ namespace DataAccess.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("DataAccess.Participant", b =>
+                {
+                    b.HasOne("DataAccess.Bid", "Bid")
+                        .WithMany("Participants")
+                        .HasForeignKey("BidId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("DataAccess.User", "User")
+                        .WithOne("Participant")
+                        .HasForeignKey("DataAccess.Participant", "Id")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Bid");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("DataAccess.Bid", b =>
+                {
+                    b.Navigation("Participants");
+                });
+
             modelBuilder.Entity("DataAccess.Contractor", b =>
                 {
                     b.Navigation("Managers");
+                });
+
+            modelBuilder.Entity("DataAccess.Customer", b =>
+                {
+                    b.Navigation("Bids");
                 });
 
             modelBuilder.Entity("DataAccess.User", b =>
@@ -452,6 +567,8 @@ namespace DataAccess.Migrations
                     b.Navigation("Labour");
 
                     b.Navigation("Manager");
+
+                    b.Navigation("Participant");
                 });
 #pragma warning restore 612, 618
         }

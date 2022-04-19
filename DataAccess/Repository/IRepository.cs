@@ -26,6 +26,8 @@ namespace DataAccess
 
 
         void Delete<T>(Guid id) where T : class, IBaseModel, new();
+       
+        int DeleteAndSave<T>(Guid id) where T : class, IBaseModel, new();
 
 
         IQueryable<T> FindBy<T>(System.Linq.Expressions.Expression<Func<T, bool>> predicate) where T : class;

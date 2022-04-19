@@ -345,6 +345,26 @@ namespace DataAccess.Migrations
                     b.ToTable("Participants");
                 });
 
+            modelBuilder.Entity("DataAccess.Slider", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Caption")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ImagePath")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Sliders");
+                });
+
             modelBuilder.Entity("DataAccess.Testimonial", b =>
                 {
                     b.Property<Guid>("Id")
@@ -425,12 +445,12 @@ namespace DataAccess.Migrations
                         {
                             Id = new Guid("87843532-0b93-492d-824b-68be17a82037"),
                             CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
-                            CreatedOn = new DateTime(2022, 4, 19, 16, 19, 19, 685, DateTimeKind.Local).AddTicks(6304),
+                            CreatedOn = new DateTime(2022, 4, 19, 18, 28, 5, 166, DateTimeKind.Local).AddTicks(887),
                             DOB = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "admin@yopmail.com",
-                            Password = "26VZ8T9C78M9ZpVp6YeuAEgjUHuitUYIcUxNFqiz5QE=",
+                            Password = "6jJJ2jeoHyxlayXXWEJaOrXAJi3OBZXUyT0J6TNtJec=",
                             PhoneNo = "8825084050",
-                            Salt = "Us+2g593sKgHnDBopbcetKPvaCg=",
+                            Salt = "sLVdZtgA5BmssEtVrB3P/qxjgDY=",
                             UpdatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             UpdatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserName = "admin",

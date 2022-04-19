@@ -36,13 +36,17 @@ namespace DataAccess
         public DbSet<Contractor> Contractor { get; set; }
 
         public DbSet<ContactUs> ContactUs { get; set; }
-
+        
         public DbSet<Testimonial> Testimonials { get; set; }
 
         public DbSet<GeneralRequestDB> generalRequestDB { get; set; }
         public DbSet<Bid> Bids { get; set; }
 
         public DbSet<Participant> Participants { get; set; }
+
+        public DbSet<Slider> Sliders { get; set; }
+
         #endregion
+
     }
 }

@@ -1,0 +1,25 @@
+﻿@model IEnumerable<SliderResponse>
+
+@{
+    Layout = "_UserLayout";
+    ViewData["Title"] = "Sliders";
+}
+
+
+
+<div class="container-fluid pt-4 px-4">
+
+        <div>
+            <partial name="_CreateSliderPartial" model="new SliderRequest()" />
+        </div>
+
+
+
+        <div id="partialData">
+            <partial name="_sliderPartial" model="Model"/>
+        </div>
+    </div>
+  @section Scripts
+  {
+      <script type="module" src="~/client/services/admin/sliderService.js" asp-append-version="true" ></script>
+  }

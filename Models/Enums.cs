@@ -54,5 +54,11 @@ namespace Models
         Approved = 1,
 
         Hidden = 2,
+    } 
+    public enum SliderStatus : byte
+    {
+        Active = 1,
+
+        inactive = 2,
     }
 }
