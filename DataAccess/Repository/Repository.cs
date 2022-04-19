@@ -64,7 +64,11 @@ namespace DataAccess
         }
 
 
-
+      public int Delete<T>(T model) where T : class
+        {
+            dbContext.Set<T>().Remove(model);
+            return dbContext.SaveChanges();
+        }
 
         
         

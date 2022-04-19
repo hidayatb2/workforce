@@ -38,6 +38,6 @@ namespace DataAccess
 
         public DbSet<ContactUs> ContactUs { get; set; }
 
-        public DbSet<Feedback> feedbacks { get; set; }
+        public DbSet<Testimonial> Testimonials { get; set; }
     }
 }

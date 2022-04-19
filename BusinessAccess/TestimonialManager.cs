@@ -8,29 +8,35 @@ using System.Threading.Tasks;
 
 namespace BusinessAccess
 {
-    public class CustomerManager
+    public class TestimonialManager
     {
-
         private readonly IRepository repository;
 
-
-        public CustomerManager(IRepository repository)
+        public TestimonialManager(IRepository repository)
         {
             this.repository = repository;
         }
 
-        
         public int Testimonial(TestimonialRequest testimonialRequest)
         {
-            Testimonial feedback = new Testimonial()
+            Testimonial testimonial = new Testimonial()
             {
                 Id = testimonialRequest.Id,
                 Name = testimonialRequest.Name,
                 FeedbackMessage = testimonialRequest.FeedbackMessage,
                 status = testimonialRequest.Status,
-            };
-           return  repository.AddandSave(feedback);
+                UserRole = testimonialRequest.UserRole,
+                
+        };
+            return repository.AddandSave(testimonial);
+        }
+
+        public int Delete(Guid id)
+        {
+            var x = repository.GetById<Testimonial>(id);
+            return repository.Delete(x);
         }
 
     }
 }
+

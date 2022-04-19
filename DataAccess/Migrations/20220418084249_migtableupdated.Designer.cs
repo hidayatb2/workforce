@@ -4,6 +4,7 @@ using DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220418084249_migtableupdated")]
+    partial class migtableupdated
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -146,6 +148,26 @@ namespace DataAccess.Migrations
                     b.ToTable("Customer");
                 });
 
+            modelBuilder.Entity("DataAccess.Feedback", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("FeedbackMessage")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte>("status")
+                        .HasColumnType("tinyint");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("feedbacks");
+                });
+
             modelBuilder.Entity("DataAccess.Labour", b =>
                 {
                     b.Property<Guid>("Id")
@@ -270,29 +292,6 @@ namespace DataAccess.Migrations
                     b.ToTable("Manager");
                 });
 
-            modelBuilder.Entity("DataAccess.Testimonial", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("FeedbackMessage")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<byte>("UserRole")
-                        .HasColumnType("tinyint");
-
-                    b.Property<byte>("status")
-                        .HasColumnType("tinyint");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Testimonials");
-                });
-
             modelBuilder.Entity("DataAccess.User", b =>
                 {
                     b.Property<Guid>("Id")
@@ -350,12 +349,12 @@ namespace DataAccess.Migrations
                         {
                             Id = new Guid("87843532-0b93-492d-824b-68be17a82037"),
                             CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
-                            CreatedOn = new DateTime(2022, 4, 18, 18, 28, 44, 447, DateTimeKind.Local).AddTicks(588),
+                            CreatedOn = new DateTime(2022, 4, 18, 14, 12, 48, 757, DateTimeKind.Local).AddTicks(2016),
                             DOB = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "admin@yopmail.com",
-                            Password = "oZeTZIsMnxLuwYQ7nlOoEW66sGQPhc0Cavbg6MPXasw=",
+                            Password = "ADcDIIbMHYzntu+ibIvtN4MiMbgi1kUfZDTFotcS22I=",
                             PhoneNo = "8825084050",
-                            Salt = "tnOiTg90Qv+534V4Yq5B7JaYoUQ=",
+                            Salt = "AcRnUa2e+PlPNEy/MpV8c93cFyY=",
                             UpdatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             UpdatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserName = "admin",

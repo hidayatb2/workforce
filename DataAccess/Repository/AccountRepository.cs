@@ -18,11 +18,11 @@ namespace DataAccess
         }
 
 
-        public UserCompact GetProfile(Guid userId, UserRole userRole)
+        public ProfileResponse GetProfile(Guid userId, string userRole)
         {
-            if(userRole == UserRole.Labour)
+            if(userRole == "Labour")
             {
-                string query = @$"SELECT U.UserName,U.Email,U.DOB,
+                string query = $@"SELECT U.UserName,U.Email,U.DOB,
                         U.PhoneNo,U.ImagePath,L.AdhaarNo,L.[Name],
                         L.Gender,L.[Address],L.Bank,L.AccountNo,L.IFSC,
                         L.Experience,L.JobProfile,L.WagesType,L.Wages,
@@ -30,17 +30,41 @@ namespace DataAccess
                         LEFT JOIN Labour L
                         ON U.Id = L.Id
                         Where U.Id = '{userId}' ";
-                return GetObject<UserCompact>(query);
-            }else if(userRole == UserRole.Manager)
+                return GetObject<ProfileResponse>(query);
+            }else if(userRole == "Manager")
             {
-
-            }else if (userRole == UserRole.Contractor)
-            {
-
+                string query = $@"SELECT U.UserName,U.Email,U.DOB,
+                        U.PhoneNo,U.ImagePath,M.AdhaarNo,M.[Name],
+                        M.Gender,M.[Address],M.Bank,M.AccountNo,M.IFSC,
+                        M.Experience,M.JobProfile,M.WagesType,M.Wages,
+                        M.Discription FROM Users U
+                        LEFT JOIN Manager M
+                        ON U.Id = M.Id
+                        Where U.Id = '{userId}' ";
+                return GetObject<ProfileResponse>(query);
             }
-            else if (userRole == UserRole.Customer)
+            else if (userRole == "Contractor")
             {
-
+                string query = $@"SELECT U.UserName,U.Email,U.DOB,
+                        U.PhoneNo,U.ImagePath,C.[Name],
+                        C.Gender,C.[Address],C.Bank,C.AccountNo,C.IFSC,
+                        C.Experience,C.JobProfile,C.WagesType,C.Wages,
+                        C.Discription FROM Users U
+                        LEFT JOIN Contractor C
+                        ON U.Id = C.Id
+                        Where U.Id = '{userId}' ";
+                return GetObject<ProfileResponse>(query);
+            }
+            else if (userRole == "Customer")
+            {
+                string query = $@"SELECT U.UserName,U.Email,U.DOB
+                        U.PhoneNo,U.ImagePath,
+                        C.Gender,C.[Address],C.Bank,C.AccountNo,C.IFSC
+                        FROM Users U
+                        LEFT JOIN Customer C
+                        ON U.Id = C.Id 
+                        Where U.Id = '{userId}' ";
+                return GetObject<ProfileResponse>(query);
             }
             return null;
         }

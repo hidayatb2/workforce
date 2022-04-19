@@ -1,44 +1,141 @@
-﻿@model UserResponse
+﻿@model ProfileResponse
 @{
     Layout = "_UserLayout";
 }
 
 <form class="form ">
+    @if (User.IsInRole(UserRole.Admin.ToString()))
+    {
+        <div class="offset-4">
+            <img src="~/Images/hero-bg.jpg" width=150px; height=200px style="border-radius:50px" />
+        </div>
 
-    <div class="offset-4">
-        <img src="~/Images/hero-bg.jpg" width=150px; height=200px style="border-radius:50px" />
-    </div>
+        <div>
+            @*<input asp-for="Id" hidden />*@
+        </div>
 
-    <div>
-        <input asp-for="Id" hidden />
-    </div>
+        <div class="col-md-3">
+            <label asp-for="UserName" class="label-control"></label>
+            <input asp-for="UserName" class="form-control " />
+        </div>
 
-    <div class="col-md-3">
-        <label asp-for="UserName" class="label-control"></label>
-        <input asp-for="UserName" class="form-control " />
-    </div>
+        <div class="col-md-3">
+            <label asp-for="Email" class="label-control"></label>
+            <input asp-for="Email" class="form-control col-md-3" />
+        </div>
 
-    <div class="col-md-3" >
-        <label asp-for="Email" class="label-control"></label>
-        <input asp-for="Email" class="form-control col-md-3" />
-    </div>
+        <div class="col-md-3">
+            <label asp-for="PhoneNo" class="label-control"></label>
+            <input asp-for="PhoneNo" class="form-control" />
+        </div>
 
-     <div class="col-md-3" >
-        <label asp-for="PhoneNo" class="label-control"></label>
-        <input asp-for="PhoneNo" class="form-control" />
-    </div>
+       @* <div class="col-md-3">
+            <label asp-for="UserRole" class="label-control"></label>
+            <select asp-for="UserRole" asp-items="Html.GetEnumSelectList<UserRole>()" class="form-control">
+                <option value="">Select Role</option>
+            </select>
+        </div>
 
-     <div class="col-md-3" >
-        <label asp-for="UserRole" class="label-control"></label>
-        <select asp-for="UserRole" asp-items="Html.GetEnumSelectList<UserRole>()" class="form-control">
-            <option value="">Select Role</option>
+        <div class="col-md-3">
+            <label asp-for="UserStatus" class="label-control"></label>
+            <select asp-for="UserStatus" asp-items="Html.GetEnumSelectList<UserStatus>()" class="form-control">
+                <option value="">Select Status</option>
+            </select>
+        </div>*@
+    }
+    @if(User.IsInRole(UserRole.Manager.ToString()) || User.IsInRole(UserRole.Contractor.ToString()) || User.IsInRole(UserRole.Labour.ToString()))
+    {
+        <div class="offset-4">
+            <img src="~/Images/hero-bg.jpg" width=150px; height=200px style="border-radius:50px" />
+        </div>
+
+        <div>
+            @*<input asp-for="Id" hidden />*@
+        </div>
+
+        <div class="col-md-3">
+            <label asp-for="UserName" class="label-control"></label>
+            <input asp-for="UserName" class="form-control " />
+        </div>
+
+        <div class="col-md-3">
+            <label asp-for="Email" class="label-control"></label>
+            <input asp-for="Email" class="form-control col-md-3" />
+        </div>
+
+        <div class="col-md-3">
+            <label asp-for="Gender" class="label-control"></label>
+            <select asp-for="Gender" asp-items="Html.GetEnumSelectList<Gender>()" class="form-control">
+                <option value="">Select Gender</option>
+            </select>
+        </div>
+        
+
+        <div class="col-md-3">
+            <label asp-for="PhoneNo" class="label-control"></label>
+            <input asp-for="PhoneNo" class="form-control" />
+        </div>
+
+       @* <div class="col-md-3">
+            <label asp-for="UserRole" class="label-control"></label>
+            <select asp-for="UserRole" asp-items="Html.GetEnumSelectList<UserRole>()" class="form-control">
+                <option value="">Select Role</option>
+            </select>
+        </div>
+
+        <div class="col-md-3">
+            <label asp-for="UserStatus" class="label-control"></label>
+            <select asp-for="UserStatus" asp-items="Html.GetEnumSelectList<UserStatus>()" class="form-control">
+                <option value="">Select Status</option>
+            </select>
+        </div>*@
+
+        <div class="col-md-3">
+            <label asp-for="Address" class="label-control"></label>
+            <input asp-for="Address" class="form-control" />
+        </div>
+
+        <div class="col-md-3">
+            <label asp-for="Bank" class="label-control"></label>
+            <input asp-for="Bank" class="form-control" />
+        </div>
+
+        <div class="col-md-3">
+            <label asp-for="AccountNo" class="label-control"></label>
+            <input asp-for="AccountNo" class="form-control" />
+        </div>
+
+        <div class="col-md-3">
+            <label asp-for="IFSC" class="label-control"></label>
+            <input asp-for="IFSC" class="form-control" />
+        </div>
+
+        <div class="col-md-3">
+            <label asp-for="JobProfile" class="label-control"></label>
+            <input asp-for="JobProfile" class="form-control" />
+        </div>
+
+        <div class="col-md-3">
+            <label asp-for="Experience" class="label-control"></label>
+            <input asp-for="Experience" class="form-control" />
+        </div>
+
+
+        <div class="col-md-3">
+        <select asp-for="WagesType" asp-items="Html.GetEnumSelectList<WagesType>()">
+            <option value="">Wages Type</option>
         </select>
-    </div>
+        </div>
 
-    <div class="col-md-3" >
-        <label asp-for="UserStatus" class="label-control"></label>
-        <select asp-for="UserStatus" asp-items="Html.GetEnumSelectList<UserStatus>()" class="form-control">
-            <option value="">Select Status</option>
-        </select>
-    </div>
+        <div class="col-md-3">
+            <label asp-for="Wages" class="label-control"></label>
+            <input asp-for="Wages" class="form-control" />
+        </div>
+
+        <div class="col-md-3">
+            <label asp-for="Discription" class="label-control"></label>
+            <input asp-for="Discription" class="form-control" />
+        </div>
+    }
+    
 </form>

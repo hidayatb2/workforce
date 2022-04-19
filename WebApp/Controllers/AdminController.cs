@@ -125,11 +125,18 @@ namespace WebApp
         }
 
 
-        [HttpGet("feedback")]
-        public IActionResult Feedbacks()
+        [HttpGet("testimonial")]
+        public IActionResult Testimonial()
         {
-            var feedbackMessages = adminManager.GetFeedback();
-            return View(feedbackMessages);
+            var testimonials = adminManager.GetTestimonial();
+            return View(testimonials);
+        }
+
+        [HttpGet("managers/{userRole?}")]
+        public JsonResult GetRoles(UserRole userRole)
+        {
+            var roles=adminManager.GetRoles(userRole);
+            return Json(roles);
         }
     }
 }

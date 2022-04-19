@@ -76,20 +76,50 @@ namespace BusinessAccess
 
         }
 
-        public IEnumerable<FeedbackResponse> GetFeedback()
+        public IEnumerable<TestimonialResponse> GetTestimonial()
         {
-            List<FeedbackResponse> feedbackResponses = new List<FeedbackResponse>();
-            foreach (var item in repository.GetAll<Feedback>())
+            List<TestimonialResponse> testimonialResponses = new List<TestimonialResponse>();
+            foreach (var item in repository.GetAll<Testimonial>())
             {
-                FeedbackResponse response = new FeedbackResponse();
+                TestimonialResponse response = new TestimonialResponse();
                 response.Id = item.Id;
                 response.Name = item.Name;
                 response.FeedbackMessage= item.FeedbackMessage;
                 response.Status = FeedbackStatus.Hidden;
-                feedbackResponses.Add(response);
+                response.UserRole = item.UserRole;
+                testimonialResponses.Add(response);
             }
-            return feedbackResponses;
+            return testimonialResponses;
         }
+
+
+        public IEnumerable<GeneralResponse> GetRoles(UserRole role)
+        {
+            if (role == UserRole.Manager)
+            {
+                return repository.GetAll<Contractor>().Select(x => new GeneralResponse
+                {
+                    Id = x.Id,
+                    Name = x.Name
+                });
+            }
+            else if(role == UserRole.Labour)
+            {
+                return repository.GetAll<Manager>().Select(x => new GeneralResponse
+                {
+                    Id = x.Id,
+                    Name = x.Name
+                });
+            }
+
+            else
+            {
+                return null;
+            }
+            
+
+        }
+
 
 
     }

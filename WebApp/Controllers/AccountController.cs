@@ -66,7 +66,7 @@ namespace WebApp
             {
                 var loginResponse = accountManager.LogIn(loginRequest);
 
-                if (loginResponse.UserStatus != UserStatus.Inactive && loginResponse.UserStatus != null)
+                if (loginResponse.UserStatus != UserStatus.Inactive && loginResponse?.UserStatus != null)
                 {
 
 
@@ -92,19 +92,19 @@ namespace WebApp
                     }
                     else if (loginResponse.UserRole == UserRole.Customer)
                     {
-                        return RedirectToAction("index", "Customer");
+                        return RedirectToAction(nameof(Index), nameof(CustomerController));
                     }
                     else if (loginResponse.UserRole == UserRole.Contractor)
                     {
-                        return RedirectToAction("index", "Contractor");
+                        return RedirectToAction("Profile", "Account");
                     }
                     else if (loginResponse.UserRole == UserRole.Manager)
                     {
-                        return RedirectToAction("index", "Manager");
+                        return RedirectToAction("Profile", "Account");
                     }
                     else if (loginResponse.UserRole == UserRole.Labour)
                     {
-                        return RedirectToAction("index", "Labour");
+                        return RedirectToAction("Profile", "Account");
                     }
                 }
             }
@@ -119,7 +119,7 @@ namespace WebApp
         public IActionResult Profile()
         {
             Guid id = User.GetUserId();
-            var userRole = UserRole.Labour;//User.GetUserRole(); //Save in Claims
+            var userRole = User.GetRole();
             var user = accountManager.GetUserById(id, userRole);
             return View(user);
         }

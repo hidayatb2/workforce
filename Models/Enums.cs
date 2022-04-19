@@ -44,7 +44,7 @@ namespace Models
 
     public enum FeedbackStatus : byte
     {
-        Published = 1,
+        Approved = 1,
 
         Hidden = 2,
     }
