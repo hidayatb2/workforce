@@ -5,6 +5,28 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Models
 {
+    public class AdminRequest
+    {
+        public Guid Id { get; set; }
+
+        public string UserName { get; set; }
+
+
+        public string Email { get; set; }
+
+
+        public string PhoneNo { get; set; }
+
+
+        public string ImagePath { get; set; }
+
+        public UserStatus UserStatus { get; set; }
+
+    }
+    public class AdminResponse : AdminRequest
+    {
+
+    }
     public class UserRequest
     {
         public Guid Id { get; set; }

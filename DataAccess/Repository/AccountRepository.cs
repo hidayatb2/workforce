@@ -17,21 +17,12 @@ namespace DataAccess
             this.dbContext = dbContext;
         }
 
-
         public ProfileResponse GetProfile(Guid userId, string userRole)
         {
 
-
-        //    if(userRole == "Admin")
-        //    {
-
-        //        string query = $@"	select UserName,Email,PhoneNo from Users ";
-        //        return GetObject<ProfileResponse>(query);
-        //    }
-
           if(userRole == "Labour")
             {
-                string query = $@"SELECT U.UserName,U.Email,U.DOB,
+                string query = $@"SELECT U.Id, U.UserName,U.Email,U.DOB,
                         U.PhoneNo,U.ImagePath,L.AdhaarNo,L.[Name],
                         L.Gender,L.[Address],L.Bank,L.AccountNo,L.IFSC,
                         L.Experience,L.JobProfile,L.WagesType,L.Wages,
@@ -42,7 +33,7 @@ namespace DataAccess
                 return GetObject<ProfileResponse>(query);
             }else if(userRole == "Manager")
             {
-                string query = $@"SELECT U.UserName,U.Email,U.DOB,
+                string query = $@"SELECT U.Id, U.UserName,U.Email,U.DOB,
                         U.PhoneNo,U.ImagePath,M.AdhaarNo,M.[Name],
                         M.Gender,M.[Address],M.Bank,M.AccountNo,M.IFSC,
                         M.Experience,M.JobProfile,M.WagesType,M.Wages,
@@ -54,7 +45,7 @@ namespace DataAccess
             }
             else if (userRole == "Contractor")
             {
-                string query = $@"SELECT U.UserName,U.Email,U.DOB,
+                string query = $@"SELECT U.Id, U.UserName,U.Email,U.DOB,
                         U.PhoneNo,U.ImagePath,C.[Name],
                         C.Gender,C.[Address],C.Bank,C.AccountNo,C.IFSC,
                         C.Experience,C.JobProfile,C.WagesType,C.Wages,
@@ -66,13 +57,13 @@ namespace DataAccess
             }
             else if (userRole == "Customer")
             {
-                string query = $@"SELECT U.UserName,U.Email,U.DOB
+                string query = $@" SELECT U.Id, U.UserName,U.Email,U.DOB,
                         U.PhoneNo,U.ImagePath,
                         C.Gender,C.[Address],C.Bank,C.AccountNo,C.IFSC
                         FROM Users U
                         LEFT JOIN Customer C
                         ON U.Id = C.Id 
-                        Where U.Id = '{userId}' ";
+                        Where U.Id =  '{userId}' ";
                 return GetObject<ProfileResponse>(query);
             }
             return null;

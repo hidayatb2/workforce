@@ -30,7 +30,6 @@ namespace BusinessAccess
                 response.UserName = item.UserName;
                 response.Email = item.Email;
                 response.PhoneNo = item.PhoneNo;
-                response.PhoneNo = item.PhoneNo;
                 response.CreatedBy = item.CreatedBy;
                 response.CreatedOn = item.CreatedOn;
                 response.UserRole = item.UserRole;
@@ -40,6 +39,21 @@ namespace BusinessAccess
 
             return userResponses;
         }
+
+        public AdminResponse GetAdminById(Guid id)
+        {
+            var admin = repository.FindBy<User>(x => x.Id == id).FirstOrDefault();
+            return new AdminResponse()
+            {
+                Id = admin.Id,
+                UserName = admin.UserName,
+                Email = admin.Email,
+                PhoneNo = admin.PhoneNo,
+                ImagePath = admin.ImagePath,
+                UserStatus = admin.UserStatus,
+            };
+        }
+
         public ProfileResponse GetUserById(Guid id,string userRole)
         {
             return repository.GetProfile(id, userRole); 
@@ -55,7 +69,6 @@ namespace BusinessAccess
                 response.UserName = item.UserName;
                 response.Email = item.Email;
                 response.PhoneNo = item.PhoneNo;
-                response.PhoneNo = item.PhoneNo;
                 response.CreatedBy = item.CreatedBy;
                 response.CreatedOn = item.CreatedOn;
                 response.UserRole = item.UserRole;
@@ -69,6 +82,7 @@ namespace BusinessAccess
         {
             User user = new User()
             {
+                Id = Guid.NewGuid(),
                 UserName = signupRequest.UserName.ToLower(),
                 Salt = AppEncryption.CreateSalt(),
                 PhoneNo = signupRequest.PhoneNo,
@@ -76,6 +90,11 @@ namespace BusinessAccess
                 UserStatus = UserStatus.Inactive,
                 UserRole = signupRequest.UserRole,
             };
+            if(signupRequest.UserRole == UserRole.Labour)
+            {
+                user.Labour = new Labour();
+                user.Labour.Id=user.Id;
+            }
             user.Password = AppEncryption.CreatePasswordHash(signupRequest.Password, user.Salt);
             if (repository.IsExist<User>(x => x.UserName == user.UserName)) return -1;
             var list = new List<string>();

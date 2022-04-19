@@ -115,6 +115,23 @@ namespace WebApp
             return View();
         }
 
+        [HttpGet("editadmin")]
+        [AllowAnonymous]
+        public IActionResult EditAdmin()
+        {
+            Guid id = User.GetUserId();
+            var admin = accountManager.GetAdminById(id);
+            return View(admin);
+        }
+
+        [HttpPost("editadmin")]
+        [AllowAnonymous]
+        public IActionResult EditAdmin(AdminRequest adminRequest)
+        {
+           //update hree 
+            return View();
+        }
+
         [HttpGet("profile")]
         [AllowAnonymous]
         public IActionResult Profile()
@@ -125,6 +142,13 @@ namespace WebApp
             return View(user);
         }
 
+        [HttpPost("profile")]
+        [AllowAnonymous]
+        public IActionResult Profile(ProfileResponse profileResponse)
+        {
+           //update here
+            return View();
+        }
 
 
         [HttpGet("logout")]
