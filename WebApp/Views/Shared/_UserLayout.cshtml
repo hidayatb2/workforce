@@ -61,25 +61,18 @@
           </a>
         </li>
          
-        <li class="nav-item mt-4">
-          <a class="nav-link text-dark font-italic text-white " href="#">
-            <div class="text-white  me-2 d-flex " style="height:10px;margin-left:30px;margin-top:10px">
-              <i class="material-icons opacity-10"><ion-icon name="person-outline" style="font-size:30px"></ion-icon></i>
-            <span class="nav-link-text ms-1" style="font-size:18px">Profile</span>
-            </div>
-          </a>
-        </li>
+        
         <li class="nav-item mt-4"> 
-          <a class="nav-link text-dark font-italic text-white " href="#">
+          <a class="nav-link text-dark font-italic text-white" asp-action="changepassword" asp-controller="account">
             <div class="text-white  me-2 d-flex "  style="height:10px;margin-left:30px;margin-top:10px">
               <i class="material-icons opacity-10"><ion-icon name="person-add-outline" style="font-size:30px"></ion-icon></i>
-            <span class="nav-link-text ms-1" style="font-size:18px">Create Account</span>
+            <span class="nav-link-text ms-1" style="font-size:18px">Change Password</span>
             </div>
           </a>
         </li>
 
         <li class="nav-item mt-4">
-          <a class="nav-link text-dark font-italic text-white " href="#">
+          <a class="nav-link text-dark font-italic text-white " asp-action="logout" asp-controller="account">
             <div class="text-white  me-2 d-flex "  style="height:10px;margin-left:30px;margin-top:10px">
               <i class="material-icons opacity-10"><ion-icon name="log-out-outline" style="font-size:30px"></ion-icon></i>
             <span class="nav-link-text ms-1" style="font-size:18px">Logout</span>
