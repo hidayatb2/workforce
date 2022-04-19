@@ -2,6 +2,8 @@
 using DataAccess;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Models;
 using SharedLibrary;
@@ -68,8 +70,6 @@ namespace WebApp
 
                 if (loginResponse.UserStatus != UserStatus.Inactive && loginResponse?.UserStatus != null)
                 {
-
-
                     ClaimsIdentity identity = new ClaimsIdentity(CookieAuthenticationDefaults.AuthenticationScheme);
                     identity.AddClaim(new Claim(AppClaimTypes.UserId, loginResponse.Id.ToString()));
                     identity.AddClaim(new Claim(AppClaimTypes.UserName, loginResponse.UserName));
@@ -116,6 +116,7 @@ namespace WebApp
         }
 
         [HttpGet("profile")]
+        [AllowAnonymous]
         public IActionResult Profile()
         {
             Guid id = User.GetUserId();
@@ -124,12 +125,116 @@ namespace WebApp
             return View(user);
         }
 
+
+
         [HttpGet("logout")]
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync();
             return Redirect("/");
         }
+
+        [Route("forgotpassword")]
+        [AllowAnonymous]
+        public IActionResult ForgotPassword()
+        {
+            return View();
+        }
+
+        [Route("forgotpassword")]
+        [AllowAnonymous]
+        [HttpPost]
+        public ActionResult ForgotPassword(ForgotPasswordRequest forgotemail, [FromServices] SharedLibrary.IEmailService emailService)
+        {
+            string link = Request.GetEncodedUrl().Replace(Request.Path.ToUriComponent(), "/Account/ResetPassword?guid=");
+            string msg = accountManager.ForgetPassword(forgotemail, link, emailService);
+            if (msg == "success")
+                ViewBag.Message = "Check your Registered Email to Reset your Password";
+            else
+                ViewBag.Message = "Invalid Email";
+            return View();
+        }
+
+        [AllowAnonymous]
+        [HttpGet]
+        [Route("resetpassword")]
+        public ActionResult ResetPassword()
+        {
+            return View();
+        }
+
+
+        [AllowAnonymous]
+        [HttpPost]
+        [Route("resetpassword")]
+        public async Task<ActionResult> ResetPassword(ResetPasswordRequest resetPassword)
+        {
+            var user = accountManager.ResetPassword(resetPassword);
+            if (user == null)
+            {
+                ViewBag.Message = "Error";
+                return View();
+            }
+            else
+            {
+                if (resetPassword.IsChecked)
+                {
+                    var identity = new ClaimsIdentity(CookieAuthenticationDefaults.AuthenticationScheme);
+                    identity.AddClaim(new Claim(AppClaimTypes.UserId, user.Id.ToString()));
+                    identity.AddClaim(new Claim(AppClaimTypes.UserName, user.UserName));
+                    identity.AddClaim(new Claim(AppClaimTypes.Email, user.Email));
+                    identity.AddClaim(new Claim(AppClaimTypes.Role, user.UserRole.ToString()));
+                    var principal = new ClaimsPrincipal(identity);
+                    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal, new AuthenticationProperties()
+                    {
+                        IsPersistent = true,
+                        AllowRefresh = true,
+                        IssuedUtc = DateTime.UtcNow,
+                        ExpiresUtc = DateTime.UtcNow.AddHours(10)
+                    });
+                    if (user.UserRole == UserRole.Admin)
+                    {
+                        return RedirectToAction("DashBoard", "Admin");
+                    }
+                    else if (user.UserRole == UserRole.Customer)
+                    {
+                        return RedirectToAction("index", "Customer");
+                    }
+                    else if (user.UserRole == UserRole.Contractor)
+                    {
+                        return RedirectToAction("index", "Contractor");
+                    }
+                    else if (user.UserRole == UserRole.Manager)
+                    {
+                        return RedirectToAction("index", "Manager");
+                    }
+                    else if (user.UserRole == UserRole.Labour)
+                    {
+                        return RedirectToAction("index", "Labour");
+                    }
+                }
+                ViewBag.Message = "Success";
+            }
+            return View();
+        }
+
+        [AllowAnonymous]
+        [HttpGet("changepassword")]
+        public IActionResult ChangePassword()
+        {
+            return View();
+        }
+
+        [Route("changepassword")]
+        [HttpPost]
+        public IActionResult ChangePassword(ChangePasswordRequest changePassword)
+        {
+            changePassword.Id = User.GetUserId();
+            ViewBag.Message = accountManager.ChangePassword(changePassword);
+            return View();
+        }
+
+
     }
 }
 

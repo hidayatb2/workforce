@@ -233,4 +233,10 @@ namespace Models
     {
 
     }
+
+    public class ForgotPasswordRequest
+    {
+        [Required(ErrorMessage = "Please enter email to reset your password")]
+        public string Email { get; set; }
+    }
 }

@@ -1,6 +1,9 @@
 ﻿using DataAccess;
+using Microsoft.AspNetCore.Mvc;
+using ModelLayer;
 using Models;
 using SharedLibrary;
+using System.Text;
 
 namespace BusinessAccess
 {
@@ -114,6 +117,80 @@ namespace BusinessAccess
             {
                 loginResponse.HasError = true;
                 return loginResponse;
+            }
+        }
+
+        public string ForgetPassword(ForgotPasswordRequest email, string link, [FromServices] IEmailService emailService)
+        {
+            User? user = repository.FindBy<User>(x => x.Email == email.Email).FirstOrDefault();
+            if (user != null)
+            {
+                Guid guid = Guid.NewGuid();
+                user.ResetCode = guid.ToString();
+                link += guid;
+                var value = repository.UpdateAndSave(user);
+                if (value >= 1)
+                {
+                    var x = SendResetEmail(user, link);
+                    return "success";
+                }
+            }
+            return "NotExist";
+        }
+        public async Task SendResetEmail(User request, string link)
+        {
+            var email = new List<string>();
+            email.Add(request.Email);
+            var emailSetting = new MailSetting();
+            emailSetting.To = email;
+            emailSetting.Subject = "Reset Password (WorkForce)";
+
+            StringBuilder mailBody = new StringBuilder();
+            mailBody.AppendFormat("Please Click on the following link to reset your password <br>");
+            mailBody.AppendFormat(link);
+            emailSetting.Body = mailBody.ToString();
+            emailSetting.IsBodyHtml = true;
+            emailService?.SendMailAsync(emailSetting);
+        }
+
+        public User ResetPassword(ResetPasswordRequest resetPassword)
+        {
+            User user = repository.FindBy<User>(x => x.ResetCode == resetPassword.GUID.ToString()).FirstOrDefault();
+            if (user != null)
+            {
+                user.Salt = AppEncryption.CreateSalt();
+                user.Password = AppEncryption.CreatePasswordHash(resetPassword.NewPassword, user.Salt);
+                user.ResetCode = null;
+                repository.UpdateAndSave(user);
+                return user;
+            }
+            return null;
+        }
+
+
+        public string ChangePassword(ChangePasswordRequest changePassword)
+        {
+            User userAccount = repository.GetById<User>(changePassword.Id);
+            if (userAccount != null)
+            {
+                string dbSalt = userAccount.Salt;
+                string dbPassword = userAccount.Password;
+                string oldPass = AppEncryption.CreatePasswordHash(changePassword.OldPassword, dbSalt);
+                if (oldPass.Equals(dbPassword))
+                {
+                    userAccount.Salt = AppEncryption.CreateSalt();
+                    userAccount.Password = AppEncryption.CreatePasswordHash(changePassword.NewPassword, userAccount.Salt);
+                    repository.UpdateAndSave(userAccount);
+                    return "success";
+                }
+                else
+                {
+                    return "Old Password is not Correct";
+                }
+            }
+            else
+            {
+                return "UserName is not Correct";
             }
         }
 

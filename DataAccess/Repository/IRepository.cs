@@ -12,6 +12,10 @@ namespace DataAccess
     {
         IQueryable<T> GetAll<T>() where T : class;
 
+
+        int UpdateAndSave<T>(T model) where T : class;
+
+
         T GetById<T>(Guid id) where T : class;
 
 
