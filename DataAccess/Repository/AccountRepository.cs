@@ -20,7 +20,16 @@ namespace DataAccess
 
         public ProfileResponse GetProfile(Guid userId, string userRole)
         {
-            if(userRole == "Labour")
+
+
+        //    if(userRole == "Admin")
+        //    {
+
+        //        string query = $@"	select UserName,Email,PhoneNo from Users ";
+        //        return GetObject<ProfileResponse>(query);
+        //    }
+
+          if(userRole == "Labour")
             {
                 string query = $@"SELECT U.UserName,U.Email,U.DOB,
                         U.PhoneNo,U.ImagePath,L.AdhaarNo,L.[Name],

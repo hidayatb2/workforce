@@ -24,7 +24,7 @@ namespace WebApp
         {
             HomeModel homeModel = new HomeModel()
             {
-                skillResponses = homeManager.GetUserSkills().DistinctBy(x => x.JobProfile)
+               // skillResponses = homeManager.GetUserSkills().DistinctBy(x => x.JobProfile)
             };
             return View(homeModel);
         }

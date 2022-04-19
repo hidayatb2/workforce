@@ -92,7 +92,7 @@ namespace WebApp
                     }
                     else if (loginResponse.UserRole == UserRole.Customer)
                     {
-                        return RedirectToAction(nameof(Index), nameof(CustomerController));
+                        return RedirectToAction(nameof(Index), "Customer");
                     }
                     else if (loginResponse.UserRole == UserRole.Contractor)
                     {

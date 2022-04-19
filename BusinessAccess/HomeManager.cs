@@ -37,12 +37,12 @@ namespace BusinessAccess
             {
                 LabourId=x.Id,
                 Name=x.Name,
-                JobProfile=x.JobProfile,
-                Experience=x.Experience,
-                WagesType=x.WagesType,
-                Wages=x.Wages,
+               // JobProfile=x.JobProfile,
+              //  Experience=x.Experience,
+              //  WagesType=x.WagesType,
+               // Wages=x.Wages,
                 //ManagerId=x.ManagerId,
-                Discription=x.Discription
+               // Discription=x.Discription
             });
         }
 
@@ -52,11 +52,11 @@ namespace BusinessAccess
             {
                 LabourId = x.Id,
                 Name = x.Name,
-                JobProfile = x.JobProfile,
-                Experience = x.Experience,
-                WagesType = x.WagesType,
-                Wages = x.Wages,
-                Discription = x.Discription
+               // JobProfile = x.JobProfile,
+               // Experience = x.Experience,
+               // WagesType = x.WagesType,
+               // Wages = x.Wages,
+               // Discription = x.Discription
             });
         }
 

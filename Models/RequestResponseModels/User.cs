@@ -154,14 +154,14 @@ namespace Models
             public string JobProfile { get; set; }
 
 
-            public WagesType WagesType { get; set; }
+        public WagesType WagesType { get; set; }
 
 
-            public float Wages { get; set; }
+        public float Wages { get; set; }
 
 
-            public string Discription { get; set; }
-        }
+        public string Discription { get; set; }
+    }
 
 
 
@@ -214,19 +214,19 @@ namespace Models
         //public Guid ManagerId { get; set; }
 
 
-        public string JobProfile { get; set; }
+       // public string JobProfile { get; set; }
 
 
-        public string Experience { get; set; }
+        //public string Experience { get; set; }
 
 
-        public WagesType WagesType { get; set; }
+        //public WagesType WagesType { get; set; }
 
 
-        public float Wages { get; set; }
+        //public float Wages { get; set; }
 
 
-        public string Discription { get; set; }
+        //public string Discription { get; set; }
     }
 
     public class SkillResponse : SkillRequest
