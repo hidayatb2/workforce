@@ -4,6 +4,7 @@ using DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220419064829_requesttablemig")]
+    partial class requesttablemig
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -152,17 +154,11 @@ namespace DataAccess.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("CurrentUserId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("Message")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<byte>("UserRole")
-                        .HasColumnType("tinyint");
 
                     b.HasKey("Id");
 
@@ -373,12 +369,12 @@ namespace DataAccess.Migrations
                         {
                             Id = new Guid("87843532-0b93-492d-824b-68be17a82037"),
                             CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
-                            CreatedOn = new DateTime(2022, 4, 19, 16, 2, 35, 110, DateTimeKind.Local).AddTicks(7720),
+                            CreatedOn = new DateTime(2022, 4, 19, 12, 18, 29, 187, DateTimeKind.Local).AddTicks(4425),
                             DOB = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "admin@yopmail.com",
-                            Password = "qel4T82eqTMN0PNA6KMeWvv6zOjPZBAVJMShSJjEt+k=",
+                            Password = "TJ2Sj5455gAy5kxB3SJqgq4p2OgZlNI3dtiGLZ72RDo=",
                             PhoneNo = "8825084050",
-                            Salt = "QhcAq20p9eHWVJ/GKjmXImoPkwE=",
+                            Salt = "rxeAaAosOEvOIx0eB9eUkqLxFyM=",
                             UpdatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             UpdatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserName = "admin",

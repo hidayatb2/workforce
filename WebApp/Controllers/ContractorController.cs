@@ -1,6 +1,7 @@
 ﻿using BusinessAccess;
 using DataAccess;
 using Microsoft.AspNetCore.Mvc;
+using Models;
 
 namespace WebApp
 {
@@ -11,9 +12,9 @@ namespace WebApp
     {
         readonly ContractorManager contractorManager;
 
-        public ContractorController(ContractorManager contractorManager)
+        public ContractorController(ContractorRepository contractorRepository)
         {
-            this.contractorManager = contractorManager;
+            contractorManager = new ContractorManager(contractorRepository);
         }
 
         [HttpGet("Index")]
@@ -26,8 +27,30 @@ namespace WebApp
         [HttpGet("Managers")]
         public IActionResult AllManagers()
         {
-            contractorManager.GetManagers().ToList();
-            return View();
+            GeneralRequestModel generalRequestModel = new GeneralRequestModel()
+            {
+                generalResponses = contractorManager.GetManagers(),
+                
+                
+            };
+
+          
+            return View(generalRequestModel);
+        }
+
+
+
+        [HttpPost("Request")]
+        public IActionResult Requests(RequestDb requestDb)
+        {
+            
+            var returnValue=  contractorManager.PostRequest(requestDb);
+
+
+            return RedirectToAction(nameof(AllManagers),new GeneralRequestModel
+            {
+                returnValue=returnValue,
+            });
         }
     }
 

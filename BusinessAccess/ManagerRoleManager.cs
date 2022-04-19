@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DataAccess;
+using Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +10,50 @@ namespace BusinessAccess
 {
     public class ManagerRoleManager
     {
+
+        readonly ManagerRepository managerRepository;
+
+        public ManagerRoleManager(ManagerRepository managerRepository)
+        {
+            this.managerRepository = managerRepository;
+        }
+
+
+        public IEnumerable<GeneralResponse> GetContractors()
+        {
+           return managerRepository.GetAll<Contractor>().Select(x => new GeneralResponse
+            {
+                Id = x.Id,
+                Name = x.Name,
+                Address = x.Address,
+
+            });
+        }
+
+        public string PostRequest(RequestDb requestDb)
+        {
+
+            GeneralRequestDB generalRequestDB = new GeneralRequestDB()
+            {
+                Id = requestDb.Id,
+                Name = requestDb.Name,
+                Message = requestDb.Description,
+                UserRole = UserRole.Manager,
+                CurrentUserId=requestDb.CurrentUserId,
+
+            };
+
+            var returnVal = managerRepository.AddandSave(generalRequestDB);
+            if (returnVal != 0)
+            {
+                return "Success";
+            }
+            else
+            {
+                return "Error";
+            }
+
+        }
 
     }
 }

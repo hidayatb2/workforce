@@ -1,37 +1,20 @@
 ﻿@model GeneralRequestModel
+
 @{
     Layout = "_Layout";
 }
-@if (Model.returnValue != null)
-{
-    if (Model.returnValue == "Success")
-    {
-            <script>
-                swal("Feedback Sent", "Feedback Shared successfully", "success");
-            </script>
-    }
-    else
-    {
-          <script>
-                swal("Feedback Sent", "Feedback Shared successfully", "error");
-            </script>
-    }
-}
-
-
-<table class="table table-hover container" style="margin-top:210px">
-    <tr>
-        <th>Name</th>
-        <th>Address</th>
-        <th>Action</th>
-    </tr>
-    @foreach (var item in Model.generalResponses)
-    {
+    <table class="table table-hover container" style="margin-top:110px">
         <tr>
-
-            <td>@item.Name</td>
-            <td>@item.Address</td>
-            <td>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Action</th>
+        </tr>
+       @foreach (var item in Model.generalResponses)
+       {
+           <tr>
+               <td>@item.Name</td>
+               <td>@item.Address</td>
+                <td>
                 <div>
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
                         Contact
@@ -50,8 +33,8 @@
 
                                 <!-- Modal body -->
                             <div class="modal-body">
-                                    <form method="post">
-                                        <input asp-for="requestDb.CurrentUserId" value="@User.GetUserId()" hidden />
+                                    <form method="post"  >
+                                        <input asp-for="requestDb.CurrentUserId" value="@User.GetUserId()" hidden/>
                                         <input asp-for="requestDb.Id" value="@item.Id" class="form-control" hidden >
 
                                         <div class=" form-group">
@@ -61,7 +44,7 @@
                                             <textarea asp-for="requestDb.Description" class="form-control" rows="5" placeholder="Enter Your Message" required="required" ></textarea>
                                         </div>
 
-                                        <input type="submit" asp-action="Request" asp-controller="Contractor" class="btn btn-primary" value="Request"/>
+                                        <input type="submit" asp-action="RequestsM" asp-controller="Manager" class="btn btn-primary" value="Request"/>
                                     </form>
                                 </div>
 
@@ -72,11 +55,6 @@
 
                 </div>
             </td>
-
-
-        </tr>
-
-    }
-</table>
-
-
+           </tr>
+       }
+    </table>
