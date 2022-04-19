@@ -3,19 +3,7 @@
     Layout="_UserLayout";
 }
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
- @*<div class="row">
-     <select class="form-control  col-5" asp-items="@Html.GetEnumSelectList<UserRole>()"id="roleDiv"  style="display:inline;width:30%;">
-      <option value="">Select Role</option>  
-    </select>
-    <div class="col-2">|OR|</div>
-    <div class="col-5"><input class="form-control ml-5" id="searchBox" placeholder="Search by Name/Email/Phone" type="search" style="width:100%;display:inline"/></div>
- </div> *@
 
-
-@*<div id="mainD" >
- <partial name="_searchPartial" model="Model"/> 
-
-</div>*@
 
 <div class="container-fluid pt-4 px-4" id="dashboardDiv" style="margin-right:100px">
                 <div class="row ">
@@ -23,8 +11,8 @@
                         <div class="bg-dark text-white rounded d-flex align-items-center justify-content-between p-4 ">
                             <ion-icon name="people" style="font-size:70px"></ion-icon>
                             <div class="ms-3">
-                                <p class="mb-2">Total Users</p>
-                                <h6 class="mb-0">@Model.Count()</h6>
+                                <a asp-controller="Account" asp-action="GetUsers"><p class="mb-2">Total Users</p></a> 
+                                <h6 class="mb-0">@Model?.Count()</h6>
                             </div>
                         </div>
                     </div>
@@ -34,7 +22,7 @@
                             <ion-icon name="body" style="font-size:70px"></ion-icon>
                             <div class="ms-3">
                                 <p class="mb-2">Contractors</p>
-                                <h6 class="mb-0">@ViewBag.Contractor</h6>
+                                <h6 class="mb-0">@ViewBag?.Contractor</h6>
                             </div>
                         </div>
                     </div>
@@ -44,7 +32,7 @@
                             <ion-icon name="man" style="font-size:70px"></ion-icon>
                             <div class="ms-3">
                                 <p class="mb-2">Managers</p>
-                                <h6 class="mb-0">@ViewBag.Manager</h6>
+                                <h6 class="mb-0">@ViewBag?.Manager</h6>
                             </div>
                         </div>
                     </div>

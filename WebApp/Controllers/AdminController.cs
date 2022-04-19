@@ -7,7 +7,6 @@ using SharedLibrary;
 
 namespace WebApp
 {
-    [Authorize(Roles = "Admin")]
     [Route("admin")]
     public class AdminController : Controller
     {

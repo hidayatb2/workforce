@@ -259,6 +259,14 @@ namespace WebApp
         }
 
 
+        [Route("getusers")]
+        [HttpPost]
+        public IActionResult GetUsers()
+        {
+            var users = accountManager.GetAllUsers();
+            return View(users);
+        }
+
     }
 }
 
