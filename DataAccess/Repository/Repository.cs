@@ -62,6 +62,13 @@ namespace DataAccess
         {
             return dbContext.SqlQuery<T>(sql, parameters).FirstOrDefault();
         }
+        public int UpdateAndSave<T>(T model) where T : class
+        {
+            dbContext.Entry(model).State = EntityState.Modified;
+
+            return dbContext.SaveChanges();
+        }
+
 
 
       public int Delete<T>(T model) where T : class
@@ -70,8 +77,6 @@ namespace DataAccess
             return dbContext.SaveChanges();
         }
 
-        
-        
     }
     public static class EFExtensions
     {
