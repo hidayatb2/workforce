@@ -60,6 +60,11 @@
                     <option value="">Select Role</option>
                 </select>
             </div>
+             <div>
+                <select asp-for="UserRole" class="form-control  col-md-6 mt-3" asp-items="@(new SelectList(ViewBag.Managers,"Id","Name"))">
+                    <option value="">Select Role</option>
+                </select>
+            </div>
             <button asp-action="CreateUser" asp-controller="Admin" class="btn btn-primary mt-3">Create</button>
         </form>
     </div>

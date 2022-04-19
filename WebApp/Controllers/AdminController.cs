@@ -63,7 +63,6 @@ namespace WebApp
         [HttpGet("create")]
         public IActionResult CreateUser()
         {
-
             return View();
         }
 
