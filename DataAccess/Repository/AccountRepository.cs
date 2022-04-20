@@ -69,7 +69,7 @@ namespace DataAccess
             return null;
         }
 
-        public int UpdateUserDetails(ProfileResponse profileResponse)
+        public int UpdateLabourDetails(ProfileResponse profileResponse)
         {
             string query = $@"UPDATE Labour SET AdhaarNo='{profileResponse.AdhaarNo}' , Name='{profileResponse.Name}', Address='{profileResponse.Address}',
                                 Bank='{profileResponse.Bank}', AccountNo='{profileResponse.AccountNo}', 
@@ -79,5 +79,36 @@ namespace DataAccess
 
             return result;
         }
+        public int UpdateManagerDetails(ProfileResponse profileResponse)
+        {
+            string query = $@"UPDATE Manager SET AdhaarNo='{profileResponse.AdhaarNo}' , Name='{profileResponse.Name}', Address='{profileResponse.Address}',
+                                Bank='{profileResponse.Bank}', AccountNo='{profileResponse.AccountNo}', 
+                                IFSC='{profileResponse.IFSC}',JobProfile='{profileResponse.JobProfile}',Experience='{profileResponse.Experience}',Discription='{profileResponse.Discription}'
+                              where id ='{profileResponse.Id}' ";
+            var result = ExecuteQuery(query);
+
+            return result;
+        }
+        public int UpdateContractorDetails(ProfileResponse profileResponse)
+        {
+            string query = $@"UPDATE Contractor SET Name='{profileResponse.Name}', Address='{profileResponse.Address}',
+                                Bank='{profileResponse.Bank}', AccountNo='{profileResponse.AccountNo}', 
+                                IFSC='{profileResponse.IFSC}',JobProfile='{profileResponse.JobProfile}',
+                                Experience='{profileResponse.Experience}',Discription='{profileResponse.Discription}'
+                              where id ='{profileResponse.Id}' ";
+            var result = ExecuteQuery(query);
+
+            return result;
+        }
+        //public int UpdateCustomerDetails(ProfileResponse profileResponse)
+        //{
+        //    string query = $@"UPDATE Customer SET AdhaarNo='{profileResponse.AdhaarNo}' , Name='{profileResponse.Name}', Address='{profileResponse.Address}',
+        //                        Bank='{profileResponse.Bank}', AccountNo='{profileResponse.AccountNo}', 
+        //                        IFSC='{profileResponse.IFSC}',JobProfile='{profileResponse.JobProfile}',Experience='{profileResponse.Experience}',Discription='{profileResponse.Discription}'
+        //                      where id ='{profileResponse.Id}' ";
+        //    var result = ExecuteQuery(query);
+
+        //    return result;
+        //}
     }
 }

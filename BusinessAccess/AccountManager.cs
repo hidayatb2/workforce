@@ -243,8 +243,20 @@ namespace BusinessAccess
 
             if(userRole=="Labour")
             {
-                var lbr = repository.UpdateUserDetails(profileResponse);
+                var lbr = repository.UpdateLabourDetails(profileResponse);
             }
+            else if (userRole == "Manager")
+            {
+                var lbr = repository.UpdateManagerDetails(profileResponse);
+            }
+            else if (userRole == "Contractor")
+            {
+                var lbr = repository.UpdateContractorDetails(profileResponse);
+            }
+            //else if (userRole == "Customer")
+            //{
+            //    var lbr = repository.UpdateCustomerDetails(profileResponse);
+            //}
 
             return repository.UpdateAndSave(user);
         }

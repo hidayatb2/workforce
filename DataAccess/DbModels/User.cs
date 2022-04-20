@@ -29,7 +29,7 @@ namespace DataAccess
         public string Email { get; set; }
 
 
-        public DateTime DOB { get; set; } 
+        public DateTime DOB { get; set; }
 
 
         public string PhoneNo { get; set; }

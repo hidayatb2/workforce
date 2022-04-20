@@ -51,10 +51,10 @@
             <div>
                 <input asp-for="PhoneNo" class="form-control col-md-6 mt-3" placeholder="Enter Phone No" />
             </div>
-            <div>
+            @*<div>
                     <input asp-for="DOB" placeholder="Enter DOB" class="form-control col-md-6 mt-3" />
                     <span asp-validation-for="DOB" class="text-danger"></span>
-            </div>
+            </div>*@
             <div>
                 <select asp-for="UserRole" id="role" class="form-control col-md-6 mt-3" asp-items="Html.GetEnumSelectList<UserRole>()">
                     <option value="">Select Role</option>
