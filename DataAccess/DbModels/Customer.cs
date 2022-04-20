@@ -36,5 +36,7 @@ namespace DataAccess
 
         public string IFSC { get; set; }
 
+        public ICollection<Bid> Bids { get; set; }
+
     }
 }

@@ -87,7 +87,7 @@ namespace BusinessAccess
                 Salt = AppEncryption.CreateSalt(),
                 PhoneNo = signupRequest.PhoneNo,
                 Email = signupRequest.Email,
-                UserStatus = UserStatus.Inactive,
+                UserStatus = UserStatus.Active,
                 UserRole = signupRequest.UserRole,
             };
             if(signupRequest.UserRole == UserRole.Labour)

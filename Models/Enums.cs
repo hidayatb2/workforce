@@ -6,7 +6,14 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    public  enum UserStatus:byte
+    public enum BidStatus : byte
+    {
+        Accepted = 1,
+        Pending = 2,
+    }
+
+
+    public enum UserStatus:byte
     {
         Active=1,
         Inactive=2,

@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +15,6 @@ namespace DataAccess
             ChangeTracker.AutoDetectChangesEnabled = false;
         }
 
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -27,7 +26,7 @@ namespace DataAccess
             dbContextHandler.SeedInitialData(modelBuilder);
         }
 
-
+        #region DBTables
         public DbSet<User> Users { get; set; }
 
         public DbSet<Labour> Labour { get; set; }
@@ -41,5 +40,9 @@ namespace DataAccess
         public DbSet<Testimonial> Testimonials { get; set; }
 
         public DbSet<GeneralRequestDB> generalRequestDB { get; set; }
+        public DbSet<Bid> Bids { get; set; }
+
+        public DbSet<Participant> Participants { get; set; }
+        #endregion
     }
 }

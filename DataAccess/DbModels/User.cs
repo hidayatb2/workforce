@@ -49,13 +49,16 @@ namespace DataAccess
 
         public UserStatus UserStatus { get; set; }
 
-        public Customer? Customer { get; set; }
+        public Customer Customer { get; set; }
 
-        public Contractor? Contractor { get; set; }
+        public Contractor Contractor { get; set; }
 
-        public Manager? Manager { get; set; }
+        public Manager Manager { get; set; }
 
-        public Labour? Labour { get; set; }
+        public Labour Labour { get; set; }
+
+
+        public Participant Participant { get; set; }
 
 
     }
