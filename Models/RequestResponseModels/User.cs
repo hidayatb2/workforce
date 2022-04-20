@@ -22,6 +22,7 @@ namespace Models
 
         public UserStatus UserStatus { get; set; }
 
+
     }
     public class AdminResponse : AdminRequest
     {

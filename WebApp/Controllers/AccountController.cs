@@ -1,4 +1,5 @@
-﻿using BusinessAccess;
+﻿using AutoMapper;
+using BusinessAccess;
 using DataAccess;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -19,9 +20,9 @@ namespace WebApp
         private readonly IEmailService emailService;
         private readonly IWebHostEnvironment environment;
 
-        public AccountController(AccountRepository repository, IEmailService emailService, IWebHostEnvironment environment)
+        public AccountController(AccountRepository repository, IEmailService emailService, IWebHostEnvironment environment,IMapper mapper)
         {
-            accountManager = new AccountManager(repository, emailService);
+            accountManager = new AccountManager(repository, emailService,mapper);
             this.emailService = emailService;
             this.environment = environment;
             this.repository = repository;
@@ -119,8 +120,7 @@ namespace WebApp
         [AllowAnonymous]
         public IActionResult EditAdmin()
         {
-            Guid id = User.GetUserId();
-            var admin = accountManager.GetAdminById(id);
+            var admin = accountManager.GetAdminById(User.GetUserId());
             return View(admin);
         }
 
@@ -128,7 +128,7 @@ namespace WebApp
         [AllowAnonymous]
         public IActionResult EditAdmin(AdminRequest adminRequest)
         {
-           //update hree 
+            var returnValue = accountManager.UpdateAdmin(adminRequest);
             return View();
         }
 

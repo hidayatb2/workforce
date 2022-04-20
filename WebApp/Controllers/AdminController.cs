@@ -1,4 +1,5 @@
-﻿using BusinessAccess;
+﻿using AutoMapper;
+using BusinessAccess;
 using DataAccess;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -13,10 +14,10 @@ namespace WebApp
         private readonly AdminManager adminManager;
         private readonly AccountManager accountManager;
 
-        public AdminController(AccountRepository repository,IEmailService emailService)
+        public AdminController(AccountRepository repository,IEmailService emailService,IMapper mapper)
         {
             adminManager = new AdminManager(repository,emailService);
-            accountManager = new AccountManager(repository,emailService);
+            accountManager = new AccountManager(repository,emailService,mapper);
         }
 
 

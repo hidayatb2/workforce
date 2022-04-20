@@ -1,4 +1,5 @@
-﻿using DataAccess;
+﻿using AutoMapper;
+using DataAccess;
 using Microsoft.AspNetCore.Mvc;
 using ModelLayer;
 using Models;
@@ -11,11 +12,13 @@ namespace BusinessAccess
     {
         private readonly AccountRepository repository;
         private readonly IEmailService emailService;
+        private readonly IMapper mapper;
 
-        public AccountManager(AccountRepository repository, IEmailService emailService)
+        public AccountManager(AccountRepository repository, IEmailService emailService,IMapper mapper)
         {
             this.repository = repository;
             this.emailService = emailService;
+            this.mapper = mapper;
         }
 
 
@@ -54,10 +57,35 @@ namespace BusinessAccess
             };
         }
 
+
+        public int UpdateAdmin(AdminRequest adminRequest)
+        {
+            //User user = new User()
+            //{
+            //    PhoneNo = adminRequest.PhoneNo,
+            //    ImagePath = adminRequest.ImagePath,
+            //};
+            //if (repository.FindBy<User>(x => x.Email == adminRequest.Email && x.Id == adminRequest.Id).Any()) user.Email = adminRequest.Email; else
+            //{
+            //    if (repository.FindBy<User>(x => x.Email == adminRequest.Email).Any()) return -1;
+            //}
+            //if (repository.FindBy<User>(x => x.UserName == adminRequest.UserName && x.Id == adminRequest.Id).Any()) user.UserName = adminRequest.UserName; else
+            //{
+            //    if (repository.FindBy<User>(x => x.UserName == adminRequest.UserName).Any()) return -2;
+            //}
+            var uzer = mapper.Map<AdminRequest, User>(adminRequest);
+            return repository.UpdateAndSave(uzer);
+
+        }
+
+       
+
         public ProfileResponse GetUserById(Guid id, string userRole)
         {
             return repository.GetProfile(id, userRole);
         }
+
+
         public IEnumerable<UserResponse> GetAllUsers()
         {
             List<UserResponse> userResponses = new List<UserResponse>();
@@ -244,7 +272,7 @@ namespace BusinessAccess
                 user.Email = profileResponse.Email;
             }
             else if (repository.FindBy<User>(x => x.Email == profileResponse.Email).Any()) return -1;
-            //else user.Email = profileResponse.Email;
+          
 
             if(userRole=="Labour")
             {
@@ -267,10 +295,3 @@ namespace BusinessAccess
         }
     }
 }
-
-//user.UserName = profileResponse.UserName;
-//user.Email = profileResponse.Email;
-//user.PhoneNo = profileResponse.PhoneNo;
-//user.DOB = profileResponse.DOB;
-//user.ImagePath = profileResponse.ImagePath,
-//                        user.

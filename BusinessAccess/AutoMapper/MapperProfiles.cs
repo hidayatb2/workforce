@@ -19,5 +19,14 @@ namespace BusinessAccess
         }
     }
 
+    sealed class AdminMapProfile : Profile
+    {
+        public AdminMapProfile()
+        {
+            CreateMap<AdminRequest, User>();
+           // CreateMap<Bid, BidRequest>();
+        }
+    }
+
 
 }
