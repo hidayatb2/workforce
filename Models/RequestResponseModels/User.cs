@@ -176,13 +176,13 @@ namespace Models
             public string JobProfile { get; set; }
 
 
-        public WagesType WagesType { get; set; }
+            public WagesType WagesType { get; set; }
 
 
-        public float Wages { get; set; }
+             public float Wages { get; set; }
 
 
-        public string Discription { get; set; }
+             public string Discription { get; set; }
     }
 
 

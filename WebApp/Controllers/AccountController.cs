@@ -146,10 +146,12 @@ namespace WebApp
         [AllowAnonymous]
         public IActionResult Profile(ProfileResponse profileResponse)
         {
-           //update here
+            var role = User.GetRole();
+            var msg = accountManager.UpdateUser(profileResponse, role);
             return View();
         }
 
+        
 
         [HttpGet("logout")]
         public async Task<IActionResult> Logout()

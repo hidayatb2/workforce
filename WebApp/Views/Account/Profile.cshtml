@@ -3,7 +3,7 @@
     Layout = "_UserLayout";
 }
 
-<form class="form ">
+<form class="form" asp-action="Profile" asp-controller="Account" method="post">
     @if (User.IsInRole(UserRole.Admin.ToString()))
     {
         <div class="offset-4">
@@ -50,7 +50,7 @@
         </div>
 
         <div>
-            @*<input asp-for="Id" hidden />*@
+            <input asp-for="Id" hidden />
         </div>
 
         <div class="col-md-3">
@@ -124,5 +124,7 @@
             <input asp-for="Discription" class="form-control" />
         </div>
     }
+
+    <button asp-action="Profile" asp-controller="Account" type="submit" class="btn btn-primary">Submit</button>
     
 </form>

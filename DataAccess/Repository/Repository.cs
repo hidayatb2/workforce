@@ -36,6 +36,13 @@ namespace DataAccess
             return dbContext.Set<T>().Any(predicate);
         }
 
+
+        public int ExecuteQuery(string query, params object[] parameters)
+        {
+            return dbContext.Database.ExecuteSqlRaw(query, parameters);
+        }
+
+
         public void Delete<T>(Guid id) where T : class, IBaseModel, new()
         {
             dbContext.Entry<T>(new T { Id = id }).State = EntityState.Deleted;

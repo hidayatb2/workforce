@@ -54,9 +54,9 @@ namespace BusinessAccess
             };
         }
 
-        public ProfileResponse GetUserById(Guid id,string userRole)
+        public ProfileResponse GetUserById(Guid id, string userRole)
         {
-            return repository.GetProfile(id, userRole); 
+            return repository.GetProfile(id, userRole);
         }
         public IEnumerable<UserResponse> GetAllUsers()
         {
@@ -90,11 +90,27 @@ namespace BusinessAccess
                 UserStatus = UserStatus.Active,
                 UserRole = signupRequest.UserRole,
             };
-            if(signupRequest.UserRole == UserRole.Labour)
+            if (signupRequest.UserRole == UserRole.Labour)
             {
                 user.Labour = new Labour();
-                user.Labour.Id=user.Id;
+                user.Labour.Id = user.Id;
             }
+            else if (signupRequest.UserRole == UserRole.Manager)
+            {
+                user.Manager = new Manager();
+                user.Manager.Id = user.Id;
+            }
+            else if (signupRequest.UserRole == UserRole.Contractor)
+            {
+                user.Contractor = new Contractor();
+                user.Contractor.Id = user.Id;
+            }
+            else if (signupRequest.UserRole == UserRole.Customer)
+            {
+                user.Customer = new Customer();
+                user.Customer.Id = user.Id;
+            }
+
             user.Password = AppEncryption.CreatePasswordHash(signupRequest.Password, user.Salt);
             if (repository.IsExist<User>(x => x.UserName == user.UserName)) return -1;
             var list = new List<string>();
@@ -106,7 +122,6 @@ namespace BusinessAccess
             emailSetting.Body = @$"<h1>Welcome to world of Work Force </h1>  <br>
                                     <p>Your account has been created successfully</p>";
             emailSetting.IsBodyHtml = true;
-
             emailService.SendMailAsync(emailSetting);
             return repository.AddandSave(user);
         }
@@ -213,6 +228,30 @@ namespace BusinessAccess
             }
         }
 
+        public int UpdateUser(ProfileResponse profileResponse, string userRole)
+        {
+            var user = repository.GetById<User>(profileResponse.Id);
 
+            if (repository.FindBy<User>(x => x.Id == profileResponse.Id && x.Email == profileResponse.Email).Any())
+            {
+                user.Email = profileResponse.Email;
+            }
+            else if (repository.FindBy<User>(x => x.Email == profileResponse.Email).Any()) return -1;
+            //else user.Email = profileResponse.Email;
+
+            if(userRole=="Labour")
+            {
+                var lbr = repository.UpdateUserDetails(profileResponse);
+            }
+
+            return repository.UpdateAndSave(user);
+        }
     }
 }
+
+//user.UserName = profileResponse.UserName;
+//user.Email = profileResponse.Email;
+//user.PhoneNo = profileResponse.PhoneNo;
+//user.DOB = profileResponse.DOB;
+//user.ImagePath = profileResponse.ImagePath,
+//                        user.

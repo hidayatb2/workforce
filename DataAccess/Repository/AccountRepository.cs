@@ -68,5 +68,16 @@ namespace DataAccess
             }
             return null;
         }
+
+        public int UpdateUserDetails(ProfileResponse profileResponse)
+        {
+            string query = $@"UPDATE Labour SET AdhaarNo='{profileResponse.AdhaarNo}' , Name='{profileResponse.Name}', Address='{profileResponse.Address}',
+                                Bank='{profileResponse.Bank}', AccountNo='{profileResponse.AccountNo}', 
+                                IFSC='{profileResponse.IFSC}',JobProfile='{profileResponse.JobProfile}',Experience='{profileResponse.Experience}',Discription='{profileResponse.Discription}'
+                              where id ='{profileResponse.Id}' ";
+            var result = ExecuteQuery(query);
+
+            return result;
+        }
     }
 }
