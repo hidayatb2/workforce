@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess
 {
-    public class Manager : UserBaseModel,IBaseModel
+    public class Manager : UserBaseModel, IBaseModel
     {
         public Guid Id { get; set; }
 
@@ -26,8 +26,5 @@ namespace DataAccess
         [ForeignKey(nameof(ContractorId))]
         public Contractor Contractor { get; set; }
 
-
-
-        //public ICollection<Labour> Labours { get; set; }
     }
 }
