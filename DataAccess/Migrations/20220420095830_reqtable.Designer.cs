@@ -4,6 +4,7 @@ using DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220420095830_reqtable")]
+    partial class reqtable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -126,9 +128,6 @@ namespace DataAccess.Migrations
                     b.Property<DateTime>("UpdatedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("UserName")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<float>("Wages")
                         .HasColumnType("real");
 
@@ -198,13 +197,13 @@ namespace DataAccess.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<byte>("Status")
-                        .HasColumnType("tinyint");
-
                     b.Property<string>("UserName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<byte>("UserRole")
+                        .HasColumnType("tinyint");
+
+                    b.Property<byte>("UserStatus")
                         .HasColumnType("tinyint");
 
                     b.HasKey("Id");
@@ -327,9 +326,6 @@ namespace DataAccess.Migrations
 
                     b.Property<DateTime>("UpdatedOn")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("UserName")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<float>("Wages")
                         .HasColumnType("real");
@@ -462,12 +458,12 @@ namespace DataAccess.Migrations
                         {
                             Id = new Guid("87843532-0b93-492d-824b-68be17a82037"),
                             CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
-                            CreatedOn = new DateTime(2022, 4, 20, 17, 4, 24, 531, DateTimeKind.Local).AddTicks(5676),
+                            CreatedOn = new DateTime(2022, 4, 20, 15, 28, 29, 567, DateTimeKind.Local).AddTicks(2378),
                             DOB = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "admin@yopmail.com",
-                            Password = "eXiB5Vht7XivPkvZtoAfxPeWiBDlUGE5ho+i+9Zaqp8=",
+                            Password = "Dtr6bObat6iexKKx5PkMVCmY0jSLYa5T9H+ZLydAQv0=",
                             PhoneNo = "8825084050",
-                            Salt = "3Akpg9UvLt8lUJkVB1rwC5/kH+c=",
+                            Salt = "n5WZhK+odr966rkgUAsxh5INMHk=",
                             UpdatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             UpdatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserName = "admin",

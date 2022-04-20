@@ -7,13 +7,16 @@
         <tr>
             <th>Name</th>
             <th>Address</th>
+          
             <th>Action</th>
         </tr>
        @foreach (var item in Model.generalResponses)
        {
            <tr>
-               <td>@item.Name</td>
+               <td>@item.UserName</td>
                <td>@item.Address</td>
+              
+              
                 <td>
                 <div>
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
@@ -49,7 +52,7 @@
                                 </div>
 
 
-                            </div>
+                            </div> 
                         </div>
                     </div>
 

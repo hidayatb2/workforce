@@ -8,14 +8,14 @@ namespace WebApp
     {
         public static Guid GetUserId(this ClaimsPrincipal principal)
         {
-            if (Guid.TryParse(principal?.Claims?.FirstOrDefault(x => x.Type == AppClaimTypes.UserId).Value, out Guid userId))
+            if (Guid.TryParse(principal?.Claims?.FirstOrDefault(x => x.Type == AppClaimTypes.UserId)?.Value, out Guid userId))
                 return userId;
             return Guid.Empty;
         }
 
-        public static string? GetName(this ClaimsPrincipal principal)
+        public static string? GetUserName(this ClaimsPrincipal principal)
         {
-            return principal?.Claims?.FirstOrDefault(x => x.Type == AppClaimTypes.Name)?.Value;
+            return principal?.Claims?.FirstOrDefault(x => x.Type == AppClaimTypes.UserName)?.Value;
         }
 
         public static string? GetRole(this ClaimsPrincipal principal)

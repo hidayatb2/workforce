@@ -14,7 +14,14 @@ namespace Models
 
         public Guid CurrentUserId { get; set; }
 
+
         public string Name { get; set; }
+
+
+        public string UserName { get; set; }
+
+
+        public BidStatus Status { get; set; }
 
 
         public string Description { get; set; } 

@@ -61,7 +61,7 @@
 
 
                 <li class="nav-item mt-4">
-                    <a class="nav-link text-white " href="#">
+                    <a class="nav-link text-white " >
                         <div class="text-white  me-2 d-flex " style="height:10px;margin-left:30px;margin-top:10px">
                             <i class="material-icons opacity-10"><ion-icon name="notifications-outline" style="font-size:30px"></ion-icon></i>
                             <span class="nav-link-text ms-1" style="font-size:18px">Messages</span>
@@ -102,7 +102,7 @@
 
         <div class="nav-item dropdown " style="margin-left:90%">
             <a href="#" class="nav-link dropdown-toggle text-light" data-bs-toggle="dropdown">
-                <span class=" text-light">@User.GetName()</span>
+                <span class=" text-light">@User.GetUserName()</span>
             </a>
             <div class="dropdown-menu dropdown-menu-end  border-0 rounded-0 rounded-bottom m-0" style="background-color:#0b212d;">
                 @if (User.IsInRole(nameof(UserRole.Admin)))

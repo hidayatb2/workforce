@@ -26,6 +26,9 @@ namespace BusinessAccess
                 Id = x.Id,
                 Name = x.Name,
                 Address = x.Address,
+                UserName = x.UserName,
+                Status = BidStatus.Pending
+                
 
             });
         }
@@ -38,8 +41,12 @@ namespace BusinessAccess
                 Id = requestDb.Id,
                 Name = requestDb.Name,
                 Message = requestDb.Description,
-                UserRole = UserRole.Manager,
+                //UserRole = UserRole.Manager,
+                //UserRole = requestDb.UserRole,
+                UserRole = UserRole.Contractor,
                 CurrentUserId=requestDb.CurrentUserId,
+                UserName = requestDb.UserName,
+                Status = requestDb.Status
 
             };
 
@@ -65,11 +72,12 @@ namespace BusinessAccess
 
                 ResponseDb responseDb1 = new ResponseDb();
 
-                responseDb1.Id = item.Id;
+                responseDb1.Id = item.CurrentUserId;
                 responseDb1.Name = item.Name;
                 responseDb1.UserRole = UserRole.Manager;
-                responseDb1.CurrentUserId = item.CurrentUserId;
+                responseDb1.CurrentUserId = item.Id;
                 responseDb1.Description = item.Message;
+                responseDb1.Status = item.Status;
                 responseDb.Add(responseDb1);
 
             }

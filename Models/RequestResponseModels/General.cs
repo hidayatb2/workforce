@@ -19,5 +19,9 @@ namespace Models
 
         public string Address { get; set; }
 
+        public string UserName { get; set; }
+
+        public BidStatus Status { get; set; }
+
     }
 }
