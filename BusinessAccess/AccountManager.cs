@@ -93,11 +93,13 @@ namespace BusinessAccess
             if (signupRequest.UserRole == UserRole.Labour)
             {
                 user.Labour = new Labour();
+               // user.Labour.ManagerId = Guid.Empty;
                 user.Labour.Id = user.Id;
             }
             else if (signupRequest.UserRole == UserRole.Manager)
             {
                 user.Manager = new Manager();
+                //user.Manager.ContractorId=Guid.Empty;
                 user.Manager.Id = user.Id;
             }
             else if (signupRequest.UserRole == UserRole.Contractor)
