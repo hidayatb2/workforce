@@ -39,11 +39,12 @@ namespace BusinessAccess
 
             GeneralRequestDB generalRequestDB = new GeneralRequestDB()
             {
-                Id = requestDb.Id,
+                Id = new Guid(),
                 Name = requestDb.Name,
                 Message = requestDb.Description,
                 UserRole = UserRole.Manager,
-                CurrentUserId = requestDb.CurrentUserId,
+                SenderId = requestDb.SenderId,
+                RecieverId=requestDb.RecieverId
 
 
             };
@@ -64,16 +65,17 @@ namespace BusinessAccess
         {
 
             List<ResponseDb> responseDb = new List<ResponseDb>();
-            foreach (var item in contractorRepository.FindBy<GeneralRequestDB>(x=>x.CurrentUserId == id))
+            foreach (var item in contractorRepository.FindBy<GeneralRequestDB>(x=>x.RecieverId == id))
             {
 
                 ResponseDb responseDb1 = new ResponseDb();
 
-                responseDb1.Id = item.CurrentUserId;
+                responseDb1.Id = item.Id;
+                responseDb1.RecieverId = item.RecieverId;
                 responseDb1.Name = item.Name;
                 responseDb1.UserName = item.UserName;
                 responseDb1.UserRole = UserRole.Manager;
-                responseDb1.CurrentUserId = item.Id;
+                responseDb1.SenderId = item.Id;
                 responseDb1.Description = item.Message;
                 responseDb1.Status = item.Status;
                 responseDb.Add(responseDb1);

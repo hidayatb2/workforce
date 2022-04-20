@@ -12,7 +12,10 @@ namespace Models
         public Guid Id { get; set; }
 
 
-        public Guid CurrentUserId { get; set; }
+        public Guid SenderId { get; set; }
+
+
+        public Guid RecieverId { get; set; }
 
 
         public string Name { get; set; }

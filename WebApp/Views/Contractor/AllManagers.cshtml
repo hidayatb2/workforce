@@ -53,9 +53,10 @@
                                 <!-- Modal body -->
                             <div class="modal-body">
                                     <form method="post">
-                                        <input asp-for="requestDb.CurrentUserId" value="@User.GetUserId()" hidden />
-                                        <input asp-for="requestDb.Id" value="@item.Id" class="form-control" hidden />
-                                        <input asp-for="requestDb.UserName" value="@User.GetUserName()" hidden />
+                                        <input asp-for="@Model.requestDb.SenderId" value="@User.GetUserId()" hidden />
+                                        <input asp-for="@Model.requestDb.RecieverId" value="@item.Id" class="form-control" hidden />
+                                        <input asp-for="@Model.requestDb.Name" value="@User.GetUserName()" hidden />
+                                        <input asp-for="@Model.requestDb.UserRole" value="@User.GetRole()" hidden />
 
                                         <div class=" form-group">
                                             <input asp-for="requestDb.Name" class="form-control" placeholder="Your Name" required="required" value="@item.UserName" readonly >

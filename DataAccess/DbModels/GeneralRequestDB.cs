@@ -28,7 +28,10 @@ namespace DataAccess
         public BidStatus Status { get; set; }
 
 
-        public Guid CurrentUserId { get; set; } 
+        public Guid SenderId { get; set; } 
+
+
+        public Guid RecieverId { get; set; } 
 
 
     }
