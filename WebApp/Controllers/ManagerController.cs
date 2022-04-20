@@ -46,5 +46,15 @@ namespace WebApp
                 returnValue = returnValue,
             });
         }
+
+
+        [HttpGet("GetRequests")]
+        public IActionResult RequestMessages()
+        {
+            Guid id = User.GetUserId();
+            return View(roleManager.GetRequestMessages(id));
+
+        }
+
     }
 }

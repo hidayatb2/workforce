@@ -1,0 +1,21 @@
+﻿@model IEnumerable<ResponseDb>
+
+    <table style="margin-top:130px" class="table">
+        <tr>
+            <th>Name</th>
+            <th>Message</th>
+               <th>UserRole</th>
+            <th><th>Action<th/></th>
+          
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Description</td>
+                  <td>@item.UserRole</td>
+                <td><a class="btn btn-success">Accept</a></td>
+                <td><a class="btn btn-danger">Delete</a></td>
+            </tr>
+        }
+    </table>

@@ -60,10 +60,13 @@ namespace DataAccess
             return dbContext.Set<T>().Find(id);
         }
 
+
+
         public IQueryable<T> FromQuery<T>(string sql, params object[] parameters) where T : class
         {
             return dbContext.SqlQuery<T>(sql, parameters);
         }
+
 
 
         public T GetObject<T>(string sql, params object[] parameters) where T : class

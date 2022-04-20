@@ -55,5 +55,29 @@ namespace BusinessAccess
 
         }
 
+
+        public IEnumerable<ResponseDb> GetRequestMessages(Guid id)
+        {
+
+            List<ResponseDb> responseDb = new List<ResponseDb>();
+            foreach (var item in managerRepository.FindBy<GeneralRequestDB>(x => x.CurrentUserId == id))
+            {
+
+                ResponseDb responseDb1 = new ResponseDb();
+
+                responseDb1.Id = item.Id;
+                responseDb1.Name = item.Name;
+                responseDb1.UserRole = UserRole.Manager;
+                responseDb1.CurrentUserId = item.CurrentUserId;
+                responseDb1.Description = item.Message;
+                responseDb.Add(responseDb1);
+
+            }
+
+            return responseDb;
+
+        }
+
+
     }
 }
