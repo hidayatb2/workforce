@@ -71,6 +71,15 @@ namespace Models
 
 
         public UserStatus UserStatus { get; set; }
+
+
+        public string Password { get; set; }
+
+
+        public DateTime DOB { get; set; }
+
+
+        public string salt { get; set; }
     }
 
 

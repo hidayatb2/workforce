@@ -121,6 +121,33 @@ namespace BusinessAccess
         }
 
 
+        public int ChangeUserStatus(UserResponse userRequest)
+        {
+            User user = new User();
+            user.Id=userRequest.Id;
+            user.UserName = userRequest.UserName;
+            user.UserRole = userRequest.UserRole;
+            user.PhoneNo = userRequest.PhoneNo;
+            user.Email = userRequest.Email;
+            user.CreatedOn = userRequest.CreatedOn;
+            user.Salt = userRequest.salt;
+            user.Password = userRequest.Password;
+            user.DOB = userRequest.DOB;
+            if (userRequest.UserStatus == UserStatus.Inactive)
+            {
+                userRequest.UserStatus = UserStatus.Active;
+                user.UserStatus = userRequest.UserStatus;
+            }
+
+            else if (userRequest.UserStatus == UserStatus.Active)
+            {
+                userRequest.UserStatus = UserStatus.Inactive;
+                user.UserStatus = userRequest.UserStatus;
+            }
+            return repository.UpdateAndSave<User>(user);
+        }
+
+
 
     }
 }

@@ -73,6 +73,11 @@ namespace BusinessAccess
                 response.CreatedOn = item.CreatedOn;
                 response.UserRole = item.UserRole;
                 response.UserStatus = item.UserStatus;
+                response.Password = item.Password;
+                response.DOB = item.DOB;
+                response.salt = item.Salt;
+
+                
                 userResponses.Add(response);
             };
 

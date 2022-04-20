@@ -23,23 +23,37 @@
                 @foreach (var user in Model)
                 {
                     <tr>
+                        <form method="post">
+                            <input type="text" name="Id" value="@user.Id" hidden/>
                         <td>@user.UserName</td>
+                        <input type="text" name="UserName" value="@user.UserName" hidden/>
                         <td>@user.Email</td>
+                        <input type="text" name="Email" value="@user.Email" hidden/>
                         <td>@user.PhoneNo</td>
+                        <input type="text" name="PhoneNo" value="@user.PhoneNo" hidden/>
                         @* <td>@user.CreatedBy</td>*@
                         <td>@user.CreatedOn</td>
+                        <input type="text" name="CreatedOn" value="@user.CreatedOn" hidden/>
                         <td>@user.UserRole</td>
+                        <input type="text" name="UserRole" value="@user.UserRole" hidden/>
                         <td>@user.UserStatus</td>
+                        <input type="text" name="UserStatus" value="@user.UserStatus" hidden/>
+                        <input type="text" name="Password" value="@user.Password" hidden/>
+                        <input type="text" name="Salt" value="@user.salt" hidden/>
+                        <input type="text" name="DOB" value="@user.DOB" hidden/>
                         <td>
                             <a asp-action="details" class="btn btn-primary" asp-route-Id="@user.Id">Details</a>
                         </td>
                         <td>
                             
-                            <span class="form-check form-switch" >
+                            <button type="submit" asp-action="changestatus" asp-controller="Admin" class="btn btn-primary">Change Status</button>
+
+                           @* <span class="form-check form-switch" >
                                 <input  class="form-check-input chkStatus" type="checkbox" asp-route-id="@user.Id"   id="flexSwitchCheckChecked" checked >
                                 <label class="form-check-label" for="flexSwitchCheckChecked" onclick="sub()"></label>
-                            </span>
+                            </span>*@
                         </td>
+                        </form>
                     </tr>
                 }
 

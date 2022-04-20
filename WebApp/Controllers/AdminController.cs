@@ -38,7 +38,8 @@ namespace WebApp
         [HttpGet("Search")]
         public IActionResult SearchBox(string searchString)
         {
-            var users = accountManager.SearchUserBy(searchString);
+            var users = accountManager.GetAllUsers();
+           // var users = accountManager.SearchUserBy(searchString);
             return View(users);
         }
 
@@ -136,6 +137,13 @@ namespace WebApp
         {
             var roles=adminManager.GetRoles(userRole);
             return Json(roles);
+        }
+
+        [HttpPost("changestatus")]
+        public IActionResult ChangeStatus(UserResponse userResponse)
+        {
+            adminManager.ChangeUserStatus(userResponse);
+            return RedirectToAction(nameof(SearchBox));
         }
     }
 }
