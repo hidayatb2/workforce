@@ -20,7 +20,7 @@ namespace DataAccess
         public string AdhaarNo { get; set; }
 
 
-        public Guid ContractorId { get; set; }
+        public Guid? ContractorId { get; set; }
 
 
         [ForeignKey(nameof(ContractorId))]
