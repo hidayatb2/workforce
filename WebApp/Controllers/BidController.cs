@@ -1,4 +1,5 @@
-﻿using BusinessAccess;
+﻿using AutoMapper;
+using BusinessAccess;
 using DataAccess;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -12,25 +13,29 @@ namespace WebApp
     {
         private readonly BidManager bidManager;
         private readonly AccountManager accountManager;
+        private readonly IMapper mapper;
 
-        public BidController(BidRepository repository, IEmailService emailService)
+        public BidController(BidRepository repository, IMapper mapper, IEmailService emailService)
         {
-            bidManager = new BidManager(repository, emailService);
+            bidManager = new BidManager(repository, mapper, emailService);
+            this.mapper = mapper;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var bids = bidManager.GetBidsByCustomerId(User.GetUserId());
+            return View(bids);
         }
 
 
 
-        [HttpPost("bids")]
+        [HttpPost("createbid")]
         public PartialViewResult CreateBid(BidRequest bidRequest)
         {
-            var res = bidManager.CreateBid(bidRequest);
-          //  var questions = bidManager.GetQuestionsBySubId(questionrequest.SubjectId);
-            return PartialView("_BidListPartial", res);
+            var userId = User.GetUserId(); 
+            var res = bidManager.CreateBid(bidRequest,userId);
+           var bids = bidManager.GetBidsByCustomerId(userId);
+            return PartialView("_BidListPartial", bids);
         }
     }
 }

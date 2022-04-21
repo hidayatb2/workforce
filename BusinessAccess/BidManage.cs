@@ -1,4 +1,5 @@
-﻿using DataAccess;
+﻿using AutoMapper;
+using DataAccess;
 using Models;
 using SharedLibrary;
 using System;
@@ -14,17 +15,31 @@ namespace BusinessAccess
     public class BidManager
     {
         private readonly BidRepository repository;
+        private readonly IMapper mapper;
         private readonly IEmailService emailService;
 
-        public BidManager(BidRepository repository, IEmailService emailService)
+        public BidManager(BidRepository repository, IMapper mapper, IEmailService emailService)
         {
             this.repository = repository;
+            this.mapper = mapper;
             this.emailService = emailService;
         }
 
-        public int CreateBid(BidRequest bidRequest)
+        public int CreateBid(BidRequest bidRequest,Guid userId)
         {
-            return repository.CreateBid(bidRequest);
+            Random random = new Random();
+
+            var returnvalue = mapper.Map<BidRequest, Bid>(bidRequest);
+            returnvalue.CustomerId = userId;
+            returnvalue.BidStatus = BidStatus.Pending;
+            returnvalue.BidNumber = random.Next();
+            return repository.AddandSave(returnvalue);
+
+        }
+
+        public IEnumerable<BidResponse> GetBidsByCustomerId(Guid userId)
+        {
+            return repository.GetBidsByCustomerId(userId);
 
         }
     }

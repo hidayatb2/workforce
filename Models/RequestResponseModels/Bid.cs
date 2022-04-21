@@ -17,7 +17,7 @@ namespace Models
             public string Discription { get; set; }
 
 
-            public int BidNumber { get; set; }
+           public int BidNumber { get; set; } 
 
 
             public string BidRate { get; set; }
@@ -32,7 +32,13 @@ namespace Models
             public BidStatus BidStatus { get; set; }
 
 
-
         }
+
+    public class BidResponse : BidRequest
+    {
+
+
+
     }
+}
 

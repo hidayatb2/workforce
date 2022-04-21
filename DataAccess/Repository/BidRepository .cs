@@ -17,9 +17,13 @@ namespace DataAccess
             this.dbContext = dbContext;
         }
 
-        public int CreateBid(BidRequest bidRequest)
+
+        public IEnumerable<BidResponse> GetBidsByCustomerId(Guid userId)
         {
-            throw new NotImplementedException();
+
+            var query = @$"  select * from Bids where CustomerId ='{userId}' ";
+            var result = FromQuery<BidResponse>(query);
+            return result;
         }
     }
 }

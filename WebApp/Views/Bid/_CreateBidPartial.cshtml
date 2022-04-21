@@ -1,1 +1,45 @@
-﻿
+﻿@model BidRequest
+
+
+@{
+    Layout = null;
+}
+
+<div class="container">
+    <div class="row ">
+        <div class="col-md-12" id="createQuestionDiv" @* style="visibility:collapse;"*@>
+            <form asp-action="createbid" asp-controller="bid" method="post" id="postBidForm">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="form-group">
+                    <label asp-for="BidType" class="control-label"></label>
+                    <input asp-for="BidType" class="form-control" />
+                    <span asp-validation-for="BidType" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Discription" class="control-label"></label>
+                   <textarea asp-for="Discription" class="form-control" rows="4" cols="60">
+                     </textarea>
+                    @*<input asp-for="Discription"  class="form-control" />*@
+                    <span asp-validation-for="Discription" class="text-danger"></span>
+                </div>
+               
+                <div class="form-group">
+                    <label asp-for="BidRate" class="control-label"></label>
+                    <input asp-for="BidRate" class="form-control" />
+                    <span asp-validation-for="BidRate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Address" class="control-label"></label>
+                    <input asp-for="Address" class="form-control" />
+                    <span asp-validation-for="Address" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+    </div>
+
