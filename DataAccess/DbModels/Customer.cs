@@ -25,7 +25,7 @@ namespace DataAccess
         public string Address { get; set; }
 
 
-        public string AdhaarNo { get; set; }
+        public string? AdhaarNo { get; set; }
 
 
         public string Bank { get; set; }

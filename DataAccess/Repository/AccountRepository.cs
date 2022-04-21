@@ -58,7 +58,8 @@ namespace DataAccess
             else if (userRole == "Customer")
             {
                 string query = $@" SELECT U.Id, U.UserName,U.Email,U.DOB,
-                        U.PhoneNo,U.ImagePath,
+                        U.PhoneNo,U.ImagePath,Discription='abcdef',Name='abc',AdhaarNo='not set',
+                        Experience='abc', JobProfile='abc',Wages=0000,WagesType=0,
                         C.Gender,C.[Address],C.Bank,C.AccountNo,C.IFSC
                         FROM Users U
                         LEFT JOIN Customer C
@@ -68,6 +69,7 @@ namespace DataAccess
             }
             return null;
         }
+
 
         public int UpdateLabourDetails(ProfileResponse profileResponse)
         {
@@ -100,15 +102,16 @@ namespace DataAccess
 
             return result;
         }
-        //public int UpdateCustomerDetails(ProfileResponse profileResponse)
-        //{
-        //    string query = $@"UPDATE Customer SET AdhaarNo='{profileResponse.AdhaarNo}' , Name='{profileResponse.Name}', Address='{profileResponse.Address}',
-        //                        Bank='{profileResponse.Bank}', AccountNo='{profileResponse.AccountNo}', 
-        //                        IFSC='{profileResponse.IFSC}',JobProfile='{profileResponse.JobProfile}',Experience='{profileResponse.Experience}',Discription='{profileResponse.Discription}'
-        //                      where id ='{profileResponse.Id}' ";
-        //    var result = ExecuteQuery(query);
+        
+        public int UpdateCustomerDetails(ProfileResponse profileResponse)
+        {
+            string query = $@"UPDATE Customer SET Name='{profileResponse.Name}',AdhaarNo='{profileResponse.AdhaarNo}', Address='{profileResponse.Address}',
+                                Bank='{profileResponse.Bank}',Gender={profileResponse.Gender}, AccountNo='{profileResponse.AccountNo}', 
+                                IFSC='{profileResponse.IFSC}',
+                                where id ='{profileResponse.Id}' ";
+            var result = ExecuteQuery(query);
 
-        //    return result;
-        //}
+            return result;
+        }
     }
 }

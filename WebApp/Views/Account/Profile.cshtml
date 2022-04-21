@@ -125,6 +125,57 @@
         </div>
     }
 
+    @if(User.IsInRole(UserRole.Customer.ToString()))
+    {
+         <div class="offset-4">
+            <img src="~/Images/hero-bg.jpg" width=150px; height=200px style="border-radius:50px" />
+        </div>
+
+        <div>
+            <input asp-for="Id" hidden />
+        </div>
+
+        
+        <div class="col-md-3">
+            <label asp-for="Name" class="label-control"></label>
+            <input asp-for="Name" class="form-control " />
+        </div>
+
+
+        <div class="col-md-3">
+            <label asp-for="Gender" class="label-control"></label>
+            <select asp-for="Gender" asp-items="Html.GetEnumSelectList<Gender>()" class="form-control">
+                <option value="">Select Gender</option>
+            </select>
+        </div>
+
+
+        <div class="col-md-3">
+            <label asp-for="Address" class="label-control"></label>
+            <input asp-for="Address" class="form-control" />
+        </div>
+        
+        <div class="col-md-3">
+            <label asp-for="AdhaarNo" class="label-control"></label>
+            <input asp-for="AdhaarNo" class="form-control" />
+        </div>
+
+        <div class="col-md-3">
+            <label asp-for="Bank" class="label-control"></label>
+            <input asp-for="Bank" class="form-control" />
+        </div>
+
+        <div class="col-md-3">
+            <label asp-for="AccountNo" class="label-control"></label>
+            <input asp-for="AccountNo" class="form-control" />
+        </div>
+
+        <div class="col-md-3">
+            <label asp-for="IFSC" class="label-control"></label>
+            <input asp-for="IFSC" class="form-control" />
+        </div>
+    }
+
     <button asp-action="Profile" asp-controller="Account" type="submit" class="btn btn-primary">Submit</button>
     
 </form>

@@ -37,7 +37,7 @@ namespace DataAccess
         public WagesType WagesType { get; set; }
 
 
-        public float Wages { get; set; }
+        public int Wages { get; set; }
 
 
         public string Discription { get; set; }

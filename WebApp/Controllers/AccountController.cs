@@ -151,7 +151,25 @@ namespace WebApp
             return View();
         }
 
-        
+        //[HttpGet("custprofile")]
+        //[AllowAnonymous]
+        //public IActionResult CustomerProfile()
+        //{
+        //    Guid id = User.GetUserId();
+        //    var user = accountManager.GetCustomerById(id);
+        //    return View(user);
+        //}
+
+        //[HttpPost("custprofile")]
+        //[AllowAnonymous]
+        //public IActionResult CustomerProfile(CustomerResponse customerResponse)
+        //{
+        //    var role = User.GetRole();
+        //    var msg = accountManager.UpdateCustomer(customerResponse);
+        //    return View();
+        //}
+
+
 
         [HttpGet("logout")]
         public async Task<IActionResult> Logout()
