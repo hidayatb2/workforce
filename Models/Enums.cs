@@ -61,4 +61,11 @@ namespace Models
 
         inactive = 2,
     }
+
+
+    public enum Attendance :byte
+    {
+        Present =1,
+        Absent =2,
+    }
 }

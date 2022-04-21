@@ -20,7 +20,6 @@ namespace WebApp
 
         public static string? GetRole(this ClaimsPrincipal principal)
         {
-            
               var x =  principal?.Claims?.FirstOrDefault(x => x.Type == AppClaimTypes.Role)?.Value;
             return x;
         }

@@ -88,6 +88,33 @@ namespace BusinessAccess
 
         }
 
+        public IEnumerable<UserResponse> GetAllLabours()
+        {
+            List<UserResponse> users = new List<UserResponse>();
+
+            foreach (var item in managerRepository.GetAll<User>())
+            {
+                if (item.UserRole == UserRole.Labour)
+                {
+                    UserResponse response = new UserResponse();
+                    response.Id = item.Id;
+                    response.UserName = item.UserName;
+                    response.Email = item.Email;
+                    response.PhoneNo = item.PhoneNo;
+
+                    users.Add(response);
+                };
+            }
+            return users;
+        }
+
+
+        public void Attendance()
+        {
+
+
+        }
+
 
     }
 }

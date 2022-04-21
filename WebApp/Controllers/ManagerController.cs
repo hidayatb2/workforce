@@ -53,7 +53,14 @@ namespace WebApp
         {
             Guid id = User.GetUserId();
             return View(roleManager.GetRequestMessages(id));
+        }
 
+        [HttpGet("labours")]
+        public IActionResult Labours()
+        {
+            
+            var res = roleManager.GetAllLabours();
+            return View(res);
         }
 
     }
