@@ -141,9 +141,9 @@ namespace WebApp
         }
 
         [HttpPost("changestatus")]
-        public IActionResult ChangeStatus(UserResponse userResponse)
+        public IActionResult ChangeStatus(Guid id)
         {
-            adminManager.ChangeUserStatus(userResponse);
+            adminManager.ChangeUserStatus(id);
             return RedirectToAction(nameof(SearchBox));
         }
     }

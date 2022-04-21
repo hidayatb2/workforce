@@ -121,30 +121,20 @@ namespace BusinessAccess
         }
 
 
-        public int ChangeUserStatus(UserResponse userRequest)
+        public int ChangeUserStatus(Guid id)
         {
-            User user = new User();
-            user.Id=userRequest.Id;
-            user.UserName = userRequest.UserName;
-            user.UserRole = userRequest.UserRole;
-            user.PhoneNo = userRequest.PhoneNo;
-            user.Email = userRequest.Email;
-            user.CreatedOn = userRequest.CreatedOn;
-            user.Salt = userRequest.salt;
-            user.Password = userRequest.Password;
-            user.DOB = userRequest.DOB;
-            if (userRequest.UserStatus == UserStatus.Inactive)
+            var userInActivity = repository.GetById<User>(id);
+            if (userInActivity.UserStatus == UserStatus.Inactive)
             {
-                userRequest.UserStatus = UserStatus.Active;
-                user.UserStatus = userRequest.UserStatus;
+                userInActivity.UserStatus = UserStatus.Active;
+                return repository.UpdateAndSave(userInActivity);
             }
 
-            else if (userRequest.UserStatus == UserStatus.Active)
+            else
             {
-                userRequest.UserStatus = UserStatus.Inactive;
-                user.UserStatus = userRequest.UserStatus;
+                userInActivity.UserStatus = UserStatus.Inactive;
+                return repository.UpdateAndSave(userInActivity);
             }
-            return repository.UpdateAndSave<User>(user);
         }
 
 

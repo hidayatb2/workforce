@@ -3,18 +3,18 @@
 @if (Model.Count() > 0)
 {
     <div>
-        <form method="post" name="StatusForm"> 
-        <table class="table table-light table-hover" style="max-width:70%">
+        <table class="table table-hover" >
             <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Phone No</th>
+                    <td>Name</td>
+                    <td>Email</td>
+                    <td>Phone No</td>
                     @* <th>Created By</th>*@
-                    <th>Created On</th>
-                    <th>User Role</th>
-                    <th>User Status</th>
-                    <th><th>Action</th></th>
+                    <td>Created On</td>
+                    <td>User Role</td>
+                    <td>User Status</td>
+                    <td>Action</td>
+                    <td>Action</td>
                 </tr>
             </thead>
             <tbody id="dataDiv">
@@ -26,27 +26,18 @@
                         <form method="post">
                             <input type="text" name="Id" value="@user.Id" hidden/>
                         <td>@user.UserName</td>
-                        <input type="text" name="UserName" value="@user.UserName" hidden/>
                         <td>@user.Email</td>
-                        <input type="text" name="Email" value="@user.Email" hidden/>
                         <td>@user.PhoneNo</td>
-                        <input type="text" name="PhoneNo" value="@user.PhoneNo" hidden/>
                         @* <td>@user.CreatedBy</td>*@
                         <td>@user.CreatedOn</td>
-                        <input type="text" name="CreatedOn" value="@user.CreatedOn" hidden/>
                         <td>@user.UserRole</td>
-                        <input type="text" name="UserRole" value="@user.UserRole" hidden/>
                         <td>@user.UserStatus</td>
-                        <input type="text" name="UserStatus" value="@user.UserStatus" hidden/>
-                        <input type="text" name="Password" value="@user.Password" hidden/>
-                        <input type="text" name="Salt" value="@user.salt" hidden/>
-                        <input type="text" name="DOB" value="@user.DOB" hidden/>
                         <td>
                             <a asp-action="details" class="btn btn-primary" asp-route-Id="@user.Id">Details</a>
                         </td>
                         <td>
                             
-                            <button type="submit" asp-action="changestatus" asp-controller="Admin" class="btn btn-primary">Change Status</button>
+                            <button type="submit" asp-action="changestatus" asp-controller="Admin" asp-route-id="@user.Id" class="btn btn-primary">Change Status</button>
 
                            @* <span class="form-check form-switch" >
                                 <input  class="form-check-input chkStatus" type="checkbox" asp-route-id="@user.Id"   id="flexSwitchCheckChecked" checked >
@@ -61,7 +52,6 @@
             </tbody>
 
         </table>
-         </form>
     </div>
 }
 
