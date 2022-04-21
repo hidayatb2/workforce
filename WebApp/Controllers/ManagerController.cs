@@ -51,7 +51,7 @@ namespace WebApp
         public IActionResult Requests()
         {
             Guid id = User.GetUserId();
-            return View(roleManager.GetRequestMessages(id));
+            return View(roleManager.GetRequests(id));
         }
 
         [HttpGet("labours")]
@@ -60,7 +60,7 @@ namespace WebApp
             
             var res = roleManager.GetAllLabours();
             return View(res);
-            return View(roleManager.GetRequests(id));
+           
            
         }
 
