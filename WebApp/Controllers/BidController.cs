@@ -30,12 +30,29 @@ namespace WebApp
 
 
         [HttpPost("createbid")]
-        public PartialViewResult CreateBid(BidRequest bidRequest)
+        public IActionResult CreateBid(BidRequest bidRequest)
         {
-            var userId = User.GetUserId(); 
-            var res = bidManager.CreateBid(bidRequest,userId);
-           var bids = bidManager.GetBidsByCustomerId(userId);
-            return PartialView("_BidListPartial", bids);
+            var userId = User.GetUserId();
+            var returnVal = bidManager.GetBidsByCustomerId(userId);
+            if (ModelState.IsValid)
+            {
+               // var userId = User.GetUserId();
+                var res = bidManager.CreateBid(bidRequest, userId);
+                var bids = bidManager.GetBidsByCustomerId(userId);
+                return PartialView("_BidListPartial", bids);
+
+            }
+            else
+            return PartialView("_BidListPartial", returnVal);
+
+
+        }
+
+        [HttpGet("deletebid")]
+        public IActionResult Deletebid(Guid id)
+        {
+            var returnval = bidManager.DeleteBid(id);
+            return RedirectToAction(nameof(Index), returnval);
         }
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess
 {
-    public class Participant
+    public class Participant : BaseModel
     {
         public Guid Id { get; set; }
 

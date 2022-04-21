@@ -217,7 +217,7 @@ namespace Models
         public DateTime DOB { get; set; }
 
 
-        [Required(ErrorMessage ="Please Enter Role")]
+        [Required(ErrorMessage ="Please Select Role")]
         public UserRole UserRole { get; set; }
     }
 

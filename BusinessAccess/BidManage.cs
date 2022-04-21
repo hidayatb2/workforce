@@ -42,5 +42,13 @@ namespace BusinessAccess
             return repository.GetBidsByCustomerId(userId);
 
         }
+
+        public int DeleteBid(Guid id)
+        {
+
+            return repository.DeleteBid(id);
+
+
+        }
     }
 }

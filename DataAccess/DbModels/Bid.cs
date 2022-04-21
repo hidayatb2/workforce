@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess
 {
-    public class Bid
+    public class Bid : BaseModel
     {
         public Guid  Id { get; set; }
 

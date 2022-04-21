@@ -1,8 +1,8 @@
 ﻿@model IEnumerable<BidResponse>
 @{
-    Layout = "~/Views/Shared/_UserLayout.cshtml";
+    //Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
-<div class="container-fluid">
+<div class="container" style="margin-left:20px">
     
     <div>
         <partial name="_CreateBidPartial" model="new BidRequest()"></partial>
@@ -13,3 +13,10 @@
         <partial name="_BidListPartial" model="Model"></partial>
     </div>
 </div>
+
+
+    
+@section Scripts
+{
+         <script type="module" src="~/client/bidService .js" asp-append-version="true"></script>
+}

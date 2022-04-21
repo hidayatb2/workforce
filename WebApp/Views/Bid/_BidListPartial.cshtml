@@ -1,101 +1,298 @@
 ﻿@model IEnumerable<BidResponse>
 
+
+<head>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</head>
 <style>
-body {
-    background-color: #eee
-}
 
-.card {
-    border: none;
-    border-radius: 10px
-}
+    body {
+        background-color: #eee
+    }
 
-.c-details span {
-    font-weight: 300;
-    font-size: 13px
-}
+    .card {
+        border: none;
+        border-radius: 10px
+    }
 
-.icon {
-    width: 50px;
-    height: 50px;
-    background-color: #eee;
-    border-radius: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 39px
-}
+    .c-details span {
+        font-weight: 300;
+        font-size: 13px
+    }
 
-.badge span {
-    background-color: #fffbec;
-    width: 60px;
-    height: 25px;
-    padding-bottom: 3px;
-    border-radius: 5px;
-    display: flex;
-    color: #3333ff;
-    justify-content: center;
-    align-items: center
-}
+    .icon {
+        width: 50px;
+        height: 50px;
+        background-color: #eee;
+        border-radius: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 39px
+    }
 
-.progress {
-    height: 10px;
-    border-radius: 10px
-}
+    .badge span {
+        background-color: #fffbec;
+        width: 60px;
+        height: 25px;
+        padding-bottom: 3px;
+        border-radius: 5px;
+        display: flex;
+        color: #3333ff;
+        justify-content: center;
+        align-items: center
+    }
 
-.progress div {
-    background-color: red
-}
+  
 
-.text1 {
-    font-size: 14px;
-    font-weight: 600
-}
+    .text1 {
+        font-size: 14px;
+        font-weight: 600
+    }
 
-.text2 {
-    color: #a5aec0
-}
+    .text2 {
+        color: #a5aec0
+    }
 
+
+
+
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'roboto', sans-serif;
+        background-color: #F2F2F2
+    }
+
+    h1 {
+        text-align: center;
+        color: #333333
+    }
+
+    .cardcontainer {
+        min-width: 150px;
+        /*max-width: 200px;*/
+        min-height: 200px;
+        background-color: white;
+         /*margin-left: auto;*/
+        margin-right: auto;
+        transition: 0.3s
+    }
+
+        .cardcontainer:hover {
+            box-shadow: 0 0 45px gray
+        }
+
+   
+    .txt1 {
+        margin: auto;
+        text-align: center;
+        font-size: 17px
+    }
+
+    .content {
+        width: 80%;
+        height: 100px;
+        margin-left: auto;
+        margin-right: auto;
+        position: relative;
+        top: -33px
+    }
+
+  
+
+    .txt4 {
+        font-size: 27px;
+        position: relative;
+        top: 33px
+    }
+
+    .txt5 {
+        position: relative;
+        top: 18px;
+        color: #E74C3C;
+        font-size: 23px
+    }
+
+    .txt2 {
+        position: relative;
+        top: 10px
+    }
+
+   
+
+    @@keyframes move1 {
+        0% {
+            height: 300px
+        }
+
+        100% {
+            height: 200px
+        }
+    }
+
+    .cardcontainer:hover > .content {
+        height: 200px
+    }
+
+    .footer {
+        width: 80%;
+        height: 100px;
+        margin-left: auto;
+        margin-right: auto;
+        background-color: white;
+        position: relative;
+        top: -15px
+    }
+
+    .btn {
+        position: relative;
+        top: 20px
+    }
+
+    #heart {
+        cursor: pointer
+    }
+
+    .like {
+        float: right;
+        font-size: 22px;
+        position: relative;
+        top: 20px;
+        color: #333333
+    }
+
+    .fa-gratipay {
+        margin-right: 10px;
+        transition: 0.5s
+    }
+
+        .fa-gratipay:hover {
+            color: #E74C3C
+        }
+
+    .txt3 {
+        color: gray;
+        position: relative;
+        top: 18px;
+        font-size: 14px
+    }
+
+    .comments {
+        float: right;
+        cursor: pointer
+    }
+
+    .fa-clock,
+    .fa-comments {
+        margin-right: 7px
+    }
 
 </style>
 
-    @if (Model != null && Model.Count() > 0)
+@if (Model != null && Model.Count() > 0)
 {
-            <div class=" container mt-5 mb-3  col-12">
-    <div class="row">
-    
-        @foreach (var item in Model)
-        {
+    <div id="partialData" class=" @* mt-5 mb-3 *@ col-12">
+        <div class="row">
 
-        <div class="  col-6">
-            <div class="card p-3 mb-2">
-                <div class="d-flex justify-content-between">
-                    <div class="d-flex flex-row align-items-center">
-                        <div class="icon"> <i class="bx bxl-mailchimp"></i> </div>
-                        <div class="ms-2 c-details">
-                            <h6 class="mb-0">@item.BidRate</h6> <span>@item.BidType</span>
+            @foreach (var item in Model)
+            {
+                if (item.BidStatus == BidStatus.Pending)
+                {
+                    <div class="container-fluid mt-5">
+                         <label asp-for="@item.BidNumber" class="" style="margin-bottom:-20px"></label>
+                        <h4 style="color:blue"><b>@item.BidNumber</b></h4>
+                        <div class="cardcontainer">
+                            <div class="content">
+                                 <label asp-for="@item.BidType" class="" style="margin-bottom:-20px"></label>
+                                <p class="txt4">@item.BidType</p>
+                                 <label asp-for="@item.BidRate" class="" style="margin-bottom:-20px"></label>
+                                <p class="txt5">@item.BidRate</p>
+                                 <label asp-for="@item.Discription" class="" style="margin-bottom:-20px"></label>
+                                <p class="txt2">@item.Discription</p>
+                            </div>
+                            <div class="footer">
+                                <p><a class="waves-effect waves-light btn" href="#">Update</a> <span style="margin-left:620px"><a asp-action="deletebid" asp-controller="bid" asp-route-id="@item.Id" class="waves-effect waves-light btn" style="color:red">Delete</a></span>
+                                <p class="txt3"><i class="far fa-clock"></i>10 Minutes Ago <span class="comments"><i class="fas fa-gratipay"></i>0 Participents</span></p>
+                            </div>
                         </div>
                     </div>
-                    <div class="badge"><span>@item.BidNumber</span></div>
-                </div>
-                  <div>
-                    <h6 class="heading" style="color:#ff66b3;" >@item.BidStatus<br></h6>
-                   
-                </div>
 
-                <div class="mt-5">
-                    <h5 class="heading">@item.Discription<br></h5>
-                    <div class="mt-5">
-                      
-                        <div class="mt-3"> <span class="text1">32 Applied <span class="text2">of 50 capacity</span></span> </div>
+
+
+
+                    @*
+                        <div class="  col-6">
+                        <div class="card p-3 mb-2">
+                        <div class="d-flex justify-content-between">
+                        <div class="d-flex flex-row align-items-center">
+                        <div class="icon"> <i class="bx bxl-mailchimp"></i> </div>
+                        <div class="ms-2 c-details">
+                        <h6 class="mb-0">@item.BidRate</h6> <span>@item.BidType</span>
+                        </div>
+                        <div class="badge"><span>@item.BidNumber</span></div>
+                        </div>
+                        <div>
+                        <h6 class="heading" style="color:#ff66b3;">@item.BidStatus<br></h6>
+
+                        </div>
+
+                        <div class="mt-5">
+                        <h5 class="heading"> <textarea asp-for="@item" class="form-control" rows="3" cols="5">@item.Discription</textarea><br></h5>
+                        <div class="mt-5">
+
+                        <div class="mt-3"> <span class="text1"><a asp-action="deletebid" asp-controller="bid" asp-route-id="@item.Id">Delete</a> <span class="text2"> <a> Update</a></span></span> </div>
+                        </div>
+                        </div>
+                        </div>
+                        </div>
+                        </div>*@
+
+                }
+                else if (item.BidStatus == BidStatus.Accepted)
+
+                {
+
+                    <div class="  col-6">
+                        <div class="card p-3 mb-2">
+                            <div class="d-flex justify-content-between">
+                                <div class="d-flex flex-row align-items-center">
+                                    <div class="icon"> <i class="bx bxl-mailchimp"></i> </div>
+                                    <div class="ms-2 c-details">
+                                        <h6 class="mb-0">@item.BidRate</h6> <span>@item.BidType</span>
+                                    </div>
+                                    <div class="badge"><span>@item.BidNumber</span></div>
+                                </div>
+                                <div>
+                                    <h6 class="heading" style="color:#ff66b3;">@item.BidStatus<br></h6>
+
+                                </div>
+
+                                <div class="mt-5">
+                                    <h5 class="heading">@item.Discription<br></h5>
+                                    <div class="mt-5">
+
+                                        <div class="mt-3"> <span class="text1">32 Applied <span class="text2">of 50 capacity</span></span> </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-        </div>
-  
-              
 
-        }
+                }
+            }
+        </div>
     </div>
-    </div>  
 }
+@*
+<script>
+
+    $(document).ready(function(){
+    document.getElementById("heart").onclick = function(){
+    document.querySelector(".fa-gratipay").style.color = "#E74C3C";
+    };
+    });
+</script>*@

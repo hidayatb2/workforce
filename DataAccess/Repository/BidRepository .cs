@@ -25,5 +25,14 @@ namespace DataAccess
             var result = FromQuery<BidResponse>(query);
             return result;
         }
+
+        public int DeleteBid(Guid id)
+        {
+            string query = $@" Delete from Bids WHERE id ='{id}' ";
+            return ExecuteQuery(query);
+
+        }
+
+
     }
 }

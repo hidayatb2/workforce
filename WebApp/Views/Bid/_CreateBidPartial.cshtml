@@ -5,10 +5,11 @@
     Layout = null;
 }
 
-<div class="container">
+
+<div>
     <div class="row ">
-        <div class="col-md-12" id="createQuestionDiv" @* style="visibility:collapse;"*@>
-            <form asp-action="createbid" asp-controller="bid" method="post" id="postBidForm">
+        <div class="col-md-12" >
+            <form asp-action="createbid" asp-controller="bid" method="post" id="postForm">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
                 <div class="form-group">
@@ -20,7 +21,6 @@
                     <label asp-for="Discription" class="control-label"></label>
                    <textarea asp-for="Discription" class="form-control" rows="4" cols="60">
                      </textarea>
-                    @*<input asp-for="Discription"  class="form-control" />*@
                     <span asp-validation-for="Discription" class="text-danger"></span>
                 </div>
                
