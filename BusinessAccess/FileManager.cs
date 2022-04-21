@@ -15,7 +15,7 @@ namespace BusinessAccess
             string uniqueName = Guid.NewGuid() + extention;
             var path = Path.Combine("files", uniqueName);
             using var fs = new FileStream(Path.Combine(webRootPath, path), FileMode.Create);
-            fs.CopyTo(fs);
+            file.CopyTo(fs);
             return "/files/" + uniqueName;
         }
         public static void DeleteFile(String webRootPath, string filePath)

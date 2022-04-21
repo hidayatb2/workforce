@@ -11,7 +11,11 @@ namespace Models
 
         public IEnumerable<TestimonialResponse> feedbackResponses { get; set; }
 
+
         public IEnumerable<SkillResponse> skillResponses { get; set; }  
+
+
+        public IEnumerable<SliderResponse> sliderResponses { get; set; }  
 
     }
 

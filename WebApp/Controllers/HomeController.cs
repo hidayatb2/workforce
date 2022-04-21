@@ -13,10 +13,12 @@ namespace WebApp
 
         private readonly ILogger<HomeController> _logger;
         private readonly HomeManager homeManager;
+        private readonly SliderManager sliderManager;
         public HomeController(ILogger<HomeController> logger,IRepository repository)
         {
             _logger = logger;
             this.homeManager=new HomeManager(repository);
+            this.sliderManager=new SliderManager(repository);
 
         }
 
@@ -24,6 +26,7 @@ namespace WebApp
         {
             HomeModel homeModel = new HomeModel()
             {
+                sliderResponses = sliderManager.GetSliders(),
                // skillResponses = homeManager.GetUserSkills().DistinctBy(x => x.JobProfile)
             };
             return View(homeModel);

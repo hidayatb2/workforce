@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Models;
 using System.Net;
 
-namespace WebApp.Controllers
+namespace WebApp
 {
     public class SliderController : Controller
     {

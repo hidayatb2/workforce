@@ -10,50 +10,20 @@
       <!-- Slide 1 -->
       <div class="carousel-item active">
         <div class="carousel-container">
-          <h2 class="animate__animated animate__fadeInDown">Welcome to <span>WorkForce</span></h2>
+         @foreach (var slider in Model.sliderResponses)
+         {
+             <img src="@slider.ImagePath" />
+         }
+          @*<h2 class="animate__animated animate__fadeInDown">Welcome to <span>WorkForce</span></h2>
           <p class="animate__animated animate__fadeInUp">Many novice writers tend to make a sharp distinction between
             content and style, thinking that a paper can
             be strong in one and weak in the other, but focusing on organization shows how content and style converge in
             deliberative academic writing.</p>
-          <a href="" class="btn-get-started animate__animated animate__fadeInUp bbt">Read More</a>
+          <a href="" class="btn-get-started animate__animated animate__fadeInUp bbt">Read More</a>*@
         </div>
       </div>
 
-      <!-- Slide 2 -->
-      <div class="carousel-item">
-        <div class="carousel-container">
-          <h2 class="animate__animated animate__fadeInDown">Anayat Ullah</h2>
-          <p class="animate__animated animate__fadeInUp">Many novice writers tend to make a sharp distinction between
-            content and style, thinking that a paper can
-            be strong in one and weak in the other, but focusing on organization shows how content and style converge in
-            deliberative academic writing.</p>
-          <a href="" class="btn-get-started animate__animated animate__fadeInUp bbt">Read More</a>
-        </div>
-      </div>
-
-      <!-- Slide 3 -->
-      <div class="carousel-item">
-        <div class="carousel-container">
-          <h2 class="animate__animated animate__fadeInDown">Shaheen Mushtaq</h2>
-          <p class="animate__animated animate__fadeInUp">Many novice writers tend to make a sharp distinction between
-            content and style, thinking that a paper can
-            be strong in one and weak in the other, but focusing on organization shows how content and style converge in
-            deliberative academic writing.</p>
-          <a href="" class="btn-get-started animate__animated animate__fadeInUp bbt">Read More</a>
-        </div>
-      </div>
-
-      <!-- Slide 4 -->
-      <div class="carousel-item">
-        <div class="carousel-container">
-          <h2 class="animate__animated animate__fadeInDown">Umair Altaf</h2>
-          <p class="animate__animated animate__fadeInUp">Many novice writers tend to make a sharp distinction between
-            content and style, thinking that a paper can
-            be strong in one and weak in the other, but focusing on organization shows how content and style converge in
-            deliberative academic writing.</p>
-          <a href="" class="btn-get-started animate__animated animate__fadeInUp bbt">Read More</a>
-        </div>
-      </div>
+     
 
       <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
         <span class="carousel-control-prev-icon bx bx-chevron-left" aria-hidden="true"></span>
