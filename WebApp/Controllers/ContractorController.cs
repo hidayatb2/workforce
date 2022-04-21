@@ -25,43 +25,41 @@ namespace WebApp
 
 
         [HttpGet("Managers")]
-        public IActionResult AllManagers()
+        public IActionResult Managers()
         {
             GeneralRequestModel generalRequestModel = new GeneralRequestModel()
             {
                 generalResponses = contractorManager.GetManagers(),
-                
-                
-            };
 
-          
+
+            };
             return View(generalRequestModel);
         }
 
 
-
-        [HttpPost("Request")]
-        public IActionResult Requests(RequestDb requestDb)
+        [HttpPost]
+        public IActionResult SendRequest(RequestDb requestDb)
         {
-            
-            var returnValue=  contractorManager.PostRequest(requestDb);
 
-
-            return RedirectToAction(nameof(AllManagers),new GeneralRequestModel
+            GeneralRequestModel generalRequestModel = new GeneralRequestModel()
             {
-                returnValue=returnValue,
-            });
+                returnValue = contractorManager.SendRequest(requestDb),
+
+            };
+            return RedirectToAction("Managers", generalRequestModel);
         }
 
 
-        [HttpGet("RequestMessages")]
-        public IActionResult GetRequestMessages()
+
+        [HttpGet]
+        public IActionResult Requests()
         {
             Guid id = User.GetUserId();
-            return View(contractorManager.GetRequestMessages(id));
+            return View(contractorManager.GetRequests(id));
 
         }
+
     }
 
-    
+
 }

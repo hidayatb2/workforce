@@ -22,34 +22,33 @@ namespace WebApp
         }
 
 
+
         [HttpGet("Contractors")]
-        public IActionResult GetContractors()
+        public IActionResult Contractors()
         {
             GeneralRequestModel generalRequestModel = new GeneralRequestModel()
             {
-                generalResponses = roleManager.GetContractors(),
-
+                generalResponses = roleManager.GetContractors()
             };
 
             return View(generalRequestModel);
         }
 
-        [HttpPost("RequestsM")]
-        public IActionResult RequestsM(RequestDb requestDb)
+
+        [HttpPost]
+        public IActionResult SendRequest(RequestDb requestDb)
         {
 
-            var returnValue = roleManager.PostRequest(requestDb);
-
-
-            return RedirectToAction(nameof(GetContractors), new GeneralRequestModel
+            GeneralRequestModel generalRequestModel = new GeneralRequestModel()
             {
-                returnValue = returnValue,
-            });
+                returnValue = roleManager.SendRequest(requestDb),
+
+            };
+            return RedirectToAction("Contractors", generalRequestModel);
         }
 
-
-        [HttpGet("GetRequests")]
-        public IActionResult RequestMessages()
+        [HttpGet]
+        public IActionResult Requests()
         {
             Guid id = User.GetUserId();
             return View(roleManager.GetRequestMessages(id));
@@ -61,7 +60,12 @@ namespace WebApp
             
             var res = roleManager.GetAllLabours();
             return View(res);
+            return View(roleManager.GetRequests(id));
+           
         }
 
     }
+
+
 }
+

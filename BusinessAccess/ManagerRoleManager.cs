@@ -19,72 +19,66 @@ namespace BusinessAccess
         }
 
 
+
         public IEnumerable<GeneralResponse> GetContractors()
         {
-           return managerRepository.GetAll<Contractor>().Select(x => new GeneralResponse
+           return  managerRepository.GetAll<Contractor>().Select(x => new GeneralResponse
             {
                 Id = x.Id,
                 Name = x.Name,
-                Address = x.Address,
                 UserName = x.UserName,
-                Status = BidStatus.Pending
-                
+                Address = x.Address,
+                UserRole = UserRole.Contractor
 
             });
         }
 
-        public string PostRequest(RequestDb requestDb)
-        {
 
+
+        public string SendRequest(RequestDb requestDb)
+        {
             GeneralRequestDB generalRequestDB = new GeneralRequestDB()
             {
                 Id = new Guid(),
-                Name = requestDb.Name,
                 Message = requestDb.Description,
-                //UserRole = UserRole.Manager,
-                //UserRole = requestDb.UserRole,
-                UserRole = UserRole.Contractor,
-                SenderId=requestDb.SenderId,
-                RecieverId=requestDb.RecieverId,
-                UserName = requestDb.UserName,
-                Status = requestDb.Status
-
+                SenderUsername = requestDb.SenderUsername,
+                RecieverUsername = requestDb.RecieverUsername,
+                SenderName = requestDb.SenderName,
+                RecieverName = requestDb.RecieverName,
+                RecieverId = requestDb.RecieverId,
+                SenderId = requestDb.SenderId,
+                SenderRole = requestDb.SenderUserRole,
+                RecieverRole = requestDb.RecieverUserRole,
+                Status = BidStatus.Pending
             };
 
-            var returnVal = managerRepository.AddandSave(generalRequestDB);
-            if (returnVal != 0)
+            var returnValue = managerRepository.AddandSave<GeneralRequestDB>(generalRequestDB);
+            if (returnValue != 0)
             {
-                return "Success";
+                return "success";
             }
             else
             {
-                return "Error";
+                return "error";
             }
-
         }
 
-
-        public IEnumerable<ResponseDb> GetRequestMessages(Guid id)
+        public IEnumerable<ResponseDb> GetRequests(Guid id)
         {
 
-            List<ResponseDb> responseDb = new List<ResponseDb>();
-            foreach (var item in managerRepository.FindBy<GeneralRequestDB>(x => x.RecieverId == id))
+          return managerRepository.FindBy<GeneralRequestDB>(x => x.RecieverId == id).Select(x => new ResponseDb
             {
+                Id = id,
+                Description = x.Message,
+                SenderUsername = x.SenderUsername,
+                RecieverId = x.RecieverId,
+                RecieverUsername = x.RecieverUsername,
+                RecieverUserRole = x.RecieverRole,
+                SenderUserRole = x.SenderRole,
+                SenderId = x.SenderId,
+                Status = x.Status
 
-                ResponseDb responseDb1 = new ResponseDb();
-
-                responseDb1.Id = item.Id;
-                responseDb1.RecieverId = item.RecieverId;
-                responseDb1.Name = item.Name;
-                responseDb1.UserRole = UserRole.Manager;
-                responseDb1.SenderId = item.Id;
-                responseDb1.Description = item.Message;
-                responseDb1.Status = item.Status;
-                responseDb.Add(responseDb1);
-
-            }
-
-            return responseDb;
+            });
 
         }
 

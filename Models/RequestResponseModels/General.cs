@@ -23,5 +23,9 @@ namespace Models
 
         public BidStatus Status { get; set; }
 
+        public UserRole UserRole { get; set; }
+
+     
+
     }
 }
