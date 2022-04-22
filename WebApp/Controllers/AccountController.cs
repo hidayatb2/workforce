@@ -250,7 +250,7 @@ namespace WebApp
                     }
                     else if (user.UserRole == UserRole.Manager)
                     {
-                        return RedirectToAction("index", "Manager");
+                        return RedirectToAction("index", "Account");
                     }
                     else if (user.UserRole == UserRole.Labour)
                     {

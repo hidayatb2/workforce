@@ -1,4 +1,5 @@
 ﻿using DataAccess;
+using Microsoft.AspNetCore.Mvc;
 using Models;
 using System;
 using System.Collections.Generic;
@@ -82,32 +83,28 @@ namespace BusinessAccess
 
         }
 
-        public IEnumerable<UserResponse> GetAllLabours()
+        public IEnumerable<UserResponse> UnassignedLabours()
         {
             List<UserResponse> users = new List<UserResponse>();
 
             foreach (var item in managerRepository.GetAll<User>())
             {
-                if (item.UserRole == UserRole.Labour)
+                if (item.UserRole == UserRole.Labour && item.Labour.ManagerId == null)
                 {
-                    UserResponse response = new UserResponse();
-                    response.Id = item.Id;
-                    response.UserName = item.UserName;
-                    response.Email = item.Email;
-                    response.PhoneNo = item.PhoneNo;
+                        UserResponse response = new UserResponse();
+                        response.Id = item.Id;
+                        response.UserName = item.UserName;
+                        response.Email = item.Email;
+                        response.PhoneNo = item.PhoneNo;
 
-                    users.Add(response);
+                        users.Add(response);
                 };
             }
             return users;
         }
 
 
-        public void Attendance()
-        {
 
-
-        }
 
 
     }

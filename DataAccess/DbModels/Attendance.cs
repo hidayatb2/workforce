@@ -11,6 +11,7 @@ namespace DataAccess
     public class Attendance
     {
         [Key]
+
         public Guid AttendaceId { get; set; }
 
 

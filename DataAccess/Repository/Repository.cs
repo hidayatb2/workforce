@@ -71,12 +71,12 @@ namespace DataAccess
 
         public T GetObject<T>(string sql, params object[] parameters) where T : class
         {
+            
             return dbContext.SqlQuery<T>(sql, parameters).FirstOrDefault();
         }
         public int UpdateAndSave<T>(T model) where T : class
         {
             dbContext.Entry(model).State = EntityState.Modified;
-
             return dbContext.SaveChanges();
         }
 

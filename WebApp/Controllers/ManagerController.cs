@@ -54,14 +54,11 @@ namespace WebApp
             return View(roleManager.GetRequests(id));
         }
 
-        [HttpGet("labours")]
-        public IActionResult Labours()
+        [HttpGet("ulabours")]
+        public IActionResult UnassignedLabours()
         {
-            
-            var res = roleManager.GetAllLabours();
+            var res = roleManager.UnassignedLabours();
             return View(res);
-           
-           
         }
 
     }
