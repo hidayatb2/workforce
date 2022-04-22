@@ -57,11 +57,19 @@ namespace WebApp
 
 
         [HttpPost("updatebid")]
-        public IActionResult UpdateBid(BidRequest bidRequest)
+        public IActionResult UpdateBid(BidResponse bidRequest)
         {
             var val = bidManager.UpdateBid(bidRequest);
             return RedirectToAction(nameof(Index));
         }
 
+
+        [HttpGet("viewbids")]
+        public IActionResult ViewBids()
+        {
+            var allbids = bidManager.GetAllbids();
+            return View(allbids);
+
+        }
     }
 }

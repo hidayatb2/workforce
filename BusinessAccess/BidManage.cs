@@ -57,5 +57,12 @@ namespace BusinessAccess
 
 
         }
+
+        public IQueryable<BidShowRequest> GetAllbids()
+        {
+
+            return repository.GetAllBids();
+
+        }
     }
 }

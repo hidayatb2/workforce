@@ -70,7 +70,18 @@
                         </div>
                     </a>
                 </li>
+                 @if (User.IsInRole(UserRole.Manager.ToString()) || User.IsInRole(UserRole.Contractor.ToString()) || User.IsInRole(UserRole.Labour.ToString()))
+                {
+                    <li class="nav-item mt-4">
+                        <a class="nav-link text-white "  asp-action="viewbids" asp-controller="bid">
+                            <div class="text-white  me-2 d-flex " style="height:10px;margin-left:30px;margin-top:10px">
+                                <i class="material-icons opacity-10"><ion-icon name="notifications-outline" style="font-size:30px"></ion-icon></i>
+                                <span class="nav-link-text ms-1" style="font-size:18px">view Bids</span>
 
+                            </div>
+                        </a>
+                    </li>
+                }
 
                 <li class="nav-item mt-4">
                     <a class="nav-link text-dark font-italic text-white" asp-action="changepassword" asp-controller="account">

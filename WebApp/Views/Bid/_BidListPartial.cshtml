@@ -23,38 +23,44 @@
 
                     <form asp-action="updatebid" asp-controller="bid" method="post"  style="margin-top:20px;background-color:#cffaf4">
                         <div class="row">
-                             <input hidden asp-for="@item.Id" class="form-control">
+                             <input name="Id" hidden  value="@item.Id" />
+                             @*<input hidden asp-for="@item.Id" class="form-control">*@
                             <div class="col-6">
                                 <div class="form-group ">
                                     <label asp-for="@item.BidNumber">Bid Number</label>
-                                    <input asp-for="@item.BidNumber" class="form-control">
+                                    <input  name="BidNumber" asp-for="@item.BidNumber" readonly class="form-control">
                                 </div>
                                 <div class="form-group ">
                                     <label asp-for="@item.BidRate">Bid Rate</label>
-                                    <input asp-for="@item.BidRate" class="form-control">
+                                    <input  name="BidRate" asp-for="@item.BidRate" class="form-control">
                                 </div> 
                                
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
                                     <label asp-for="@item.BidType">Bid Type</label>
-                                    <input asp-for="@item.BidType" class="form-control">
+                                    <input name="BidType" asp-for="@item.BidType" class="form-control">
                                 </div> 
                                 <div class="form-group">
                                     <label asp-for="@item.BidStatus">Bid Status</label>
-                                    <input asp-for="@item.BidStatus" readonly class="form-control">
+                                    <input name="BidStatus" asp-for="@item.BidStatus" readonly class="form-control">
                                 </div>
                             </div>
                              <div class="form-group ">
                                     <label asp-for="@item.Address">Address</label>
-                                    <input asp-for="@item.Address" class="form-control">
+                                    <input name="Address" asp-for="@item.Address" class="form-control">
                                 </div>
                             <div class="form-group">
                                 <label asp-for="@item.Discription">Discription</label>
-                                <textarea class="form-control" asp-for="@item.Discription" rows="3"></textarea>
+                                <textarea name="Discription" class="form-control" asp-for="@item.Discription" rows="3"></textarea>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group col-6 ">
+                                <div>
                                 <button type="submit" class="btn btn-info">Update</button>
+                                </div>
+                                <div>
+                                    <a asp-action="deletebid" style="background-color:red;" class="btn btn-danger" asp-controller="bid" asp-route-id="@item.Id">Delete</a>
+                                </div>
                             </div>
                         </div>
 

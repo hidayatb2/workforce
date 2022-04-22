@@ -41,5 +41,14 @@ namespace DataAccess
                                 where id ='{bidRequest.Id}' ";
             return ExecuteQuery(query);
         }
+
+        public IQueryable<BidShowRequest> GetAllBids()
+        {
+            string query = $@" select users.Email,Users.PhoneNo,Users.UserName,Bids.BidType,bids.Discription,Bids.BidRate,bids.Address,bids.CustomerId,bids.CreatedOn from Users
+                                INNER JOIN Bids
+                                ON Users.Id=Bids.CustomerId
+                                where UserRole=2 ";
+            return FromQuery<BidShowRequest>(query);
+        }
     }
 }

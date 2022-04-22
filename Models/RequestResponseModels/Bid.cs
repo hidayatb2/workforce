@@ -39,7 +39,20 @@ namespace Models
 
     public class BidResponse : BidRequest
     {
+        public DateTime CreatedOn { get; set; }
 
+    }
+
+    public class BidShowRequest : BidResponse
+    {
+
+        public string Email { get; set; }
+
+
+        public string PhoneNo { get; set; }
+
+
+        public string UserName { get; set; }
 
 
     }

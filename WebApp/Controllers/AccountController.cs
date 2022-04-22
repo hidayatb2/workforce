@@ -101,7 +101,7 @@ namespace WebApp
                     }
                     else if (loginResponse.UserRole == UserRole.Manager)
                     {
-                        return RedirectToAction("Profile", "Account");
+                        return RedirectToAction("Index", "Account");
                     }
                     else if (loginResponse.UserRole == UserRole.Labour)
                     {
