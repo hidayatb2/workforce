@@ -21,7 +21,7 @@ namespace DataAccess
         public IEnumerable<BidResponse> GetBidsByCustomerId(Guid userId)
         {
 
-            var query = @$"  select * from Bids where CustomerId ='{userId}' ";
+            var query = @$"  select * from Bids where CustomerId ='{userId}' order By CreatedOn Desc";
             var result = FromQuery<BidResponse>(query);
             return result;
         }
@@ -33,6 +33,13 @@ namespace DataAccess
 
         }
 
+        public int updateBid(BidRequest bidRequest)
+        {
 
+            string query = $@"update Bids set BidType ='{bidRequest.BidType}', Discription='{bidRequest.Discription}',
+                                BidRate='{bidRequest.BidRate}',Address='{bidRequest.Address}'
+                                where id ='{bidRequest.Id}' ";
+            return ExecuteQuery(query);
+        }
     }
 }

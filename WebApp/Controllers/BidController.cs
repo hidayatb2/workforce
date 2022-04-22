@@ -54,5 +54,14 @@ namespace WebApp
             var returnval = bidManager.DeleteBid(id);
             return RedirectToAction(nameof(Index), returnval);
         }
+
+
+        [HttpPost("updatebid")]
+        public IActionResult UpdateBid(BidRequest bidRequest)
+        {
+            var val = bidManager.UpdateBid(bidRequest);
+            return RedirectToAction(nameof(Index));
+        }
+
     }
 }

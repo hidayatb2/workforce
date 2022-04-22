@@ -50,5 +50,12 @@ namespace BusinessAccess
 
 
         }
+
+        public int UpdateBid(BidRequest bidRequest)
+        {
+            return repository.updateBid(bidRequest);
+
+
+        }
     }
 }
