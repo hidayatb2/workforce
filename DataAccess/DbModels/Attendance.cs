@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,7 @@ namespace DataAccess
 {
     public class Attendance
     {
+        [Key]
         public Guid AttendaceId { get; set; }
 
 
@@ -17,7 +19,12 @@ namespace DataAccess
 
         public bool CheckAttendance { get; set; }
 
-        [ForeignKey(nameof(AttendaceId))]
+
+        public Guid LabourId { get; set; }
+
+
+
+        [ForeignKey(nameof(LabourId))]
         public Labour Labour { get; set; }
 
     }

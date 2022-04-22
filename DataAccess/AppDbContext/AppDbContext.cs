@@ -46,6 +46,8 @@ namespace DataAccess
 
         public DbSet<Slider> Sliders { get; set; }
 
+        public DbSet<Attendance> Attendances { get; set; }
+
         #endregion
 
     }
