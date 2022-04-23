@@ -3,10 +3,6 @@
 @*USER CARDS STRATS HERE*@
 <link rel="stylesheet" href="~/css/Card.css" />
 <div class="container-fluid pt-4 px-4 ">
-    @{
-        int btnId = 10;
-        int txtId = 20;
-    }
 
     @{
         foreach (var item in Model)
@@ -77,16 +73,16 @@
 
 
                                             <div class="col-6"><div><b>Address</b></div>@item.Address</div>
-                                            <div class="col-6"><div><b> About Bid </b></div><span class="test" id="@txtId">@item.Discription</span></div>
+                                            <div class="col-6"><div><b> About Bid </b></div><span class="test" >@item.Discription</span></div>
 
-                                            <div class="col-12 text-center mt-5 mb-5 " style="color:green"><div><b> Customer Details </b></div><span class="test" id="@txtId"></span></div>
+                                            <div class="col-12 text-center mt-5 mb-5 " style="color:green"><div><b> Customer Details </b></div><span class="test" ></span></div>
 
 
                                             <div class="col-6"><div><b>UserName</b></div>@item.UserName</div>
-                                            <div class="col-6"><div><b>Email </b></div><span class="test" id="@txtId">@item.Email</span></div>
+                                            <div class="col-6"><div><b>Email </b></div><span class="test" >@item.Email</span></div>
                                             <div class="col-6"><div><b>Phone Number</b></div>@item.PhoneNo</div>
 
-                                            <div class="col-12 text-center mt-5 mb-5 " style="color:brown "><div><b> Want To Offer ? </b></div><span class="test" id="@txtId"></span></div>
+                                            <div class="col-12 text-center mt-5 mb-5 " style="color:brown "><div><b> Want To Offer ? </b></div><span class="test" ></span></div>
                                             <form asp-action="AddPartcipant" asp-controller="Bid" method="post">
                                                 <div class="col-12 row">
                                                 <input hidden name="bidid" value="@item.Id" />
@@ -121,27 +117,10 @@
                 </div>
             </div>
 
-            btnId++;
-            txtId++;
+          
 
         }
     }
 </div>
 @*USER CARDS ENDS HERE*@
-<script>
-    let btn = document.getElementsByClassName("status");
-    let btnArray = Array.from(btn);
 
-    function func(btnId, txtId) {
-        if (document.getElementById(btnId).checked === true) {
-            document.getElementById(txtId).innerHTML = "";
-            document.getElementById(txtId).innerHTML = "Active";
-
-        }
-        else {
-            document.getElementById(txtId).innerHTML = "";
-            document.getElementById(txtId).innerHTML = "Inactive";
-        }
-
-    }
-</script>
