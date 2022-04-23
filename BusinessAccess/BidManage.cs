@@ -64,5 +64,16 @@ namespace BusinessAccess
             return repository.GetAllBids();
 
         }
+
+        public int AddPartcipant(PartcipantRequest partcipantRequest)
+        {
+            Participant participant = new Participant
+            {
+                Id = partcipantRequest.Id,
+                BidId = partcipantRequest.BidId,
+                BidRate = partcipantRequest.BidRate,
+            };
+            return repository.AddandSave(participant);
+        }
     }
 }
