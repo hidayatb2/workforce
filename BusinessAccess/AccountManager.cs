@@ -134,13 +134,13 @@ namespace BusinessAccess
                 user.Manager = new Manager();
                 //user.Manager.ContractorId=Guid.Empty;
                 user.Manager.Id = user.Id;
-                user.Manager.UserName=signupRequest.UserName;
+                //user.Manager.UserName=signupRequest.UserName;
             }
             else if (signupRequest.UserRole == UserRole.Contractor)
             {
                 user.Contractor = new Contractor();
                 user.Contractor.Id = user.Id;
-                user.Contractor.UserName = signupRequest.UserName;
+               // user.Contractor.UserName = signupRequest.UserName;
             }
             else if (signupRequest.UserRole == UserRole.Customer)
             {

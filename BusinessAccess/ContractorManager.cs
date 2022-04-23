@@ -27,7 +27,7 @@ namespace BusinessAccess
                 Id = x.Id,
                 Name = x.Name,
                 Address = x.Address,
-                UserName = x.UserName,
+               // UserName = x.UserName,
                 UserRole = UserRole.Manager
             });
         }

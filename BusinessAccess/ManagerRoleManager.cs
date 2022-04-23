@@ -26,7 +26,7 @@ namespace BusinessAccess
             {
                 Id = x.Id,
                 Name = x.Name,
-                UserName = x.UserName,
+               // UserName = x.UserName,
                 Address = x.Address,
                 UserRole = UserRole.Contractor
 

@@ -23,6 +23,9 @@ namespace DataAccess
         public string UserName { get; set; }
 
 
+        public string Name { get; set; }
+
+
         public string Password { get; set; }
 
 
@@ -56,7 +59,6 @@ namespace DataAccess
         public Manager Manager { get; set; }
 
         public Labour Labour { get; set; }
-
 
         public Participant Participant { get; set; }
 

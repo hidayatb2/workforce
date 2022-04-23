@@ -25,6 +25,11 @@ namespace DataAccess
         public string BidRate { get; set; }
 
 
+        public DateTime LastDate { get; set; }
+
+
+        public DateTime ExpectedDate { get; set; }
+
 
         public string Address { get; set; }
 

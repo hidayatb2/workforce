@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<BidShowRequest>
 
 @*USER CARDS STRATS HERE*@
-<link rel="stylesheet" href="~/css/Cards.css" />
+<link rel="stylesheet" href="~/css/Card.css" />
 <div class="container-fluid pt-4 px-4 ">
     @{
         int btnId=10;
@@ -69,27 +69,27 @@ foreach(var item in Model)
             <div class="solu_description">
               <div class="row">
               <div class="col-6">
-                <div><b>Username</b></div>@item.UserName
+                <div><b>Bid Number</b></div>@item.BidNumber
               </div>
-              <div  class="col-6" style="overflow-y:scroll;scrollbar-track-color:aqua;">
-              <div><b>Email</b></div>@item.Email
+              <div  class="col-6" style="">
+              <div><b>Bid Rate</b></div>@item.BidRate
               </div>
               
                                         
-              <div class="col-6"><div><b>User Role</b></div>@item</div>
-              <div class="col-6" ><div><b>User Status</b></div><span class="test" id="@txtId" >@item</span></div>
+              <div class="col-6"><div><b>Address</b></div>@item.Address</div>
+              <div class="col-6" ><div><b> About Bid </b></div><span class="test" id="@txtId" >@item.Discription</span></div>
               </div>
-              <div class="text-end">
-              <label   class="switch">
-                            <input type="checkbox" class="status" onchange="func(@btnId,@txtId)" id="@btnId"  value="active" checked>
-                            <span class="slider round"></span>
+              <!-- //<div class="text-end">
+              //<label   class="switch">
+              //              <input type="checkbox" class="status" onchange="func()" id="d"  value="active" checked>
+              //              <span class="slider round"></span>
                             
-               </label>
-               </div>
+              // </label>
+              // </div>-->
             </div>
           </div>
         </div>
-        <!--  -->
+         
       </div>
     </div>
   </div>

@@ -44,7 +44,7 @@ namespace DataAccess
 
         public IQueryable<BidShowRequest> GetAllBids()
         {
-            string query = $@" select users.Email,Users.PhoneNo,Users.UserName,Bids.BidType,bids.Discription,Bids.BidRate,bids.Address,bids.CustomerId,bids.CreatedOn from Users
+            string query = $@" select Bids.Id, users.Email,bids.BidNumber,Bids.BidStatus,Users.PhoneNo,Users.UserName,Bids.BidType,bids.Discription,Bids.BidRate,bids.Address,bids.CustomerId,bids.CreatedOn from Users
                                 INNER JOIN Bids
                                 ON Users.Id=Bids.CustomerId
                                 where UserRole=2 ";
