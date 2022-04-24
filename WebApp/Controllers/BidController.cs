@@ -79,7 +79,8 @@ namespace WebApp
         {
             PartcipantRequest partcipantRequest = new PartcipantRequest
             {
-                Id= User.GetUserId(),
+                Id=Guid.NewGuid(),
+                PartcipantId= User.GetUserId(),
                 BidId= bidid,
                 BidRate= bidrate,
             };

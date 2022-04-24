@@ -22,6 +22,28 @@ namespace DataAccess.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("DataAccess.Attendance", b =>
+                {
+                    b.Property<Guid>("AttendaceId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("AttendanceTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("CheckAttendance")
+                        .HasColumnType("bit");
+
+                    b.Property<Guid>("LabourId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("AttendaceId");
+
+                    b.HasIndex("LabourId");
+
+                    b.ToTable("Attendances");
+                });
+
             modelBuilder.Entity("DataAccess.Bid", b =>
                 {
                     b.Property<Guid>("Id")
@@ -371,6 +393,7 @@ namespace DataAccess.Migrations
             modelBuilder.Entity("DataAccess.Participant", b =>
                 {
                     b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("BidId")
@@ -385,6 +408,9 @@ namespace DataAccess.Migrations
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 
+                    b.Property<Guid>("PartcipantId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<Guid>("UpdatedBy")
                         .HasColumnType("uniqueidentifier");
 
@@ -394,6 +420,9 @@ namespace DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("BidId");
+
+                    b.HasIndex("PartcipantId")
+                        .IsUnique();
 
                     b.ToTable("Participants");
                 });
@@ -501,18 +530,29 @@ namespace DataAccess.Migrations
                         {
                             Id = new Guid("87843532-0b93-492d-824b-68be17a82037"),
                             CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
-                            CreatedOn = new DateTime(2022, 4, 22, 14, 50, 56, 579, DateTimeKind.Local).AddTicks(8940),
+                            CreatedOn = new DateTime(2022, 4, 23, 17, 10, 23, 519, DateTimeKind.Local).AddTicks(6886),
                             DOB = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "admin@yopmail.com",
-                            Password = "T1QGBokwyxTFNbONlSeRrWCflfJqWDjNDGlfhuKDIMo=",
+                            Password = "hkusCKwzgZ5D7IJZ56Iw8npWmcP1hWCAV1KLsHU1U4c=",
                             PhoneNo = "8825084050",
-                            Salt = "yAeHq1L89f817C25vKOzWmjggBA=",
+                            Salt = "QQpkbR+2O5Ko36bzvbIe7JL907k=",
                             UpdatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             UpdatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserName = "admin",
                             UserRole = (byte)1,
                             UserStatus = (byte)1
                         });
+                });
+
+            modelBuilder.Entity("DataAccess.Attendance", b =>
+                {
+                    b.HasOne("DataAccess.Labour", "Labour")
+                        .WithMany()
+                        .HasForeignKey("LabourId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Labour");
                 });
 
             modelBuilder.Entity("DataAccess.Bid", b =>
@@ -594,7 +634,7 @@ namespace DataAccess.Migrations
 
                     b.HasOne("DataAccess.User", "User")
                         .WithOne("Participant")
-                        .HasForeignKey("DataAccess.Participant", "Id")
+                        .HasForeignKey("DataAccess.Participant", "PartcipantId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 

@@ -17,6 +17,9 @@ namespace Models
         public Guid BidId { get; set; }
 
 
+        public Guid PartcipantId { get; set; }
+
+
         public string BidRate { get; set; }
     }
 }

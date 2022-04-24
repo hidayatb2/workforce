@@ -69,7 +69,8 @@ namespace BusinessAccess
         {
             Participant participant = new Participant
             {
-                Id = partcipantRequest.Id,
+                Id= partcipantRequest.Id,
+                PartcipantId = partcipantRequest.PartcipantId,
                 BidId = partcipantRequest.BidId,
                 BidRate = partcipantRequest.BidRate,
             };

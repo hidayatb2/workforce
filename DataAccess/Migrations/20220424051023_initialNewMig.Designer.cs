@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220421084616_mig_datatype")]
-    partial class mig_datatype
+    [Migration("20220424051023_initialNewMig")]
+    partial class initialNewMig
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,6 +23,28 @@ namespace DataAccess.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+
+            modelBuilder.Entity("DataAccess.Attendance", b =>
+                {
+                    b.Property<Guid>("AttendaceId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("AttendanceTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("CheckAttendance")
+                        .HasColumnType("bit");
+
+                    b.Property<Guid>("LabourId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("AttendaceId");
+
+                    b.HasIndex("LabourId");
+
+                    b.ToTable("Attendances");
+                });
 
             modelBuilder.Entity("DataAccess.Bid", b =>
                 {
@@ -45,11 +67,29 @@ namespace DataAccess.Migrations
                     b.Property<string>("BidType")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
                     b.Property<Guid>("CustomerId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Discription")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("ExpectedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("LastDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("UpdatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("UpdatedOn")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -188,16 +228,34 @@ namespace DataAccess.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("CurrentUserId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("Message")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Name")
+                    b.Property<Guid>("RecieverId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("RecieverName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<byte>("UserRole")
+                    b.Property<byte>("RecieverRole")
+                        .HasColumnType("tinyint");
+
+                    b.Property<string>("RecieverUsername")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("SenderId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("SenderName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte>("SenderRole")
+                        .HasColumnType("tinyint");
+
+                    b.Property<string>("SenderUsername")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte>("Status")
                         .HasColumnType("tinyint");
 
                     b.HasKey("Id");
@@ -337,6 +395,7 @@ namespace DataAccess.Migrations
             modelBuilder.Entity("DataAccess.Participant", b =>
                 {
                     b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("BidId")
@@ -345,9 +404,27 @@ namespace DataAccess.Migrations
                     b.Property<string>("BidRate")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("PartcipantId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("UpdatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("UpdatedOn")
+                        .HasColumnType("datetime2");
+
                     b.HasKey("Id");
 
                     b.HasIndex("BidId");
+
+                    b.HasIndex("PartcipantId")
+                        .IsUnique();
 
                     b.ToTable("Participants");
                 });
@@ -416,6 +493,9 @@ namespace DataAccess.Migrations
                     b.Property<string>("ImagePath")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Password")
                         .HasColumnType("nvarchar(max)");
 
@@ -452,18 +532,29 @@ namespace DataAccess.Migrations
                         {
                             Id = new Guid("87843532-0b93-492d-824b-68be17a82037"),
                             CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
-                            CreatedOn = new DateTime(2022, 4, 21, 14, 16, 15, 692, DateTimeKind.Local).AddTicks(9307),
+                            CreatedOn = new DateTime(2022, 4, 23, 17, 10, 23, 519, DateTimeKind.Local).AddTicks(6886),
                             DOB = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "admin@yopmail.com",
-                            Password = "pytQ4/N0Fv9JsMMqFDoDXFePmvjb66LDvFHA1hOTQ8E=",
+                            Password = "hkusCKwzgZ5D7IJZ56Iw8npWmcP1hWCAV1KLsHU1U4c=",
                             PhoneNo = "8825084050",
-                            Salt = "7ZNHvpMsjqTQBkPOIgRNHA9LBRk=",
+                            Salt = "QQpkbR+2O5Ko36bzvbIe7JL907k=",
                             UpdatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             UpdatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserName = "admin",
                             UserRole = (byte)1,
                             UserStatus = (byte)1
                         });
+                });
+
+            modelBuilder.Entity("DataAccess.Attendance", b =>
+                {
+                    b.HasOne("DataAccess.Labour", "Labour")
+                        .WithMany()
+                        .HasForeignKey("LabourId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Labour");
                 });
 
             modelBuilder.Entity("DataAccess.Bid", b =>
@@ -545,7 +636,7 @@ namespace DataAccess.Migrations
 
                     b.HasOne("DataAccess.User", "User")
                         .WithOne("Participant")
-                        .HasForeignKey("DataAccess.Participant", "Id")
+                        .HasForeignKey("DataAccess.Participant", "PartcipantId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
