@@ -1,17 +1,24 @@
-﻿@model IEnumerable<Models.UserResponse>
+﻿@model GeneralRequestModel
 
-    <div class=mt-5>
+<style>
+    .aa{
+        margin-top:100px;
+    }
+
+</style>
+    <div class="aa">
+        <form asp-action="SendLabourRequest" asp-controller="Manager" method="post">
         <table class="table table-hover table-striped">
-            <thead>
+          @*  <thead>
         <th>
-                @Html.DisplayNameFor(model => model.Id)
+                @Html.DisplayNameFor(model => )
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.UserName)
             </th>
-            </thead>
+            </thead>*@
             <tbody>
-                @foreach (var item in Model) {
+                @foreach (var item in Model.userResponses) {
                 <tr>
                     <td>
                 @Html.DisplayFor(modelItem => item.Id)
@@ -19,10 +26,19 @@
             <td>
                 @Html.DisplayFor(modelItem => item.UserName)
             </td>
+            
+            <td>
+                <input asp-for="requestDb.SenderId" type="submit" value="@User.GetUserId()"/>
+                @*<button asp-action="SendLabourRequest" asp-controller="Manager"  class="btn btn-success">Add</button>*@
+            </td>
+            <td>
+                <button asp-action="" type="button"  class="btn btn-danger">Remove</button>
+            </td>
                 </tr>
                 }
             </tbody>
         </table>
+        </form>
     </div>
 
 

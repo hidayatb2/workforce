@@ -59,6 +59,27 @@ namespace WebApp
         {
             var res = roleManager.UnassignedLabours();
             return View(res);
+<<<<<<< Updated upstream
+        }
+
+        [HttpPost("sendrequest")]
+        public IActionResult SendLabourRequest(RequestDb requestDb)
+        {
+                GeneralRequestModel generalRequestModel = new GeneralRequestModel()
+                {
+                    returnValue = roleManager.SendLabourRequest(requestDb),
+
+                };
+                return RedirectToAction("",generalRequestModel);
+        }
+
+        [HttpGet("getrequest")]
+        public IActionResult GetLabourRequestt(Guid id)
+        {
+            var lbr = roleManager.GetLabourRequests(id);
+            return View();
+=======
+>>>>>>> Stashed changes
         }
 
     }

@@ -19,15 +19,6 @@ namespace WebApp
         }
 
 
-
-        [HttpGet("labours")]
-        public IActionResult Labours()
-{
-
-            
-            var res = attendanceManager.GetAllLabours();
-            return View(res);
-        }
         public IActionResult Index()
         {
             return View();

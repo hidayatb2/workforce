@@ -31,6 +31,9 @@ namespace Models
 
 
         public string returnValue { get; set; }
+
+
+        public IEnumerable<UserResponse> userResponses { get; set; }
     }
 
 
