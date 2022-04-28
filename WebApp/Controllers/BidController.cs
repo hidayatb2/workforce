@@ -69,24 +69,20 @@ namespace WebApp
         {
             var allbids = bidManager.GetAllbids();
             return View(allbids);
-
         }
 
-        
-
         [HttpPost("addpartcipant")]
-        public IActionResult AddPartcipant(Guid bidid,string bidrate)
+        public IActionResult AddPartcipant(Guid bidId,string bidRate)
         {
             PartcipantRequest partcipantRequest = new PartcipantRequest
             {
-                Id=Guid.NewGuid(),
-                PartcipantId= User.GetUserId(),
-                BidId= bidid,
-                BidRate= bidrate,
+                Id = Guid.NewGuid(),
+                PartcipantId = User.GetUserId(),
+                BidId = bidId,
+                BidRate = bidRate,
             };
             var returnValue = bidManager.AddPartcipant(partcipantRequest);
             return View();
-
         }
     }
 }

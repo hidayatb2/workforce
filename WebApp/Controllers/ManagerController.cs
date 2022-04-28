@@ -60,7 +60,6 @@ namespace WebApp
         {
             var res = roleManager.UnassignedLabours();
             return View(res);
-<<<<<<< Updated upstream
         }
 
         [HttpPost("sendrequest")]
@@ -79,8 +78,6 @@ namespace WebApp
         {
             var lbr = roleManager.GetLabourRequests(id);
             return View();
-=======
->>>>>>> Stashed changes
         }
 
 
