@@ -19,6 +19,7 @@ namespace DataAccess
         }
 
 
+
         public int AddandSave<T>(T model) where T : class
         {
             dbContext.Set<T>().Add(model);
@@ -30,6 +31,8 @@ namespace DataAccess
         {
             return dbContext.Set<T>().Where(predicate);
         }
+
+
 
         public bool IsExist<T>(System.Linq.Expressions.Expression<Func<T, bool>> predicate) where T : class
         {
@@ -48,6 +51,8 @@ namespace DataAccess
             dbContext.Entry<T>(new T { Id = id }).State = EntityState.Deleted;
         }
 
+
+
         public IQueryable<T> GetAll<T>() where T : class
         {
             return dbContext.Set<T>();
@@ -58,6 +63,13 @@ namespace DataAccess
         {
 
             return dbContext.Set<T>().Find(id);
+        }
+
+
+        public T GetBySenderId<T>(Guid SenderId) where T : class
+        {
+
+            return dbContext.Set<T>().Find(SenderId);
         }
 
 
@@ -74,6 +86,8 @@ namespace DataAccess
             
             return dbContext.SqlQuery<T>(sql, parameters).FirstOrDefault();
         }
+
+
         public int UpdateAndSave<T>(T model) where T : class
         {
             dbContext.Entry(model).State = EntityState.Modified;

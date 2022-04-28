@@ -17,14 +17,14 @@ namespace WebApp
             contractorManager = new ContractorManager(contractorRepository);
         }
 
-        [HttpGet("Index")]
+        [HttpGet("index")]
         public IActionResult Index()
         {
             return View();
         }
 
 
-        [HttpGet("Managers")]
+        [HttpGet("managers")]
         public IActionResult Managers()
         {
             GeneralRequestModel generalRequestModel = new GeneralRequestModel()
@@ -51,7 +51,7 @@ namespace WebApp
 
 
 
-        [HttpGet]
+        [HttpGet("requests")]
         public IActionResult Requests()
         {
             Guid id = User.GetUserId();

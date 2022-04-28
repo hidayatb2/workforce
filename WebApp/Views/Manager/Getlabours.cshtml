@@ -18,7 +18,6 @@
             <td>
                 <div>
 
-
                     <form method="post" asp-action="SendRequest" asp-controller="Manager">
                         <input asp-for="requestDb.SenderId" hidden value="@User.GetUserId()">
                         <input asp-for="requestDb.RecieverUsername" readonly value="@item.UserName" hidden class="form-control">
@@ -32,7 +31,7 @@
                         <textarea asp-for="requestDb.Description" class="form-control" rows="1" cols="5" placeholder="Send message to @item.UserName" required="required">
                         </textarea>
 
-                        <button type="submit"  class="btn btn-primary mt-1">Request</button>
+                        <button type="submit"  class="btn btn-primary mt-1" >Request</button>
                     </form>
 
 
@@ -41,4 +40,5 @@
         </tr>
     }
 </table>
+
 

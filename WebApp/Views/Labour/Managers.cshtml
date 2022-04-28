@@ -1,44 +1,47 @@
 ﻿@model GeneralRequestModel
 
-<table class="table" style="margin-top:130px">
-    <tr>
-        <th>Name</th>
-        <th>Address</th>
-        <th>Role</th>
-        <th>Action</th>
-        
-    </tr>
+<table class="table table-hover">
 
+    <tr>
+        <td>Name</td>
+        <td>Address</td>
+        <td>Role</td>
+        <td>Action</td>
+    </tr>
     @foreach (var item in Model.generalResponses)
     {
+        
         <tr>
             <td>@item.UserName</td>
             <td>@item.Address</td>
             <td>@item.UserRole</td>
             <td>
-                <div>
+                     <div>
 
+                    <form asp-action="SendRequest" asp-controller="Labour" method="post">
 
-                    <form method="post" asp-action="SendRequest" asp-controller="Manager">
                         <input asp-for="requestDb.SenderId" hidden value="@User.GetUserId()">
-                        <input asp-for="requestDb.RecieverUsername" readonly value="@item.UserName" hidden class="form-control">
                         <input asp-for="requestDb.RecieverId" hidden value="@item.Id">
                         <input asp-for="requestDb.SenderUsername" hidden value="@User.GetUserName()">
-                        <input asp-for="requestDb.RecieverName" hidden value="@item.Name">
+                        <input asp-for="requestDb.RecieverUsername" hidden value="@item.UserName">
                         <input asp-for="requestDb.SenderUserRole" hidden value="@User.GetRole()">
                         <input asp-for="requestDb.RecieverUserRole" hidden value="@item.UserRole">
                         <input asp-for="requestDb.Id" hidden>
 
-                        <textarea asp-for="requestDb.Description" class="form-control" rows="1" cols="5" placeholder="Send message to @item.UserName" required="required">
-                        </textarea>
+                        <input asp-for="requestDb.RecieverName" readonly value="@item.Name" hidden>
+                        
+                        <textarea asp-for="requestDb.Description" class="form-control" rows="1" cols="5" placeholder="Send Request to @item.UserName" required="required">
 
-                        <button type="submit"  class="btn btn-primary mt-1">Request</button>
+                         </textarea>
+                       
+                        <button type="submit" class="btn btn-primary mt-1">
+                            Request
+                        </button>
                     </form>
-
-
                 </div>
             </td>
         </tr>
-    }
-</table>
 
+    }
+
+</table>

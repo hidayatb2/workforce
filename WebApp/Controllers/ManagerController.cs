@@ -47,6 +47,7 @@ namespace WebApp
             return RedirectToAction("Contractors", generalRequestModel);
         }
 
+
         [HttpGet]
         public IActionResult Requests()
         {
@@ -81,6 +82,7 @@ namespace WebApp
 =======
 >>>>>>> Stashed changes
         }
+
 
     }
 

@@ -19,21 +19,34 @@ namespace BusinessAccess
             this.managerRepository = managerRepository;
         }
 
-
-
         public IEnumerable<GeneralResponse> GetContractors()
         {
-           return  managerRepository.GetAll<Contractor>().Select(x => new GeneralResponse
+           return  managerRepository.GetAll<Contractor>().IncludeNav(z => z.User).Select(x => new GeneralResponse
             {
                 Id = x.Id,
                 Name = x.Name,
-               // UserName = x.UserName,
+                UserName = x.User.UserName,
                 Address = x.Address,
                 UserRole = UserRole.Contractor
 
             });
         }
 
+
+        public IEnumerable<GeneralResponse> GetLabours()
+        {
+            return managerRepository.GetAll<Labour>().IncludeNav(z => z.User).Select(x => new GeneralResponse
+            {
+                Id = x.Id,
+                Name = x.Name,
+                UserName = x.User.UserName,
+                Address = x.Address,
+                UserRole = UserRole.Labour
+
+            });
+        }
+
+        
 
 
         public string SendRequest(RequestDb requestDb)
@@ -69,7 +82,7 @@ namespace BusinessAccess
 
           return managerRepository.FindBy<GeneralRequestDB>(x => x.RecieverId == id).Select(x => new ResponseDb
             {
-                Id = id,
+                Id = x.Id,
                 Description = x.Message,
                 SenderUsername = x.SenderUsername,
                 RecieverId = x.RecieverId,
@@ -101,6 +114,7 @@ namespace BusinessAccess
                 };
             }
             return users;
+            
         }
 
         public string SendLabourRequest(RequestDb requestDb)
@@ -117,7 +131,6 @@ namespace BusinessAccess
             };
             
 
-<<<<<<< Updated upstream
             var returnValue = managerRepository.AddandSave<GeneralRequestDB>(generalRequestDB);
             if (returnValue != 0)
             {
@@ -143,9 +156,4 @@ namespace BusinessAccess
 
         }
     }
-=======
-
->>>>>>> Stashed changes
-
-
 }

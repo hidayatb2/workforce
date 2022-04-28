@@ -22,12 +22,12 @@ namespace BusinessAccess
 
         public IEnumerable<GeneralResponse> GetManagers()
         {
-            return contractorRepository.GetAll<Manager>().Select(x => new GeneralResponse
+            return contractorRepository.GetAll<Manager>().IncludeNav(x => x.User).Select(x => new GeneralResponse
             {
                 Id = x.Id,
                 Name = x.Name,
                 Address = x.Address,
-               // UserName = x.UserName,
+                UserName = x.User.UserName,
                 UserRole = UserRole.Manager
             });
         }
