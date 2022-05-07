@@ -4,6 +4,11 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="~/css/Sidenav.css" rel="stylesheet"/>
+   
+    
+
+
     <link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png">
     <link rel="icon" type="image/png" href="./assets/img/favicon.png">
     <title>
@@ -22,9 +27,9 @@
     <link id="pagestyle" href="~/css/UserLayout.css" rel="stylesheet" />
 </head>
 
-<body style="overflow-x:hidden;">
+<body >
 
-    <div class="vertical-nav " id="sidebar" style="background-color:#0b212d">
+   @* <div class="vertical-nav " id="sidebar" style="background-color:#0b212d">
         <div class="py-4 px-3 mb-4">
 
             <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
@@ -116,12 +121,62 @@
             </ul>
         </div>
 
-    </div>
+    </div>*@
+    <nav style="margin-left:-33px;">
+    <ul style="list-style: none;">
+     
+        <li>
+             
+            <div class="home-icon">
+                
+                    <div class="roof">
+                 
+                <div class="roof-edge"></div>
+                
+              </div>
+            
+             
+              
+                  <div class="front"></div>
+              
+            </div>
+            
+          </li>
+    
+     
+        <li>
+            <div class="about-icon">
+              <div class="head">
+                <div class="eyes"></div>
+                <div class="beard"></div>
+              </div>
+            </div>
+          </li>
+      
+      
+        <li>
+            <div class="work-icon">
+              <div class="paper"></div>
+              <div class="lines"></div>
+              <div class="lines"></div>
+              <div class="lines"></div>
+            </div>
+          </li>
+      
+   
+        <li>
+            <div class="mail-icon">
+              <div class="mail-base">
+                <div class="mail-top"></div>
+              </div>
+            </div>
+          </li>
+  
+    </ul>
+  </nav>
 
-    <nav class="navbar page-content navbar-expand text-white sticky-top navbar-light sticky-top px-4 py-0" style="background-color:#0b212d;height:100px;" id="content">
-        <button style="background-color:#0b212d;color:white" id="sidebarCollapse">
-            <ion-icon name="menu" class="sidebar-toggler flex-shrink-0" style="height:30px;width:30px"></ion-icon>
-        </button>
+    <div  class="navbar  text-white  navbar-light sticky-top " style="background-color:#0b212d;height:100px;" id="content">
+       
 
 
         <div class="nav-item dropdown " style="margin-left:90%">
@@ -144,11 +199,15 @@
             </div>
         </div>
 
-    </nav>
+    </div>
 
-    <div class="container-fluid py-4 justify-content-between" id="bMargin">
+    <div style="margin-left:5%;" >
         @RenderBody()
     </div>
+
+
+     
+
     <!--   Core JS Files   -->
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
@@ -156,14 +215,7 @@
 
 
 
-    <script>
-              $(function() {
-          // Sidebar toggle behavior
-          $('#sidebarCollapse').on('click', function() {
-            $('#sidebar, #content,#bMargin').toggleClass('active');
-          });
-        });
-    </script>
+   
 
     <script src="~/js/material-dashboard.min.js"></script>
     @RenderSection("Scripts", required: false)
