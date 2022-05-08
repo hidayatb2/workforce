@@ -72,12 +72,29 @@ namespace WebApp
             return View(labourManager.GetRequests(id));
         }
 
-
+        [HttpGet("delete")]
         public IActionResult DeleteRequest(Guid id)
         {
 
             return RedirectToAction("Requests", labourManager.DeletebyId(id));
 
+        }
+
+
+        [HttpGet("colabrequests")]
+        public IActionResult ColabRequests()
+        {
+            Guid id = User.GetUserId();
+            return View(labourManager.GetColabRequests(id));
+        }
+
+
+        [HttpGet("approverequest")]
+        public IActionResult ApproveRequest(Guid senderId)
+        {
+            Guid currentUserId = User.GetUserId();
+            ViewBag.ApproveResponse = labourManager.ApproveColabRequest(senderId, currentUserId);
+            return RedirectToAction(nameof(ColabRequests));
         }
 
 

@@ -1,44 +1,45 @@
 ﻿@model GeneralRequestModel
 
 <style>
-    .aa{
-        margin-top:100px;
+    .aa {
+        margin-top: 100px;
     }
 
 </style>
-    <div class="aa">
-        <form asp-action="SendLabourRequest" asp-controller="Manager" method="post">
-        <table class="table table-hover table-striped">
-          @*  <thead>
-        <th>
-                @Html.DisplayNameFor(model => )
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UserName)
-            </th>
-            </thead>*@
-            <tbody>
-                @foreach (var item in Model.userResponses) {
+<div class="aa">
+    <form method="post">
+        <table class="table table-hover">
+            <thead>
                 <tr>
-                    <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserName)
-            </td>
-            
-            <td>
-                <input asp-for="requestDb.SenderId" type="submit" value="@User.GetUserId()"/>
-                @*<button asp-action="SendLabourRequest" asp-controller="Manager"  class="btn btn-success">Add</button>*@
-            </td>
-            <td>
-                <button asp-action="" type="button"  class="btn btn-danger">Remove</button>
-            </td>
+                    <td>Name</td>
+                    <td>Role</td>
+                    <td>Action</td>
+                    <td>Action</td>
                 </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in Model.userResponses)
+                {
+                    <tr>
+                        <td>@user.UserName</td>
+                        <td>@user.UserRole</td>
+                        <td><input type="text" name="RecieverId" value="@user.Id" hidden /></td>
+                        <td><input type="text" name="RecieverUserName" value="@user.UserName" hidden /></td>
+                        <td><input type="text" name="RecieverUserRole" value="@user.UserRole" hidden /></td>
+                        <td><input type="text" name="Status" value="@user.UserStatus" hidden /></td>
+
+                        <td><input type="text" name="SenderId" value="@User.GetUserId()" hidden /></td>
+                        <td><input type="text" name="SenderUserName" value="@User.GetUserName()" hidden /></td>
+                        <td><input type="text" name="SenderUserRole" value="@User.GetRole()" hidden /></td>
+                        
+
+                        <td><button type="submit" asp-action="SendLabourRequest" asp-controller="Manager">Add</button></td>
+                        <td><button>Remove</button></td>
+                    </tr>
                 }
             </tbody>
         </table>
-        </form>
-    </div>
+    </form>
+</div>
 
 

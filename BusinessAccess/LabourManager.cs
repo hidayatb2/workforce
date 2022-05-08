@@ -87,11 +87,40 @@ namespace BusinessAccess
         }
 
 
+        public IEnumerable<ResponseDb> GetColabRequests(Guid id)
+        {
+
+            return repository.FindBy<GeneralRequestDB>(x => x.RecieverId == id && x.Message == null).Select(x => new ResponseDb
+            {
+                Id = x.Id,
+                Description = x.Message,
+                SenderUsername = x.SenderUsername,
+                RecieverId = x.RecieverId,
+                RecieverUsername = x.RecieverUsername,
+                RecieverUserRole = x.RecieverRole,
+                SenderUserRole = x.SenderRole,
+                SenderId = x.SenderId,
+                Status = x.Status
+
+            });
+
+        }
+
+
 
         public int DeletebyId(Guid id)
         {
              var deletedItem = repository.GetById<GeneralRequestDB>(id);
              return repository.Delete(deletedItem);
+        }
+
+
+        public int ApproveColabRequest(Guid senderId,Guid currentUserId)
+        {
+          var lbrUser= repository.GetById<Labour>(currentUserId);
+            lbrUser.ManagerId = senderId;
+            
+           return repository.UpdateAndSave(lbrUser);
         }
 
 

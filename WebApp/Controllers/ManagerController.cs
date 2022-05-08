@@ -58,8 +58,12 @@ namespace WebApp
         [HttpGet("ulabours")]
         public IActionResult UnassignedLabours()
         {
-            var res = roleManager.UnassignedLabours();
-            return View(res);
+            GeneralRequestModel generalRequestModel = new GeneralRequestModel()
+            {
+                userResponses = roleManager.UnassignedLabours().ToList()
+            };
+            
+            return View(generalRequestModel);
         }
 
         [HttpPost("sendrequest")]

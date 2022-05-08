@@ -102,7 +102,7 @@ namespace BusinessAccess
 
             foreach (var item in managerRepository.GetAll<User>().Where(x=>x.Labour.ManagerId==null))
             {
-                if (item.UserRole == UserRole.Labour && item.Labour.ManagerId == null)
+                if (item.UserRole == UserRole.Labour)
                 {
                         UserResponse response = new UserResponse();
                         response.Id = item.Id;
