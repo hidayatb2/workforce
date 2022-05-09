@@ -85,6 +85,13 @@ namespace WebApp
         }
 
 
+        [HttpGet("attendance")]
+        public IActionResult Attendance()
+        {
+            var id = User.GetUserId();
+            return View();
+        }
+
     }
 
 

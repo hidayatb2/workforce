@@ -20,7 +20,8 @@
             <tbody>
                 @foreach (var user in Model.userResponses)
                 {
-                    <tr>
+                   <form method="post" asp-action="SendLabourRequest" asp-controller="Manager">
+                        <tr>
                         <td>@user.UserName</td>
                         <td>@user.UserRole</td>
                         <td><input type="text" name="RecieverId" value="@user.Id" hidden /></td>
@@ -33,9 +34,10 @@
                         <td><input type="text" name="SenderUserRole" value="@User.GetRole()" hidden /></td>
                         
 
-                        <td><button type="submit" asp-action="SendLabourRequest" asp-controller="Manager">Add</button></td>
+                        <td><button type="submit">Add</button></td>
                         <td><button>Remove</button></td>
                     </tr>
+                   </form>
                 }
             </tbody>
         </table>

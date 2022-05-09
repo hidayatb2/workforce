@@ -21,7 +21,7 @@ namespace BusinessAccess
 
         public IEnumerable<GeneralResponse> GetContractors()
         {
-           return  managerRepository.GetAll<Contractor>().IncludeNav(z => z.User).Select(x => new GeneralResponse
+            return managerRepository.GetAll<Contractor>().IncludeNav(z => z.User).Select(x => new GeneralResponse
             {
                 Id = x.Id,
                 Name = x.Name,
@@ -46,7 +46,7 @@ namespace BusinessAccess
             });
         }
 
-        
+
 
 
         public string SendRequest(RequestDb requestDb)
@@ -80,7 +80,7 @@ namespace BusinessAccess
         public IEnumerable<ResponseDb> GetRequests(Guid id)
         {
 
-          return managerRepository.FindBy<GeneralRequestDB>(x => x.RecieverId == id).Select(x => new ResponseDb
+            return managerRepository.FindBy<GeneralRequestDB>(x => x.RecieverId == id).Select(x => new ResponseDb
             {
                 Id = x.Id,
                 Description = x.Message,
@@ -100,22 +100,42 @@ namespace BusinessAccess
         {
             List<UserResponse> users = new List<UserResponse>();
 
-            foreach (var item in managerRepository.GetAll<User>().Where(x=>x.Labour.ManagerId==null))
+            foreach (var item in managerRepository.GetAll<User>().Where(x => x.Labour.ManagerId == null))
             {
                 if (item.UserRole == UserRole.Labour)
                 {
-                        UserResponse response = new UserResponse();
-                        response.Id = item.Id;
-                        response.UserName = item.UserName;
-                        response.Email = item.Email;
-                        response.PhoneNo = item.PhoneNo;
+                    UserResponse response = new UserResponse();
+                    response.Id = item.Id;
+                    response.UserName = item.UserName;
+                    response.Email = item.Email;
+                    response.PhoneNo = item.PhoneNo;
 
-                        users.Add(response);
+                    users.Add(response);
                 };
             }
             return users;
-            
+
         }
+
+        public IEnumerable<UserResponse> AssignedLabour(Guid id)
+        {
+            List<UserResponse> users = new List<UserResponse>();
+
+            foreach (var item in managerRepository.FindBy<User>(x=>x.Labour.ManagerId==id))
+            {
+                UserResponse response = new UserResponse();
+                response.Id = item.Id;
+                response.UserName = item.UserName;
+                response.Email = item.Email;
+                response.PhoneNo = item.PhoneNo;
+
+                users.Add(response);
+
+            };
+            return users;
+        }
+        
+    
 
         public string SendLabourRequest(RequestDb requestDb)
         {
@@ -129,7 +149,7 @@ namespace BusinessAccess
                 RecieverId = requestDb.RecieverId,
                 SenderId = requestDb.SenderId,
             };
-            
+
 
             var returnValue = managerRepository.AddandSave<GeneralRequestDB>(generalRequestDB);
             if (returnValue != 0)
