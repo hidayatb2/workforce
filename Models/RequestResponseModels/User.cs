@@ -282,4 +282,12 @@ namespace Models
         [Required(ErrorMessage = "Please enter email to reset your password")]
         public string Email { get; set; }
     }
+
+    public class ManagerResponse
+    {
+        public Guid Id { get; set; }
+
+
+        public string UserName { get; set; }
+    }
 }

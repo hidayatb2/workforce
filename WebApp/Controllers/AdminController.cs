@@ -64,6 +64,7 @@ namespace WebApp
         [HttpGet("create")]
         public IActionResult CreateUser()
         {
+            ViewBag.Managers = adminManager.GetAllManagers();
             return View();
         }
 

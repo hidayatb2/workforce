@@ -18,7 +18,7 @@ namespace BusinessAccess
             file.CopyTo(fs);
             return "/files/" + uniqueName;
         }
-        public static void DeleteFile(String webRootPath, string filePath)
+        public static void DeleteFile(string webRootPath, string filePath)
         {
             string path = filePath.Substring(1).Replace('/', '\\');
             string physicalPath = Path.Combine(webRootPath, path);

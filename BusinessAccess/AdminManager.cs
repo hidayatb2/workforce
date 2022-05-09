@@ -22,6 +22,7 @@ namespace BusinessAccess
             this.emailService = emailService;
         }
 
+
         public int CreateUser(SignupRequest signupRequest)
         {
             Random random = new Random();
@@ -56,6 +57,15 @@ namespace BusinessAccess
             emailService.SendMailAsync(emailSetting);
 
             return repository.AddandSave(user);
+        }
+
+        public IQueryable<ManagerResponse> GetAllManagers()
+        {
+            return repository.FindBy<User>(x=>x.UserRole==UserRole.Manager).Select(manager=>new ManagerResponse
+            {
+                Id = manager.Id,
+                UserName = manager.UserName,
+            });
         }
 
         public IEnumerable<ContactUsResponse> GetAllMessages()

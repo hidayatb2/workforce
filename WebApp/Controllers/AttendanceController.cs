@@ -15,10 +15,7 @@ namespace WebApp
         {
             this.repository = repository;
             attendanceManager = new AttendanceManager(repository);
-           
         }
-
-
         public IActionResult Index()
         {
             return View();

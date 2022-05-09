@@ -1,7 +1,8 @@
 ﻿import apiHelpers from "./apiHelper.js";
 
 let ddlVal=document.getElementById('role');
-let ddl= document.getElementById('role1');
+let ddl = document.getElementById('role1');
+
 ddlVal.addEventListener('change', function (event) {
     let roleVal = event.target.value;
     if (roleVal != "5" && roleVal != "4") {
@@ -18,7 +19,7 @@ ddlVal.addEventListener('change', function (event) {
                let slct=new Option("Select","");
                ddl.appendChild(slct);
                roles.map(role=>{
-                    let options =new Option(role.name,role.id);
+                    let options =new Option(role.userName,role.id);
                     ddl.appendChild(options);
                 })
                }

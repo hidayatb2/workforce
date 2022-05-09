@@ -38,7 +38,6 @@
     }
 }
 
-
 <div class="row offset-4">
     <h1>Create User</h1>
     <div>
@@ -61,9 +60,9 @@
                 </select>
             </div>
              <div>
-                <select asp-for="UserRole" class="form-control  col-md-6 mt-3" asp-items="@(new SelectList(ViewBag.Managers,"Id","Name"))">
+               @* <select asp-for="UserRole" class="form-control  col-md-6 mt-3" asp-items="@(new SelectList(ViewBag.Managers,"Id","UserName"))">
                     <option value="">Select Role</option>
-                </select>
+                </select>*@
             </div>
 
             <div>
