@@ -74,7 +74,7 @@ namespace WebApp
         [HttpPost("addpartcipant")]
         public IActionResult AddPartcipant(Guid bidId,string bidRate)
         {
-            PartcipantRequest partcipantRequest = new PartcipantRequest
+            PartcipantRequest partcipantRequest = new()
             {
                 Id = Guid.NewGuid(),
                 PartcipantId = User.GetUserId(),

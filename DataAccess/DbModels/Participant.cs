@@ -12,7 +12,7 @@ namespace DataAccess
         public Guid Id { get; set; }
 
 
-        public Guid PartcipantId { get; set; }
+        public Guid? PartcipantId { get; set; }
 
         [ForeignKey(nameof(PartcipantId))]
         public User User { get; set; }    

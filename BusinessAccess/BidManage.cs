@@ -67,7 +67,7 @@ namespace BusinessAccess
 
         public int AddPartcipant(PartcipantRequest partcipantRequest)
         {
-            Participant participant = new Participant
+            Participant participant = new()
             {
                 Id= partcipantRequest.Id,
                 PartcipantId = partcipantRequest.PartcipantId,
