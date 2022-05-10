@@ -1,201 +1,191 @@
-﻿<!DOCTYPE html>
+﻿@if (User.Identity.IsAuthenticated)
+{
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>@User.GetRole()</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="" name="keywords">
+        <meta content="" name="description">
 
-<html>
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png">
-    <link rel="icon" type="image/png" href="./assets/img/favicon.png">
-    <title>
+        <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
 
-    </title>
-    <!--     Fonts and icons     -->
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+        <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+        <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+        <link rel="stylesheet" href="bower_components/sweetalert2/dist/sweetalert2.min.css">
 
+        <!-- Libraries Stylesheet -->
+    <link href="~/AdminFiles/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+        <link href="~/AdminFiles/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
 
-    <link id="pagestyle" href="~/css/UserLayout.css" rel="stylesheet" />
-</head>
+        <!-- Customized Bootstrap Stylesheet -->
+    <link href="~/AdminFiles/css/bootstrap.min.css" rel="stylesheet">
 
-<body style="overflow-x:hidden;">
+        <!-- Template Stylesheet -->
+    <link href="~/AdminFiles/css/style.css" rel="stylesheet">
 
-    <div class="vertical-nav " id="sidebar" style="background-color:#0b212d">
-        <div class="py-4 px-3 mb-4">
+        <link rel="stylesheet" href="~/Client/services/tata-master/dist/index.css">
 
-            <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
-            <h4 style="color:white;text-align:center">@User.GetRole()</h4>
-        </div>
-        <hr class="text-gray " style="height:3px">
-        <div>
-            <ul class="nav flex-column  mb-0">
-                <li class="nav-item">
-                    <a class="nav-link  font-italic text-white" asp-action="Dashboard" asp-controller="Admin">
-                        <div class="text-white  me-2 d-flex " style="height:10px;margin-left:30px;margin-top:10px">
-                            <i class="material-icons opacity-10"><ion-icon name="home-outline" style="font-size:30px"></ion-icon></i>
-                            <span class="nav-link-text ms-1" style="font-size:18px">Dashboard</span>
+    </head>
 
-                        </div>
-                    </a>
-                </li>
-                <li class="nav-item mt-4">
-                    <a class="nav-link text-dark font-italic text-white" asp-action="Index" asp-controller="Slider">
-                        <div class="text-white me-2 d-flex  " style="height:10px;margin-left:30px;margin-top:10px">
-                            <i class="material-icons opacity-10"><ion-icon name="library-outline" style="font-size:30px"></ion-icon></i>
-                            <span class="nav-link-text ms-1" style="font-size:18px">Add Slider</span>
-                        </div>
-                    </a>
-                </li>
+    <body>
+        <!--Nav Bar Admin-->
 
-                <li class="nav-item mt-4">
-                    <a class="nav-link text-dark font-italic text-white" asp-action="Search" asp-controller="Admin">
-                        <div class="text-white me-2 d-flex  " style="height:10px;margin-left:30px;margin-top:10px">
-                            <i class="material-icons opacity-10"><ion-icon name="library-outline" style="font-size:30px"></ion-icon></i>
-                            <span class="nav-link-text ms-1" style="font-size:18px">Users</span>
-                        </div>
-                    </a>
-                </li>
-
-
-                <li class="nav-item mt-4">
-                    <a class="nav-link text-white " asp-action="messages" asp-controller="admin" >
-                        <div class="text-white  me-2 d-flex " style="height:10px;margin-left:30px;margin-top:10px">
-                            <i class="material-icons opacity-10"><ion-icon name="notifications-outline" style="font-size:30px"></ion-icon></i>
-                            <span class="nav-link-text ms-1" style="font-size:18px">Feedback</span>
-                        </div>
-                    </a>
-                </li>
-
-                 <li class="nav-item mt-4">
-                    <a class="nav-link text-white " asp-action="testimonial" asp-controller="admin" >
-                        <div class="text-white  me-2 d-flex " style="height:10px;margin-left:30px;margin-top:10px">
-                            <i class="material-icons opacity-10"><ion-icon name="notifications-outline" style="font-size:30px"></ion-icon></i>
-                            <span class="nav-link-text ms-1" style="font-size:18px">Testimonial</span>
-                        </div>
-                    </a>
-                </li>
-
-                <li class="nav-item mt-4">
-                    <a class="nav-link text-white " asp-action="create" asp-controller="admin" >
-                        <div class="text-white  me-2 d-flex " style="height:10px;margin-left:30px;margin-top:10px">
-                            <i class="material-icons opacity-10"><ion-icon name="notifications-outline" style="font-size:30px"></ion-icon></i>
-                            <span class="nav-link-text ms-1" style="font-size:18px">Add-User</span>
-                        </div>
-                    </a>
-                </li>
-
-
-                 @if (User.IsInRole(UserRole.Manager.ToString()) || User.IsInRole(UserRole.Contractor.ToString()) || User.IsInRole(UserRole.Labour.ToString()))
-                {
-                    <li class="nav-item mt-4">
-                        <a class="nav-link text-white "  asp-action="Attendance" asp-controller="Manager">
-                            <div class="text-white  me-2 d-flex " style="height:10px;margin-left:30px;margin-top:10px">
-                                <i class="material-icons opacity-10"><ion-icon name="notifications-outline" style="font-size:30px"></ion-icon></i>
-                                <span class="nav-link-text ms-1" style="font-size:18px">Attendance</span>
-
-                            </div>
-                        </a>
-                    </li>
-
-                    <li class="nav-item mt-4">
-                        <a class="nav-link text-white "  asp-action="viewbids" asp-controller="bid">
-                            <div class="text-white  me-2 d-flex " style="height:10px;margin-left:30px;margin-top:10px">
-                                <i class="material-icons opacity-10"><ion-icon name="notifications-outline" style="font-size:30px"></ion-icon></i>
-                                <span class="nav-link-text ms-1" style="font-size:18px">view Bids</span>
-
-                            </div>
-                        </a>
-                    </li>
-                }
-                 @if (User.IsInRole(UserRole.Customer.ToString()))
-                {
-                    <li class="nav-item mt-4">
-                        <a class="nav-link text-white "  asp-action="Index" asp-controller="bid">
-                            <div class="text-white  me-2 d-flex " style="height:10px;margin-left:30px;margin-top:10px">
-                                <i class="material-icons opacity-10"><ion-icon name="notifications-outline" style="font-size:30px"></ion-icon></i>
-                                <span class="nav-link-text ms-1" style="font-size:18px">Add Bids</span>
-
-                            </div>
-                        </a>
-                    </li>  
-                }
-
-                <li class="nav-item mt-4">
-                    <a class="nav-link text-dark font-italic text-white" asp-action="changepassword" asp-controller="account">
-                        <div class="text-white  me-2 d-flex " style="height:10px;margin-left:30px;margin-top:10px">
-                            <i class="material-icons opacity-10"><ion-icon name="person-add-outline" style="font-size:30px"></ion-icon></i>
-                            <span class="nav-link-text ms-1" style="font-size:18px">Change Password</span>
-                        </div>
-                    </a>
-                </li>
-
-                <li class="nav-item mt-4">
-                    <a class="nav-link text-dark font-italic text-white " asp-action="logout" asp-controller="account">
-                        <div class="text-white  me-2 d-flex " style="height:10px;margin-left:30px;margin-top:10px">
-                            <i class="material-icons opacity-10"><ion-icon name="log-out-outline" style="font-size:30px"></ion-icon></i>
-                            <span class="nav-link-text ms-1" style="font-size:18px">Logout</span>
-                        </div>
-                    </a>
-                </li>
-
-            </ul>
-        </div>
-
-    </div>
-
-    <nav class="navbar page-content navbar-expand text-white sticky-top navbar-light sticky-top px-4 py-0" style="background-color:#0b212d;height:100px;" id="content">
-        <button style="background-color:#0b212d;color:white" id="sidebarCollapse">
-            <ion-icon name="menu" class="sidebar-toggler flex-shrink-0" style="height:30px;width:30px"></ion-icon>
-        </button>
-
-
-        <div class="nav-item dropdown " style="margin-left:90%">
-            <a href="#" class="nav-link dropdown-toggle text-light" data-bs-toggle="dropdown">
-                <span class=" text-light">@User.GetUserName()</span>
-            </a>
-            <div class="dropdown-menu dropdown-menu-end  border-0 rounded-0 rounded-bottom m-0" style="background-color:#0b212d;">
-                @if (User.IsInRole(nameof(UserRole.Admin)))
-                {
-                    <a asp-action="EditAdmin" asp-controller="Account" class="dropdown-item text-light">My Profile</a>
-
-                }
-                else
-                {
-                    <a asp-action="Profile" asp-controller="Account" class="dropdown-item text-light">My Profile</a>
-
-                }
-                <a asp-action="Logout" asp-controller="Account" class="dropdown-item text-light">Logout</a>
-
+    <div  class="container-xxl position-relative bg-white d-flex p-0">
+            <!-- Spinner Start -->
+        <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+                <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
             </div>
+            <!-- Spinner End -->
+            <!-- Sidebar Start -->
+        <div style="background-color:#0b212d" class="sidebar pe-4 pb-3">
+                <nav style="background-color:#0b212d" class="navbar navbar-light">
+                    <a href="#" class="navbar-brand mx-4 mb-3">
+                        <a asp-action="index" asp-controller="home"><h3 class="text-primary"><i class="fa fa-hashtag me-2"></i>WorkForce</h3></a>
+                    </a>
+                    <div class="d-flex align-items-center ms-4 mb-4">
+                        <div class="position-relative">
+                            <img class="rounded-circle" src="" alt="" style="width: 40px; height: 40px;">
+                            <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
+                        </div>
+                        <div class="ms-3">
+                            <h6 class="mb-0">@User.GetUserName().ToUpper()</h6>
+                            <span>@User.GetRole()</span>
+                        </div>
+                    </div>
+                    <div class="navbar-nav w-100">
+
+                        @*@if (User.IsInRole(UserRole.Faculty.ToString()) || User.IsInRole(UserRole.HOD.ToString()))
+                        {
+                            <a asp-controller="Employee" asp-action="Index" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+                            <a asp-action="Index" asp-controller="Question" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Question Bank</a>
+                            <a asp-controller="paper" asp-action="create" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Add Paper</a>
+                            <a asp-controller="paper" asp-action="getpapers" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Papers</a>
+                        }*@
+                        @if (User.IsInRole(UserRole.Admin.ToString()))
+                        {
+                            <a asp-controller="Admin" asp-action="Dashboard" class="nav-item nav-link text-light "><i style="color:black" class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+                            <a asp-action="Index" asp-controller="Slider" class="nav-item nav-link text-light"><i style="color:black" class="fa fa-th me-2"></i>Add Slider</a>
+                            <a asp-action="Search" asp-controller="Admin" class="nav-item nav-link text-light"><i style="color:black" class="fa fa-th me-2"></i>Users</a>
+                            <a asp-action="messages" asp-controller="Admin" class="nav-item nav-link text-light"><i style="color:black" class="fa fa-th me-2"></i>Feedback</a>
+                            <a asp-action="Testimonial" asp-controller="Admin" class="nav-item nav-link text-light"><i style="color:black" class="fa fa-th me-2"></i>Testimonial</a>
+                            <a asp-action="Create" asp-controller="admin" class="nav-item nav-link text-light"><i style="color:black" class="fa fa-table me-2"></i>Add User</a>
+                        @if (User.IsInRole(UserRole.Manager.ToString()) || User.IsInRole(UserRole.Contractor.ToString()) || User.IsInRole(UserRole.Labour.ToString()))
+                        {
+                            <a asp-action="Attendance" asp-controller="Manager" class="nav-item nav-link text-light"><i style="color:black" class="fa fa-table me-2"></i>Attendance</a>
+                            <a asp-action="viewbids" asp-controller="bid" class="nav-item nav-link text-light"><i style="color:black" class="fa fa-th me-2"></i>View Bids</a>
+                        }
+                       @if (User.IsInRole(UserRole.Customer.ToString()))
+                       {
+                            <a asp-action="Index" asp-controller="bid" class="nav-item nav-link text-light "><i style="color:black" class="fa fa-th me-2"></i>Add Bids</a>                           
+                       }
+                            <a asp-action="changepassword" asp-controller="Account" class="nav-item nav-link text-light"><i style="color:black" class="fa fa-th me-2"></i>Change Password</a>
+                            <a asp-action="logout" asp-controller="Account" class="nav-item nav-link text-light"><i style="color:black" class="fa fa-th me-2"></i>Logout</a>
+                           
+                        }
+                      
+                    </div>
+                </nav>
+            </div>
+            <!-- Sidebar End -->
+            <!-- Content Start -->
+        <div class="content">
+                <!-- Navbar Start -->
+            <nav style="background-color:#0b212d" class="navbar navbar-expand navbar-light sticky-top px-4 py-0">
+                    <a href="index.html" class="navbar-brand d-flex d-lg-none me-4">
+                        <h2 class="text-primary mb-0"><i class="fa fa-hashtag"></i></h2>
+                    </a>
+                    <a href="#" class="sidebar-toggler flex-shrink-0">
+                        <i class="fa fa-bars"></i>
+                    </a>
+               
+                    <div class="navbar-nav align-items-center ms-auto">
+                        @if(User.IsInRole(nameof(UserRole.Admin)))
+                        {
+                           <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                                <i class="fa fa-envelope me-lg-2"></i>
+                                <span style="color:white" class="d-none d-lg-inline-flex">Message</span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0" style="max-height:300px;overflow-y:scroll;z-index:100000;min-height:50px">
+                                @*@await Component.InvokeAsync("ContactMessage")*@
+                            </div>
+                        </div>
+                      
+                        }
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                                <img class="rounded-circle me-lg-2" src="" alt="" style="width: 40px; height: 40px;">
+                                <span style="color:white" class="d-none d-lg-inline-flex">@User.GetUserName().ToUpper()</span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
+                                <a asp-action="EditAdmin" asp-controller="Account" class="dropdown-item">My Profile</a>
+                                <a asp-action="logout" asp-controller="Account" class="dropdown-item">Logout</a>
+                                <a asp-action="index" asp-controller="Home" class="dropdown-item">GoTo External Site</a>
+
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+                <!-- Navbar End -->
+                <!-- Body -->
+            @RenderBody()
+                <!-- Body End -->
+        </div>
+            <!-- Content End -->
+            <!-- Back to Top -->
+        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
         </div>
 
-    </nav>
+        <script>
 
-    <div class="container-fluid py-4 justify-content-between" id="bMargin">
-        @RenderBody()
-    </div>
-    <!--   Core JS Files   -->
+            let searchBox =  document.getElementById("search");
+            searchBox.addEventListener("keyup",()=>{
+                fetch()
+            })
+        </script>
+
+        <!-- JavaScript Libraries -->
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+        <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+
+        <script asp-append-version="true" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script asp-append-version="true" src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script asp-append-version="true" src="~/AdminFiles/lib/chart/chart.min.js"></script>
+        <script asp-append-version="true" src="~/AdminFiles/lib/easing/easing.min.js"></script>
+        <script asp-append-version="true" src="~/AdminFiles/lib/waypoints/waypoints.min.js"></script>
+        <script asp-append-version="true" src="~/AdminFiles/lib/owlcarousel/owl.carousel.min.js"></script>
+        <script asp-append-version="true" src="~/AdminFiles/lib/tempusdominus/js/moment.min.js"></script>
+        <script asp-append-version="true" src="~/AdminFiles/lib/tempusdominus/js/moment-timezone.min.js"></script>
+        <script asp-append-version="true" src="~/AdminFiles/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+        <script src="~/Client/services/tata-master/dist/tata.js"></script>
+        <script src="~/Client/services/tata-master/dist/index.js"></script>
+
+        @*SWAL LINK*@
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 
+        <!-- Include a polyfill for ES6 Promises (optional) for IE11 and Android browser -->
+        @*SWAL LINK*@
 
-    <script>
-              $(function() {
-          // Sidebar toggle behavior
-          $('#sidebarCollapse').on('click', function() {
-            $('#sidebar, #content,#bMargin').toggleClass('active');
-          });
-        });
-    </script>
-
-    <script src="~/js/material-dashboard.min.js"></script>
-    @RenderSection("Scripts", required: false)
-
-</body>
-</html>
+        <!-- Template Javascript -->
+    <script asp-append-version="true" src="~/AdminFiles/js/main.js"></script>
+        @RenderSection("Scripts", required: false)
+    </body>
+    </html>
+}
