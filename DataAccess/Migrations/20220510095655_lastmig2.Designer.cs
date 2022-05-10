@@ -4,6 +4,7 @@ using DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220510095655_lastmig2")]
+    partial class lastmig2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -421,7 +423,9 @@ namespace DataAccess.Migrations
 
                     b.HasIndex("BidId");
 
-                    b.HasIndex("PartcipantId");
+                    b.HasIndex("PartcipantId")
+                        .IsUnique()
+                        .HasFilter("[PartcipantId] IS NOT NULL");
 
                     b.ToTable("Participants");
                 });
@@ -568,12 +572,12 @@ namespace DataAccess.Migrations
                         {
                             Id = new Guid("87843532-0b93-492d-824b-68be17a82037"),
                             CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
-                            CreatedOn = new DateTime(2022, 5, 10, 15, 35, 41, 896, DateTimeKind.Local).AddTicks(3476),
+                            CreatedOn = new DateTime(2022, 5, 10, 15, 26, 55, 430, DateTimeKind.Local).AddTicks(7257),
                             DOB = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "admin@yopmail.com",
-                            Password = "zN7ucLe6ee32C5qL8kXi5rG09bjNYGEs6/yuLL+Q+AM=",
+                            Password = "Teq8e4GmOYAmNIrR0a/3/X6NjUSVHSbq4EaX3mSGZQ8=",
                             PhoneNo = "8825084050",
-                            Salt = "DVdt672pzP024ZWOx4Ld4ftYRjY=",
+                            Salt = "CcFgiqGLSyHIihvUo0PVa0cUBRM=",
                             UpdatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             UpdatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserName = "admin",
@@ -671,8 +675,8 @@ namespace DataAccess.Migrations
                         .IsRequired();
 
                     b.HasOne("DataAccess.User", "User")
-                        .WithMany("Participants")
-                        .HasForeignKey("PartcipantId")
+                        .WithOne("Participant")
+                        .HasForeignKey("DataAccess.Participant", "PartcipantId")
                         .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("Bid");
@@ -729,7 +733,7 @@ namespace DataAccess.Migrations
 
                     b.Navigation("Manager");
 
-                    b.Navigation("Participants");
+                    b.Navigation("Participant");
 
                     b.Navigation("SiteWorker");
                 });

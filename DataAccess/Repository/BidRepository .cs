@@ -33,10 +33,9 @@ namespace DataAccess
 
         }
 
-        public int updateBid(BidRequest bidRequest)
+        public int UpdateBid(BidRequest bidRequest)
         {
-
-            string query = $@"update Bids set BidType ='{bidRequest.BidType}', Discription='{bidRequest.Discription}',
+            string query = $@"Update Bids set BidType ='{bidRequest.BidType}', Discription='{bidRequest.Discription}',
                                 BidRate='{bidRequest.BidRate}',Address='{bidRequest.Address}'
                                 where id ='{bidRequest.Id}' ";
             return ExecuteQuery(query);

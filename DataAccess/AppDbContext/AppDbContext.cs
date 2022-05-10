@@ -48,6 +48,10 @@ namespace DataAccess
 
         public DbSet<Attendance> Attendances { get; set; }
 
+        public DbSet<Site> Sites { get; set; }
+
+        public DbSet<SiteWorker> SiteWorkers { get; set; }
+
         #endregion
 
     }

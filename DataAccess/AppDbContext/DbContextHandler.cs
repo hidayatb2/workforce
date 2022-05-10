@@ -31,7 +31,7 @@ namespace DataAccess
                 {
                     foreach (var prop in props)
                     {
-                        entity.AddIndex(entity.FindProperty(prop)).IsUnique = true;
+                        entity.AddIndex(entity.FindProperty(prop)).IsUnique = false;
                     }
                 }
             }

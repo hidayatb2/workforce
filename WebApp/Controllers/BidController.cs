@@ -12,7 +12,6 @@ namespace WebApp
     public class BidController : Controller
     {
         private readonly BidManager bidManager;
-        private readonly AccountManager accountManager;
         private readonly IMapper mapper;
 
         public BidController(BidRepository repository, IMapper mapper, IEmailService emailService)
@@ -74,15 +73,26 @@ namespace WebApp
         [HttpPost("addpartcipant")]
         public IActionResult AddPartcipant(Guid bidId,string bidRate)
         {
-            PartcipantRequest partcipantRequest = new()
+            if (ModelState.IsValid)
             {
-                Id = Guid.NewGuid(),
-                PartcipantId = User.GetUserId(),
-                BidId = bidId,
-                BidRate = bidRate,
-            };
-            var returnValue = bidManager.AddPartcipant(partcipantRequest);
+                PartcipantRequest partcipantRequest = new()
+                {
+                    Id = Guid.NewGuid(),
+                    PartcipantId = User.GetUserId(),
+                    BidId = bidId,
+                    BidRate = bidRate,
+                };
+                ViewBag.reVal = bidManager.AddPartcipant(partcipantRequest);
+            }
             return View();
+        }
+
+
+        [HttpGet("participantbid")]
+        public IActionResult ParticipantBid()
+        {
+            var myBids = bidManager.GetBidsByParticipantId(User.GetUserId());
+            return View(myBids);
         }
     }
 }

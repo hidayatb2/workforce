@@ -1,0 +1,67 @@
+﻿@model IEnumerable<Models.BidResponse>
+
+@{
+    ViewData["Title"] = "ParticipantBid";
+}
+
+<h1>My Bids</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedOn)
+            </th>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.BidType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Discription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BidNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BidRate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+           
+            <th>
+                @Html.DisplayNameFor(model => model.BidStatus)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedOn)
+            </td>
+           
+            <td>
+                @Html.DisplayFor(modelItem => item.BidType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Discription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BidNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BidRate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+           
+            <td>
+                @Html.DisplayFor(modelItem => item.BidStatus)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
