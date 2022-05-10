@@ -1,1 +1,28 @@
-﻿This is Attendance Page
+﻿@model IEnumerable<UserResponse>
+
+
+<div >
+    <form method="post">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <td>Name</td>
+                    <td>Action</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in Model)
+                {
+                    <tr>
+                        <td>@user.UserName</td>
+                        <td class="col-md-3">
+                            <select  name="Attendance" asp-items="Html.GetEnumSelectList<Attandance>()">
+                                <option value="">--Attendance--</option>
+                            </select>
+                        </td>
+                        <td><button asp-action="">Submit</button></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </form>

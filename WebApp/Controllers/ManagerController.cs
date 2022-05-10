@@ -60,7 +60,7 @@ namespace WebApp
         {
             GeneralRequestModel generalRequestModel = new GeneralRequestModel()
             {
-                userResponses = roleManager.UnassignedLabours().ToList()
+                userResponses = roleManager.UnassignedLabours().ToList() 
             };
             
             return View(generalRequestModel);
@@ -72,7 +72,6 @@ namespace WebApp
                 GeneralRequestModel generalRequestModel = new GeneralRequestModel()
                 {
                     returnValue = roleManager.SendLabourRequest(requestDb),
-
                 };
                 return RedirectToAction("",generalRequestModel);
         }
@@ -89,11 +88,10 @@ namespace WebApp
         public IActionResult Attendance()
         {
             var id = User.GetUserId();
-            return View();
+            List<UserResponse> userResponse = roleManager.AssignedLabour(id).ToList();
+            return View(userResponse);
         }
-
+            
     }
-
-
 }
 

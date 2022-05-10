@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -19,6 +20,9 @@ namespace DataAccess
 
 
         public bool CheckAttendance { get; set; }
+
+
+        public Attendance Attendances { get; set; }
 
 
         public Guid LabourId { get; set; }

@@ -63,9 +63,10 @@ namespace Models
     }
 
 
-    public enum Attendance :byte
+    public enum Attandance :byte
     {
         Present =1,
+
         Absent =2,
     }
 }
