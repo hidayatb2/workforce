@@ -4,6 +4,7 @@ using DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220509193031_mig111")]
+    partial class mig111
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -531,13 +533,13 @@ namespace DataAccess.Migrations
                         {
                             Id = new Guid("87843532-0b93-492d-824b-68be17a82037"),
                             CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
-                            CreatedOn = new DateTime(2022, 5, 10, 1, 10, 16, 381, DateTimeKind.Local).AddTicks(7921),
+                            CreatedOn = new DateTime(2022, 5, 10, 1, 0, 31, 56, DateTimeKind.Local).AddTicks(4561),
                             DOB = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "admin@yopmail.com",
                             ImagePath = "xyz",
-                            Password = "TBdozEQhNWCcQ5jR8KTem+P8QyXrBhufZWpLZ8moG1A=",
+                            Password = "ZpHxb77piB0WAr9liM1qEJLxIOKrJd4ENgSJHNgxVhI=",
                             PhoneNo = "8825084050",
-                            Salt = "aY5a3m4xZlr4SqZAiZ5inhJ1evo=",
+                            Salt = "u2d9rStG0STtoxheWpPYr79U5zk=",
                             UpdatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             UpdatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserName = "admin",

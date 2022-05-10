@@ -1,6 +1,7 @@
 
-﻿//using Newtonsoft.Json;
+//using Newtonsoft.Json;
 
+using Microsoft.AspNetCore.Http;
 using System.ComponentModel.DataAnnotations;
 
 namespace Models
@@ -19,6 +20,8 @@ namespace Models
 
 
         public string ImagePath { get; set; }
+
+        public IFormFile File { get; set; }
 
         public UserStatus UserStatus { get; set; }
 

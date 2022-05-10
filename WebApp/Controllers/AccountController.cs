@@ -128,7 +128,7 @@ namespace WebApp
         [AllowAnonymous]
         public IActionResult EditAdmin(AdminRequest adminRequest)
         {
-            var returnValue = accountManager.UpdateAdmin(adminRequest);
+            var returnValue = accountManager.UpdateAdmin(adminRequest, environment.WebRootPath);
             return View();
         }
 
@@ -147,7 +147,7 @@ namespace WebApp
         public IActionResult Profile(ProfileResponse profileResponse)
         {
             var role = User.GetRole();
-            var msg = accountManager.UpdateUser(profileResponse, role);
+            var msg = accountManager.UpdateUser(profileResponse,environment.WebRootPath, role);
             return View();
         }
 

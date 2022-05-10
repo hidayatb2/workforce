@@ -58,6 +58,7 @@ namespace DataAccess
                 Email = "admin@yopmail.com",
                 UserName = "admin",
                 Salt = AppEncryption.CreateSalt(),
+                ImagePath = "xyz",
                PhoneNo = "8825084050",
                UserRole=UserRole.Admin,
                UserStatus=UserStatus.Active,
