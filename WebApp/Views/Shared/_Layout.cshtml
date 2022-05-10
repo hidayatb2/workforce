@@ -95,6 +95,35 @@
 </div> -->
 
           <li><a  asp-action="SignUp" asp-controller="Account" >Signup</a></li>
+          @if (User.Identity.IsAuthenticated)
+          {
+              if (User.IsInRole(UserRole.Admin.ToString()))
+              {
+                  <li><a  asp-action="Dashboard" asp-controller="Admin" >Go to ExternalSite</a></li>
+              }
+
+
+              if (User.IsInRole(UserRole.Contractor.ToString()))
+              {
+                  <li><a  asp-action="" asp-controller="" >Go to ExternalSite</a></li>
+              }
+
+
+              if (User.IsInRole(UserRole.Customer.ToString()))
+              {
+                  <li><a  asp-action="" asp-controller="" >Go to ExternalSite</a></li>
+              }
+
+              if (User.IsInRole(UserRole.Labour.ToString()))
+              {
+                  <li><a  asp-action="" asp-controller="" >Go to ExternalSite</a></li>
+              }
+
+              if (User.IsInRole(UserRole.Manager.ToString()))
+              {
+                  <li><a  asp-action="" asp-controller="" >Go to ExternalSite</a></li>
+              }
+          }
 
 
         </ul>
