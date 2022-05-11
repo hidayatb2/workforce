@@ -24,6 +24,11 @@ namespace WebApp
             return x;
         }
 
-     
+        public static string? GetImagePath(this ClaimsPrincipal principal)
+        {
+            var ImgPath = principal?.Claims?.FirstOrDefault(x => x.Type == AppClaimTypes.ImagePath)?.Value;
+            return ImgPath;
+        }
+
     }
 }

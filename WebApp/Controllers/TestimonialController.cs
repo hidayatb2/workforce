@@ -72,5 +72,12 @@ namespace WebApp
         {    
             return RedirectToAction("Testimonial", "Admin", testimonialManager.Delete(id)) ;
         }
+
+        [HttpGet]
+        public IActionResult Approve(Guid id)
+        {
+           ViewBag.Status= testimonialManager.Update(id);
+            return RedirectToAction("Testimonial","Admin");
+        }
     }
 }

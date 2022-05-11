@@ -17,6 +17,27 @@ namespace BusinessAccess
             this.repository = repository;
         }
 
+        public IEnumerable<TestimonialResponse> GetTestimonials()
+        {
+            var testimonial =repository.FindBy<Testimonial>(x=>x.status==FeedbackStatus.Approved);
+           List<TestimonialResponse> testimonialResponse = new List<TestimonialResponse>();
+            TestimonialResponse Tresponse = null;
+            foreach (var item in testimonial)
+            {
+                Tresponse = new TestimonialResponse()
+                {
+                    Id = item.Id,
+                    Name = item.Name,
+                    FeedbackMessage = item.FeedbackMessage,
+                    Status = item.status,
+                    UserRole = item.UserRole
+                };
+                testimonialResponse.Add(Tresponse);
+            }
+            return testimonialResponse;
+
+        }
+
         public int Testimonial(TestimonialRequest testimonialRequest)
         {
             Testimonial testimonial = new Testimonial()
@@ -24,9 +45,9 @@ namespace BusinessAccess
                 Id = testimonialRequest.Id,
                 Name = testimonialRequest.Name,
                 FeedbackMessage = testimonialRequest.FeedbackMessage,
-                status = testimonialRequest.Status,
+                status = FeedbackStatus.Hidden,
                 UserRole = testimonialRequest.UserRole,
-                
+                ImagePath= testimonialRequest.ImagePath,
         };
             return repository.AddandSave(testimonial);
         }
@@ -35,6 +56,15 @@ namespace BusinessAccess
         {
             var x = repository.GetById<Testimonial>(id);
             return repository.Delete(x);
+        }
+
+        public int Update(Guid id)
+        {
+           var user= repository.FindBy<Testimonial>(x => x.Id == id).FirstOrDefault();
+            user.status = FeedbackStatus.Approved;
+           return repository.UpdateAndSave<Testimonial>(user);
+            
+
         }
 
     }

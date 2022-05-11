@@ -104,61 +104,45 @@
     </section><!-- End Why Us Section -->
 
    <!-- ======= Tetstimonials Section ======= -->
-    <section class="testimonials" data-aos="fade-up">
+    
+              <section class="testimonials" data-aos="fade-up">
       <div class="container">
-
-        <div class="section-title">
+             <div class="section-title">
           <h2>Tetstimonials</h2>
-          <p>Many novice writers tend to make a sharp distinction between content and style, thinking that a paper can
-            be strong in one and weak in the other, but focusing on organization shows how content and style converge in
-            deliberative academic writing.</p>
+          
+        </div>
+         <div class="testimonials-carousel swiper">
+             <div class="swiper-wrapper">
+                      
+            </div>
         </div>
 
-        <div class="testimonials-carousel swiper">
-          <div class="swiper-wrapper">
+        @{
+            foreach(var item in Model.feedbackResponses)
+            {
+     
+
+       
             <div class="testimonial-item swiper-slide">
-              <img src="~/Images/pngegg.png" class="testimonial-img" alt="">
-              <h3>Shaheen Mushtaq</h3>
+              <img src=@User.GetImagePath() class="testimonial-img" alt="">
+              <h3>@item.Name</h3>
 
               <p>
                 <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                Many novice writers tend to make a sharp distinction between content and style,
-                thinking that a paper can be strong in one and weak in the other.
+                <h3>@item.FeedbackMessage</h3>
                 <i class="bx bxs-quote-alt-right quote-icon-right"></i>
               </p>
-            </div>
 
-            <div class="testimonial-item swiper-slide">
-              <img src="~/Images/pngegg.png" class="testimonial-img" alt="">
-              <h3>Anayat Ullah</h3>
+               </div>
+       
+    
+     
+            }
+        }
 
-              <p>
-                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                Many novice writers tend to make a sharp distinction between content and style,
-                thinking that a paper can be strong in one and weak in the other.
-                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-              </p>
-            </div>
-
-            <div class="testimonial-item swiper-slide">
-              <img src="~/Images/pngegg.png" class="testimonial-img" alt="">
-              <h3>Umair Altaf</h3>
-
-              <p>
-                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                Many novice writers tend to make a sharp distinction between content and style,
-                thinking that a paper can be strong in one and weak in the other.
-                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-              </p>
-            </div>
-
-
-          </div>
-          <div class="swiper-pagination"></div>
-        </div>
-
-      </div>
-    </section><!-- End Ttstimonials Section -->
+             </div>
+    </section>
+       <!-- End Ttstimonials Section -->
 
   </main>
   @*<!-- End #main -->*@

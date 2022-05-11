@@ -19,6 +19,8 @@ namespace DataAccess
 
         public UserRole UserRole { get; set; }
 
+        public string ImagePath { get; set; }
+
 
     }
 }

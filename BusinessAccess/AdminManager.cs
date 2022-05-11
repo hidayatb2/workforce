@@ -89,13 +89,13 @@ namespace BusinessAccess
         public IEnumerable<TestimonialResponse> GetTestimonial()
         {
             List<TestimonialResponse> testimonialResponses = new List<TestimonialResponse>();
-            foreach (var item in repository.GetAll<Testimonial>())
+            foreach (var item in repository.FindBy<Testimonial>(x => x.status == FeedbackStatus.Hidden))
             {
                 TestimonialResponse response = new TestimonialResponse();
                 response.Id = item.Id;
                 response.Name = item.Name;
                 response.FeedbackMessage= item.FeedbackMessage;
-                response.Status = FeedbackStatus.Hidden;
+                response.Status = item.status;
                 response.UserRole = item.UserRole;
                 testimonialResponses.Add(response);
             }

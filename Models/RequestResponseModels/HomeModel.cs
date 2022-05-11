@@ -17,6 +17,8 @@ namespace Models
 
         public IEnumerable<SliderResponse> sliderResponses { get; set; }  
 
+       
+
     }
 
     public class GeneralRequestModel

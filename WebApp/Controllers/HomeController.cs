@@ -14,12 +14,13 @@ namespace WebApp
         private readonly ILogger<HomeController> _logger;
         private readonly HomeManager homeManager;
         private readonly SliderManager sliderManager;
+        private readonly TestimonialManager testimonialManager;
         public HomeController(ILogger<HomeController> logger,IRepository repository)
         {
             _logger = logger;
             this.homeManager=new HomeManager(repository);
             this.sliderManager=new SliderManager(repository);
-
+            this.testimonialManager=new TestimonialManager(repository);
         }
 
         public IActionResult Index()
@@ -27,8 +28,14 @@ namespace WebApp
             HomeModel homeModel = new HomeModel()
             {
                 sliderResponses = sliderManager.GetSliders(),
+                feedbackResponses=testimonialManager.GetTestimonials(),
                // skillResponses = homeManager.GetUserSkills().DistinctBy(x => x.JobProfile)
             };
+
+            
+
+
+
             return View(homeModel);
         }
 
