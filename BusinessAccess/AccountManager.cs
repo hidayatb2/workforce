@@ -192,6 +192,7 @@ namespace BusinessAccess
                     loginResponse.PhoneNo = dbUser.PhoneNo;
                     loginResponse.UserRole = dbUser.UserRole;
                     loginResponse.UserStatus = dbUser.UserStatus;
+                    loginResponse.ImagePath = dbUser.ImagePath;
                     return loginResponse;
                 }
                 else

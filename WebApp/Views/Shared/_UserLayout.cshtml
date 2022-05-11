@@ -55,7 +55,7 @@
                     </a>
                     <div class="d-flex align-items-center ms-4 mb-4">
                         <div class="position-relative">
-                            <img class="rounded-circle" src="" alt="" style="width: 40px; height: 40px;">
+                            <img class="rounded-circle" src="@User.GetImagePath()" alt="" style="width: 40px; height: 40px;">
                             <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
                         </div>
                         <div class="ms-3">
@@ -130,6 +130,10 @@
                         }
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                                @{
+                                    var x = User.GetImagePath();
+                                    var y = x;
+                                };
                                 <img class="rounded-circle me-lg-2" src="@User.GetImagePath()" alt="" style="width: 40px; height: 40px;">
                                 <span style="color:white" class="d-none d-lg-inline-flex">@User.GetUserName().ToUpper()</span>
                             </a>

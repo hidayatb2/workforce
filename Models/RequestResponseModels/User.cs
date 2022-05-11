@@ -237,7 +237,7 @@ namespace Models
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
-
+        public string ImagePath { get; set; }
 
         public bool RememberMe { get; set; }
     }
@@ -248,6 +248,7 @@ namespace Models
 
         public UserRole UserRole { get; set; }
 
+        public string ImagePath { get; set; }
 
         public UserStatus UserStatus { get; set; }
     }
