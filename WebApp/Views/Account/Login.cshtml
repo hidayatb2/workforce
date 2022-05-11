@@ -1,5 +1,15 @@
 ﻿  @model LoginRequest
+
   @{Layout="_Layout";}
+
+  @{
+        if (ViewBag.Message == "User not found" )
+        {    
+            <script>
+            swal("Invaild Credintials", "", "error");
+            </script>
+        }
+}
   <style>
 
       .minminmin {

@@ -46,11 +46,15 @@ namespace DataAccess
         internal void SeedInitialData(ModelBuilder modelBuilder)
         {
             // SeedSecurityData(modelBuilder);
-            SeedUser(modelBuilder);
+            SeedAdmin(modelBuilder);
+            SeedCustomer(modelBuilder);
+            SeedLabour(modelBuilder);
+            SeedContractor(modelBuilder);
+            SeedManager(modelBuilder);
         }
 
 
-        private void SeedUser(ModelBuilder modelBuilder)
+        private void SeedAdmin(ModelBuilder modelBuilder)
         {
             User user = new User
             {
@@ -66,14 +70,82 @@ namespace DataAccess
             user.Password = AppEncryption.CreatePasswordHash("admin",user.Salt);
             modelBuilder.Entity<User>().HasData(user);
         }
-        
+
+        private void SeedLabour(ModelBuilder modelBuilder)
+        {
+            User user = new User
+            {
+                Id = Guid.NewGuid(),
+                Email = "labour@yopmail.com",
+                UserName = "labour",
+                Salt = AppEncryption.CreateSalt(),
+                ImagePath = "abc",
+                PhoneNo = "8825084050",
+                UserRole = UserRole.Labour,
+                UserStatus = UserStatus.Active,
+            };
+            user.Password = AppEncryption.CreatePasswordHash("labour", user.Salt);
+            modelBuilder.Entity<User>().HasData(user);
+        }
+
+        private void SeedManager(ModelBuilder modelBuilder)
+        {
+            User user = new User
+            {
+                Id = Guid.NewGuid(),
+                Email = "manager@yopmail.com",
+                UserName = "manager",
+                Salt = AppEncryption.CreateSalt(),
+                ImagePath = "xyz",
+                PhoneNo = "8825084050",
+                UserRole = UserRole.Manager,
+                UserStatus = UserStatus.Active,
+            };
+            user.Password = AppEncryption.CreatePasswordHash("manager", user.Salt);
+            modelBuilder.Entity<User>().HasData(user);
+        }
+
+
+        private void SeedContractor(ModelBuilder modelBuilder)
+        {
+            User user = new User
+            {
+                Id = Guid.NewGuid(),
+                Email = "contractor@yopmail.com",
+                UserName = "contractor",
+                Salt = AppEncryption.CreateSalt(),
+                ImagePath = "xyz",
+                PhoneNo = "8825084050",
+                UserRole = UserRole.Contractor,
+                UserStatus = UserStatus.Active,
+            };
+            user.Password = AppEncryption.CreatePasswordHash("contractor", user.Salt);
+            modelBuilder.Entity<User>().HasData(user);
+        }
+
+
+        private void SeedCustomer(ModelBuilder modelBuilder)
+        {
+            User user = new User
+            {
+                Id = Guid.Parse(customerId),
+                Email = "customer@yopmail.com",
+                UserName = "customer",
+                Salt = AppEncryption.CreateSalt(),
+                ImagePath = "xyz",
+                PhoneNo = "8825084050",
+                UserRole = UserRole.Customer,
+                UserStatus = UserStatus.Active,
+            };
+            user.Password = AppEncryption.CreatePasswordHash("customer", user.Salt);
+            modelBuilder.Entity<User>().HasData(user);
+        }
+
 
 
         public const string userId = "87843532-0B93-492D-824B-68BE17A82037";
 
-        public const string hodId = "03abd488-6472-4e9a-baee-54e654a34b6b";
-
-        public const string departmentId = "9b7d9fd4-d81f-4b12-94e1-b9b49ef316aa";
+        public const string customerId = "03abd488-6472-4e9a-baee-54e654a34b6b";
 
         public const string securityProfileId = "343D6C5F-D359-4EAA-9478-2A1852EBE0F8";
 

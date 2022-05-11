@@ -20,8 +20,7 @@ namespace DataAccess
 
         public IEnumerable<BidResponse> GetBidsByCustomerId(Guid userId)
         {
-
-            var query = @$"  select * from Bids where CustomerId ='{userId}' order By CreatedOn Desc";
+            var query = @$"Select * from Bids where CustomerId ='{userId}' order By CreatedOn Desc";
             var result = FromQuery<BidResponse>(query);
             return result;
         }
