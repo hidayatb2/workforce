@@ -39,7 +39,7 @@
     <body>
         <!--Nav Bar Admin-->
 
-    <div  class="container-xxl position-relative bg-white d-flex p-0">
+    <div class="container-xxl position-relative bg-white d-flex p-0">
             <!-- Spinner Start -->
         <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
                 <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
@@ -66,12 +66,12 @@
                     <div class="navbar-nav w-100">
 
                         @*@if (User.IsInRole(UserRole.Faculty.ToString()) || User.IsInRole(UserRole.HOD.ToString()))
-                        {
+                            {
                             <a asp-controller="Employee" asp-action="Index" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
                             <a asp-action="Index" asp-controller="Question" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Question Bank</a>
                             <a asp-controller="paper" asp-action="create" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Add Paper</a>
                             <a asp-controller="paper" asp-action="getpapers" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Papers</a>
-                        }*@
+                            }*@
                         @if (User.IsInRole(UserRole.Admin.ToString()))
                         {
                             <a asp-controller="Admin" asp-action="Dashboard" class="nav-item nav-link text-light "><i style="color:black" class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
@@ -80,20 +80,25 @@
                             <a asp-action="messages" asp-controller="Admin" class="nav-item nav-link text-light"><i style="color:black" class="fa fa-th me-2"></i>Feedback</a>
                             <a asp-action="Testimonial" asp-controller="Admin" class="nav-item nav-link text-light"><i style="color:black" class="fa fa-th me-2"></i>Testimonial</a>
                             <a asp-action="Create" asp-controller="admin" class="nav-item nav-link text-light"><i style="color:black" class="fa fa-table me-2"></i>Add User</a>
+
+
+                        }
                         @if (User.IsInRole(UserRole.Manager.ToString()) || User.IsInRole(UserRole.Contractor.ToString()) || User.IsInRole(UserRole.Labour.ToString()))
                         {
                             <a asp-action="Attendance" asp-controller="Manager" class="nav-item nav-link text-light"><i style="color:black" class="fa fa-table me-2"></i>Attendance</a>
                             <a asp-action="viewbids" asp-controller="bid" class="nav-item nav-link text-light"><i style="color:black" class="fa fa-th me-2"></i>View Bids</a>
                         }
-                       @if (User.IsInRole(UserRole.Customer.ToString()))
-                       {
-                            <a asp-action="Index" asp-controller="bid" class="nav-item nav-link text-light "><i style="color:black" class="fa fa-th me-2"></i>Add Bids</a>                           
-                       }
-                            <a asp-action="changepassword" asp-controller="Account" class="nav-item nav-link text-light"><i style="color:black" class="fa fa-th me-2"></i>Change Password</a>
-                            <a asp-action="logout" asp-controller="Account" class="nav-item nav-link text-light"><i style="color:black" class="fa fa-th me-2"></i>Logout</a>
-                           
+
+
+                        @if (User.IsInRole(UserRole.Customer.ToString()))
+                        {
+                            <a asp-action="Index" asp-controller="bid" class="nav-item nav-link text-light "><i style="color:black" class="fa fa-th me-2"></i>Add Bids</a>
                         }
-                      
+
+
+                        <a asp-action="changepassword" asp-controller="Account" class="nav-item nav-link text-light"><i style="color:black" class="fa fa-th me-2"></i>Change Password</a>
+                        <a asp-action="logout" asp-controller="Account" class="nav-item nav-link text-light"><i style="color:black" class="fa fa-th me-2"></i>Logout</a>
+
                     </div>
                 </nav>
             </div>
@@ -108,20 +113,20 @@
                     <a href="#" class="sidebar-toggler flex-shrink-0">
                         <i class="fa fa-bars"></i>
                     </a>
-               
+
                     <div class="navbar-nav align-items-center ms-auto">
-                        @if(User.IsInRole(nameof(UserRole.Admin)))
+                        @if (User.IsInRole(nameof(UserRole.Admin)))
                         {
-                           <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                                <i class="fa fa-envelope me-lg-2"></i>
-                                <span style="color:white" class="d-none d-lg-inline-flex">Message</span>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0" style="max-height:300px;overflow-y:scroll;z-index:100000;min-height:50px">
-                                @*@await Component.InvokeAsync("ContactMessage")*@
+                            <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                                    <i class="fa fa-envelope me-lg-2"></i>
+                                    <span style="color:white" class="d-none d-lg-inline-flex">Message</span>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0" style="max-height:300px;overflow-y:scroll;z-index:100000;min-height:50px">
+                                    @*@await Component.InvokeAsync("ContactMessage")*@
+                                </div>
                             </div>
-                        </div>
-                      
+
                         }
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">

@@ -4,14 +4,17 @@
 }
 
 
-<h1 style="margin-top:100px">Welcome to Admin Dashboard</h1>
+<div class="container">
+    <h1 style="margin-top:100px" class="text-center">Welcome to Admin Dashboard</h1>
  <div class="row">
-     <select class="form-control  col-5" asp-items="@Html.GetEnumSelectList<UserRole>()"id="roleDiv"  style="display:inline;width:30%;">
+     <div class="col-2"> </div>
+     <select class="form-control col-3" asp-items="@Html.GetEnumSelectList<UserRole>()" id="roleDiv"  style="display:inline;width:30%;">
       <option value=0>Select Role</option>  
     </select>
-    <div class="col-2"> </div>
-    <div class="col-5"><input class="form-control ml-5" id="searchBox" placeholder="Search by Name/Email/Phone" type="search" style="width:100%;display:inline"/></div>
+    @*<div class="col-2"> </div>*@
+    <div class="col-5 ml-5"><input class="form-control" id="searchBox" placeholder="Search by Name/Email/Phone" type="search" style="width:100%;display:inline"/></div>
  </div> 
+</div>
 
 
 <div id="mainD" >
