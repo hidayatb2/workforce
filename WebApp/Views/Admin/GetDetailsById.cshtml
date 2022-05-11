@@ -1,17 +1,13 @@
 ﻿@model UserResponse
+ <link href="~/css/userSearchDetails.css" rel="stylesheet">
 
-<table class="table table-hover" style="margin-top:300px">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>PhoneNo</th>
-        </tr>
-
-    </thead>
-    <tr>
-        <td>@Model.UserName</td>
-        <td>@Model.Email</td>
-        <td>@Model.PhoneNo</td>
-    </tr>
-</table>
+      <main id="main11">
+        <div class='card1' style="background-image:url(@Model.) ;">
+          <div class='info1'>
+            <h1 id="namee" class='title'>@Model.UserName</h1>
+            <p class='description'>Email:- @Model.Email</p>
+            <p class='description'>UserRole:- @Model.UserRole</p>
+            <p class='description'>UserStatus:-@Model.UserStatus</p>
+          </div>
+        </div>
+      </main>
