@@ -494,6 +494,9 @@ namespace DataAccess.Migrations
                     b.Property<string>("FeedbackMessage")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ImagePath")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
@@ -568,12 +571,22 @@ namespace DataAccess.Migrations
                         {
                             Id = new Guid("87843532-0b93-492d-824b-68be17a82037"),
                             CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
+<<<<<<< Updated upstream
                             CreatedOn = new DateTime(2022, 5, 10, 15, 35, 41, 896, DateTimeKind.Local).AddTicks(3476),
                             DOB = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "admin@yopmail.com",
                             Password = "zN7ucLe6ee32C5qL8kXi5rG09bjNYGEs6/yuLL+Q+AM=",
                             PhoneNo = "8825084050",
                             Salt = "DVdt672pzP024ZWOx4Ld4ftYRjY=",
+=======
+                            CreatedOn = new DateTime(2022, 5, 10, 7, 49, 38, 978, DateTimeKind.Local).AddTicks(1506),
+                            DOB = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "admin@yopmail.com",
+                            ImagePath = "xyz",
+                            Password = "ZH2WB2tkfeyvJBgsFVMX3H5UGJssdaRIgkifNlwxSVI=",
+                            PhoneNo = "8825084050",
+                            Salt = "1W5AcMHrd276MK47iRR/uXrWxdE=",
+>>>>>>> Stashed changes
                             UpdatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             UpdatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserName = "admin",
