@@ -20,15 +20,44 @@
         </div>
       
         <!-- The slideshow/carousel -->
-        <div class="carousel-inner">
+        <div class="carousel-inner" style="height:600px">
+         
+        @{
+            var r = Model.sliderResponses.FirstOrDefault();
+        }
+
+        @if (Model.sliderResponses.FirstOrDefault() != null)
+        {
+
+            var res = Model.sliderResponses.Take(1);
+
+             if (Model.sliderResponses.Take(1).FirstOrDefault().ImagePath != null)
+         {
           <div class="carousel-item active" >
-            <img src="~/Images/ops-connect_news_workforce-management.jpg" style="height:600px;" alt="Los Angeles" class="d-block w-100">
-          </div>
-          @foreach(var item in Model.sliderResponses)
+            <img src="@Model.sliderResponses.Take(1).FirstOrDefault().ImagePath" style="height:600px;" alt="Los Angeles" class="d-block w-100">
+            </div>
+        }
+
+        else
+        {
+          <div class="carousel-item active" >
+            <img src="" style="height:600px;" alt="Los Angeles" class="d-block w-100">
+            </div>  
+        }
+
+          @foreach(var item in Model.sliderResponses.Skip(1))
         {
              <div class="carousel-item">
             <img src="@item.ImagePath" style="height:600px;" alt="@item.Caption" class="d-block w-100">
           </div>
+            }
+        }
+
+        else
+        {
+            <div class="carousel-item active" >
+            <img src="" style="height:600px;" alt="No slider image Available!" class="d-block w-100">
+            </div>
         }
     </div>
       
