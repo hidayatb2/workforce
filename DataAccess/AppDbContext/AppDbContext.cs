@@ -40,6 +40,7 @@ namespace DataAccess
         public DbSet<Testimonial> Testimonials { get; set; }
 
         public DbSet<GeneralRequestDB> generalRequestDB { get; set; }
+
         public DbSet<Bid> Bids { get; set; }
 
         public DbSet<Participant> Participants { get; set; }

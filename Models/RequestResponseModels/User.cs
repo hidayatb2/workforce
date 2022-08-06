@@ -59,10 +59,6 @@ namespace Models
         [Required(ErrorMessage = "PhoneNo is required")]
         public string PhoneNo { get; set; }
 
-
-
-
-
     }
 
     public class UserResponse:UserRequest
@@ -84,7 +80,9 @@ namespace Models
 
         public DateTime DOB { get; set; }
 
+
         public Attandance Attendances { get; set; }
+
 
         public string salt { get; set; }
     }

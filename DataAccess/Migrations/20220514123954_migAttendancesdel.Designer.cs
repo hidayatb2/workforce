@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220511091730_allusersseed")]
-    partial class allusersseed
+    [Migration("20220514123954_migAttendancesdel")]
+    partial class migAttendancesdel
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -30,21 +30,19 @@ namespace DataAccess.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("AttendanceTime")
+                    b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
-
-                    b.Property<Guid?>("AttendancesAttendaceId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<bool>("CheckAttendance")
-                        .HasColumnType("bit");
 
                     b.Property<Guid>("LabourId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("AttendaceId");
+                    b.Property<DateTime>("TimeIn")
+                        .HasColumnType("datetime2");
 
-                    b.HasIndex("AttendancesAttendaceId");
+                    b.Property<DateTime>("TimeOut")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("AttendaceId");
 
                     b.HasIndex("LabourId");
 
@@ -578,13 +576,13 @@ namespace DataAccess.Migrations
                         {
                             Id = new Guid("87843532-0b93-492d-824b-68be17a82037"),
                             CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
-                            CreatedOn = new DateTime(2022, 5, 11, 14, 47, 29, 933, DateTimeKind.Local).AddTicks(5595),
+                            CreatedOn = new DateTime(2022, 5, 14, 18, 9, 53, 672, DateTimeKind.Local).AddTicks(3296),
                             DOB = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "admin@yopmail.com",
                             ImagePath = "xyz",
-                            Password = "b263/ziwT4Odk65zdKG8r/TVvF9ToW1pGbIZRFzqOyQ=",
+                            Password = "ywBZ/szBhHnQb203lsGkBDC/E/4z/FgLjO+jVrMYkrU=",
                             PhoneNo = "8825084050",
-                            Salt = "7YEC01QTcCQ2q/h8bPzqnyDDobk=",
+                            Salt = "JzEk31rMWyAFwseWNUjibTx72fk=",
                             UpdatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             UpdatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserName = "admin",
@@ -595,13 +593,13 @@ namespace DataAccess.Migrations
                         {
                             Id = new Guid("03abd488-6472-4e9a-baee-54e654a34b6b"),
                             CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
-                            CreatedOn = new DateTime(2022, 5, 11, 14, 47, 29, 933, DateTimeKind.Local).AddTicks(5991),
+                            CreatedOn = new DateTime(2022, 5, 14, 18, 9, 53, 672, DateTimeKind.Local).AddTicks(3535),
                             DOB = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "customer@yopmail.com",
                             ImagePath = "xyz",
-                            Password = "/qWA15T0RbIfalkL6LMJOsJA8mVtI6rsUJPtJXsbI1I=",
+                            Password = "mPztg8lNzQ/PHuyUBhUoihmsTKIFFt9kx3GGH+4t3fQ=",
                             PhoneNo = "8825084050",
-                            Salt = "affkO1vBuUembFaycaTgh5LRPFE=",
+                            Salt = "qZ/ya6FgY7YNEYKpSNHQ681Cld4=",
                             UpdatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             UpdatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserName = "customer",
@@ -610,15 +608,15 @@ namespace DataAccess.Migrations
                         },
                         new
                         {
-                            Id = new Guid("3f75624c-98e5-49e8-82bb-86078d4bdfc9"),
+                            Id = new Guid("cccb69d6-ef28-41dd-8e90-2f21c0fe97c3"),
                             CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
-                            CreatedOn = new DateTime(2022, 5, 11, 14, 47, 29, 933, DateTimeKind.Local).AddTicks(6049),
+                            CreatedOn = new DateTime(2022, 5, 14, 18, 9, 53, 672, DateTimeKind.Local).AddTicks(3604),
                             DOB = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "labour@yopmail.com",
                             ImagePath = "abc",
-                            Password = "emIUbK3KAfgSxN62CXrwXNSM4yceUXPYRs/Hk03DDBo=",
+                            Password = "E+j/nGicSuGX88P8REM5z+SSDRycB9EiSVsRgxe3Y6E=",
                             PhoneNo = "8825084050",
-                            Salt = "2FHGZRG8yT3MSpeQ7rkiHRLXhLQ=",
+                            Salt = "CIH6zijVH2rNpRQ02/rpcbG+EnI=",
                             UpdatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             UpdatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserName = "labour",
@@ -627,15 +625,15 @@ namespace DataAccess.Migrations
                         },
                         new
                         {
-                            Id = new Guid("7e14d027-3f9b-425c-9ae3-ea108e3a051f"),
+                            Id = new Guid("23c86796-d328-4b24-807f-4ccab3d8a900"),
                             CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
-                            CreatedOn = new DateTime(2022, 5, 11, 14, 47, 29, 933, DateTimeKind.Local).AddTicks(6102),
+                            CreatedOn = new DateTime(2022, 5, 14, 18, 9, 53, 672, DateTimeKind.Local).AddTicks(3647),
                             DOB = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "contractor@yopmail.com",
                             ImagePath = "xyz",
-                            Password = "SBzgi+cSA4Alx7wx5kl4NtjL+8ioCEwq1XcB5SqmPWI=",
+                            Password = "ERpev9arXuTg9Aqq5aH407RtPr13W9U6WuGBHlGKLos=",
                             PhoneNo = "8825084050",
-                            Salt = "SoDHqQiMD/r2e3drPJ+aiiVZyaM=",
+                            Salt = "tjFs+yzN9PJH7OXqg7qSmi5wGCU=",
                             UpdatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             UpdatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserName = "contractor",
@@ -644,15 +642,15 @@ namespace DataAccess.Migrations
                         },
                         new
                         {
-                            Id = new Guid("a282596c-8eb1-4aa3-975e-0958e592a56a"),
+                            Id = new Guid("8fbcb963-f4a6-410d-ac28-0f8d279bbaec"),
                             CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
-                            CreatedOn = new DateTime(2022, 5, 11, 14, 47, 29, 933, DateTimeKind.Local).AddTicks(6146),
+                            CreatedOn = new DateTime(2022, 5, 14, 18, 9, 53, 672, DateTimeKind.Local).AddTicks(3684),
                             DOB = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "manager@yopmail.com",
                             ImagePath = "xyz",
-                            Password = "qrO5oQa7IgtmfRZgmm20RdBSSHVqx9hSfsD75DE61Hw=",
+                            Password = "fgV2jprxv491O+YAAtkoG6ifHkOghrb1C9mWH6tX8PE=",
                             PhoneNo = "8825084050",
-                            Salt = "QJIhivlMbIMpq++cqF7BHXuj2h0=",
+                            Salt = "Ptg5XPgO0kT4BJZjIm3Fb3VdcEQ=",
                             UpdatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             UpdatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserName = "manager",
@@ -663,18 +661,11 @@ namespace DataAccess.Migrations
 
             modelBuilder.Entity("DataAccess.Attendance", b =>
                 {
-                    b.HasOne("DataAccess.Attendance", "Attendances")
-                        .WithMany()
-                        .HasForeignKey("AttendancesAttendaceId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
                     b.HasOne("DataAccess.Labour", "Labour")
                         .WithMany()
                         .HasForeignKey("LabourId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
-
-                    b.Navigation("Attendances");
 
                     b.Navigation("Labour");
                 });

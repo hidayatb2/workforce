@@ -77,7 +77,7 @@ namespace WebApp
                     identity.AddClaim(new Claim(AppClaimTypes.Email, loginResponse.Email));
                     //identity.AddClaim(new Claim(AppClaimTypes.PhoneNo, loginResponse.PhoneNo));
                     identity.AddClaim(new Claim(AppClaimTypes.Role, loginResponse.UserRole.ToString()));
-                    identity.AddClaim(new Claim(AppClaimTypes.ImagePath, loginResponse.ImagePath));
+                    //identity.AddClaim(new Claim(AppClaimTypes.ImagePath, loginResponse.ImagePath));
 
                     ClaimsPrincipal principal = new ClaimsPrincipal(identity);
 

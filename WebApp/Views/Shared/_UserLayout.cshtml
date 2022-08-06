@@ -85,7 +85,7 @@
                         }
                         @if (User.IsInRole(UserRole.Manager.ToString()) || User.IsInRole(UserRole.Contractor.ToString()) || User.IsInRole(UserRole.Labour.ToString()))
                         {
-                            <a asp-action="Attendance" asp-controller="Manager" class="nav-item nav-link text-light"><i style="color:black" class="fa fa-table me-2"></i>Attendance</a>
+                            <a asp-action="assignedlabours" asp-controller="Manager" class="nav-item nav-link text-light"><i style="color:black" class="fa fa-table me-2"></i>Attendance</a>
                             <a asp-action="viewbids" asp-controller="bid" class="nav-item nav-link text-light"><i style="color:black" class="fa fa-th me-2"></i>View Bids</a>
                         }
 

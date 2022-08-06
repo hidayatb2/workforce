@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DataAccess.Migrations
 {
-    public partial class initialNewMig : Migration
+    public partial class initialmig2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -46,6 +46,19 @@ namespace DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Sites",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    SiteName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SiteAddress = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Sites", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Sliders",
                 columns: table => new
                 {
@@ -67,7 +80,8 @@ namespace DataAccess.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     FeedbackMessage = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     status = table.Column<byte>(type: "tinyint", nullable: false),
-                    UserRole = table.Column<byte>(type: "tinyint", nullable: false)
+                    UserRole = table.Column<byte>(type: "tinyint", nullable: false),
+                    ImagePath = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -156,6 +170,31 @@ namespace DataAccess.Migrations
                     table.ForeignKey(
                         name: "FK_Customer_Users_Id",
                         column: x => x.Id,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SiteWorkers",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    WorkerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    SiteId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SiteWorkers", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_SiteWorkers_Sites_SiteId",
+                        column: x => x.SiteId,
+                        principalTable: "Sites",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_SiteWorkers_Users_WorkerId",
+                        column: x => x.WorkerId,
                         principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -277,7 +316,7 @@ namespace DataAccess.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    PartcipantId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    PartcipantId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     BidId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     BidRate = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -307,8 +346,10 @@ namespace DataAccess.Migrations
                 columns: table => new
                 {
                     AttendaceId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    AttendanceTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CheckAttendance = table.Column<bool>(type: "bit", nullable: false),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    TimeIn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    TimeOut = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Attendances = table.Column<byte>(type: "tinyint", nullable: false),
                     LabourId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
@@ -325,7 +366,14 @@ namespace DataAccess.Migrations
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "CreatedBy", "CreatedOn", "DOB", "Email", "ImagePath", "Name", "Password", "PhoneNo", "ResetCode", "Salt", "UpdatedBy", "UpdatedOn", "UserName", "UserRole", "UserStatus" },
-                values: new object[] { new Guid("87843532-0b93-492d-824b-68be17a82037"), new Guid("00000000-0000-0000-0000-000000000000"), new DateTime(2022, 4, 23, 17, 10, 23, 519, DateTimeKind.Local).AddTicks(6886), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "admin@yopmail.com", null, null, "hkusCKwzgZ5D7IJZ56Iw8npWmcP1hWCAV1KLsHU1U4c=", "8825084050", null, "QQpkbR+2O5Ko36bzvbIe7JL907k=", new Guid("00000000-0000-0000-0000-000000000000"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "admin", (byte)1, (byte)1 });
+                values: new object[,]
+                {
+                    { new Guid("03abd488-6472-4e9a-baee-54e654a34b6b"), new Guid("00000000-0000-0000-0000-000000000000"), new DateTime(2022, 5, 13, 15, 42, 18, 328, DateTimeKind.Local).AddTicks(1694), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "customer@yopmail.com", "xyz", null, "z/JRGUj28dfVSd2PeC2dSjIQhPhWCtzrGiI42+XQi+s=", "8825084050", null, "Hxjdm2TFTWoq6QdMDpI/u/bE91M=", new Guid("00000000-0000-0000-0000-000000000000"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "customer", (byte)2, (byte)1 },
+                    { new Guid("87843532-0b93-492d-824b-68be17a82037"), new Guid("00000000-0000-0000-0000-000000000000"), new DateTime(2022, 5, 13, 15, 42, 18, 328, DateTimeKind.Local).AddTicks(1471), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "admin@yopmail.com", "xyz", null, "+fkLJZGFiPO5BI50FCThMNxSXlREEUu/JJT78hZArQs=", "8825084050", null, "ZpK1FkxSr4/jb0CW03PNcxiMtkc=", new Guid("00000000-0000-0000-0000-000000000000"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "admin", (byte)1, (byte)1 },
+                    { new Guid("91cc3369-23e9-48c2-bee4-4848fea0491c"), new Guid("00000000-0000-0000-0000-000000000000"), new DateTime(2022, 5, 13, 15, 42, 18, 328, DateTimeKind.Local).AddTicks(1756), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "labour@yopmail.com", "abc", null, "yM12r/Sk97EUhW3ryQ632f6345xX/uHP6qMz2WNgcBA=", "8825084050", null, "6Nf1t0ir1BU6n1IK7Wjh+5oLWGw=", new Guid("00000000-0000-0000-0000-000000000000"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "labour", (byte)5, (byte)1 },
+                    { new Guid("a079329f-1d73-4795-af93-2c4fb0cd1e2c"), new Guid("00000000-0000-0000-0000-000000000000"), new DateTime(2022, 5, 13, 15, 42, 18, 328, DateTimeKind.Local).AddTicks(1837), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "manager@yopmail.com", "xyz", null, "jPHytWjjNjv0QdkK59/dgEC1gx4Yufw+MUAbI6z3hVg=", "8825084050", null, "S2pKJzb6g5b3hbWCxuZPx7xpgKc=", new Guid("00000000-0000-0000-0000-000000000000"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "manager", (byte)4, (byte)1 },
+                    { new Guid("ec1e2a25-8540-483e-8a87-bdaf8e1dc817"), new Guid("00000000-0000-0000-0000-000000000000"), new DateTime(2022, 5, 13, 15, 42, 18, 328, DateTimeKind.Local).AddTicks(1800), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "contractor@yopmail.com", "xyz", null, "ZNSwcBJpcUFlYDIRLZDajbbCEhzzWSldYEYmQFfd1KE=", "8825084050", null, "oY41x2/ZDLXSrOArBk8bWIS2c7U=", new Guid("00000000-0000-0000-0000-000000000000"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "contractor", (byte)3, (byte)1 }
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Attendances_LabourId",
@@ -355,7 +403,17 @@ namespace DataAccess.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Participants_PartcipantId",
                 table: "Participants",
-                column: "PartcipantId",
+                column: "PartcipantId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SiteWorkers_SiteId",
+                table: "SiteWorkers",
+                column: "SiteId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SiteWorkers_WorkerId",
+                table: "SiteWorkers",
+                column: "WorkerId",
                 unique: true);
         }
 
@@ -374,6 +432,9 @@ namespace DataAccess.Migrations
                 name: "Participants");
 
             migrationBuilder.DropTable(
+                name: "SiteWorkers");
+
+            migrationBuilder.DropTable(
                 name: "Sliders");
 
             migrationBuilder.DropTable(
@@ -384,6 +445,9 @@ namespace DataAccess.Migrations
 
             migrationBuilder.DropTable(
                 name: "Bids");
+
+            migrationBuilder.DropTable(
+                name: "Sites");
 
             migrationBuilder.DropTable(
                 name: "Manager");

@@ -12,7 +12,7 @@ namespace WebApp
 
         public ManagerController(ManagerRepository managerRepository)
         {
-           roleManager = new ManagerRoleManager(managerRepository);
+            roleManager = new ManagerRoleManager(managerRepository);
         }
 
         [HttpGet("index")]
@@ -60,20 +60,20 @@ namespace WebApp
         {
             GeneralRequestModel generalRequestModel = new GeneralRequestModel()
             {
-                userResponses = roleManager.UnassignedLabours().ToList() 
+                userResponses = roleManager.UnassignedLabours().ToList()
             };
-            
+
             return View(generalRequestModel);
         }
 
         [HttpPost("sendrequest")]
         public IActionResult SendLabourRequest(RequestDb requestDb)
         {
-                GeneralRequestModel generalRequestModel = new GeneralRequestModel()
-                {
-                    returnValue = roleManager.SendLabourRequest(requestDb),
-                };
-                return RedirectToAction("",generalRequestModel);
+            GeneralRequestModel generalRequestModel = new GeneralRequestModel()
+            {
+                returnValue = roleManager.SendLabourRequest(requestDb),
+            };
+            return RedirectToAction("", generalRequestModel);
         }
 
         [HttpGet("getrequest")]
@@ -84,14 +84,44 @@ namespace WebApp
         }
 
 
-        [HttpGet("attendance")]
-        public IActionResult Attendance()
+        [HttpGet("assignedlabours")]
+        public IActionResult GetAssignedLabours()
         {
             var id = User.GetUserId();
             List<UserResponse> userResponse = roleManager.AssignedLabour(id).ToList();
             return View(userResponse);
         }
+
+        //[HttpPost("attendances")]
+        //public IActionResult Attendance(UserAttendance userAttendance)
+        //{
+        //    Guid id = User.GetUserId();
+        //    var res = roleManager.LabourAttendance(userAttendance);
+        //    return View();
+        //}
+
+        [HttpPost("timein")]
+        public IActionResult TimeIn(Guid labourId)
+        {
             
+            var res  = roleManager.TimeIn(labourId);
+            return RedirectToAction(nameof(GetAssignedLabours));
+        }
+
+        [HttpPost("timeout")]
+        public IActionResult TimeOut(Guid labourId)
+        {
+            var res = roleManager.TimeOut(labourId);
+            return RedirectToAction(nameof(GetAssignedLabours));
+        }
+
+        [HttpPost("attendance")]
+        public IActionResult GetAttendance(Guid labourId)
+        {
+            var attendance = roleManager.GetAttendance(labourId);
+            return View(attendance);
+        }
+
     }
 }
 

@@ -2,10 +2,10 @@
 using DataAccess;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Models;
 
 namespace WebApp
 {
-    [Route("attendance")]
     public class AttendanceController : Controller
     {
         private readonly AttendanceRepository repository;
@@ -20,5 +20,7 @@ namespace WebApp
         {
             return View();
         }
+
+       
     }
 }

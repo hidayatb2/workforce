@@ -29,5 +29,7 @@ namespace DataAccess
         [ForeignKey(nameof(ManagerId))]
         public Manager Manager { get; set; }
 
+
+
     }
 }

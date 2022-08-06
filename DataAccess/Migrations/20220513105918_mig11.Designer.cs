@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220509194016_migprofile")]
-    partial class migprofile
+    [Migration("20220513105918_mig11")]
+    partial class mig11
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -30,14 +30,20 @@ namespace DataAccess.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("AttendanceTime")
-                        .HasColumnType("datetime2");
+                    b.Property<byte>("Attendances")
+                        .HasColumnType("tinyint");
 
-                    b.Property<bool>("CheckAttendance")
-                        .HasColumnType("bit");
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
 
                     b.Property<Guid>("LabourId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("TimeIn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("TimeOut")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("AttendaceId");
 
@@ -423,11 +429,48 @@ namespace DataAccess.Migrations
 
                     b.HasIndex("BidId");
 
-                    b.HasIndex("PartcipantId")
-                        .IsUnique()
-                        .HasFilter("[PartcipantId] IS NOT NULL");
+                    b.HasIndex("PartcipantId");
 
                     b.ToTable("Participants");
+                });
+
+            modelBuilder.Entity("DataAccess.Site", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("SiteAddress")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SiteName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Sites");
+                });
+
+            modelBuilder.Entity("DataAccess.SiteWorker", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("SiteId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("WorkerId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SiteId");
+
+                    b.HasIndex("WorkerId")
+                        .IsUnique();
+
+                    b.ToTable("SiteWorkers");
                 });
 
             modelBuilder.Entity("DataAccess.Slider", b =>
@@ -457,6 +500,9 @@ namespace DataAccess.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("FeedbackMessage")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImagePath")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
@@ -533,17 +579,85 @@ namespace DataAccess.Migrations
                         {
                             Id = new Guid("87843532-0b93-492d-824b-68be17a82037"),
                             CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
-                            CreatedOn = new DateTime(2022, 5, 10, 1, 10, 16, 381, DateTimeKind.Local).AddTicks(7921),
+                            CreatedOn = new DateTime(2022, 5, 13, 16, 29, 18, 114, DateTimeKind.Local).AddTicks(6656),
                             DOB = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "admin@yopmail.com",
                             ImagePath = "xyz",
-                            Password = "TBdozEQhNWCcQ5jR8KTem+P8QyXrBhufZWpLZ8moG1A=",
+                            Password = "lrmpsn5eRa+UrJN4xkKSCp0qom8MvyLAQRN8d8pilKY=",
                             PhoneNo = "8825084050",
-                            Salt = "aY5a3m4xZlr4SqZAiZ5inhJ1evo=",
+                            Salt = "MIohBDLSX3/7GZm/GeiO8SwvQMY=",
                             UpdatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             UpdatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserName = "admin",
                             UserRole = (byte)1,
+                            UserStatus = (byte)1
+                        },
+                        new
+                        {
+                            Id = new Guid("03abd488-6472-4e9a-baee-54e654a34b6b"),
+                            CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
+                            CreatedOn = new DateTime(2022, 5, 13, 16, 29, 18, 114, DateTimeKind.Local).AddTicks(6873),
+                            DOB = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "customer@yopmail.com",
+                            ImagePath = "xyz",
+                            Password = "rTuVoop/6GCSy1LnZmTFOWyr3dVJw7QEI4oj1s9flQA=",
+                            PhoneNo = "8825084050",
+                            Salt = "d6ijRYNMY5Gis04hxHjFbB4YeWk=",
+                            UpdatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
+                            UpdatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserName = "customer",
+                            UserRole = (byte)2,
+                            UserStatus = (byte)1
+                        },
+                        new
+                        {
+                            Id = new Guid("911aae2e-5445-47d2-a882-a5fc31fffafe"),
+                            CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
+                            CreatedOn = new DateTime(2022, 5, 13, 16, 29, 18, 114, DateTimeKind.Local).AddTicks(6906),
+                            DOB = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "labour@yopmail.com",
+                            ImagePath = "abc",
+                            Password = "UYCFg4yxAr8jFMlx+tgWslWXKz09nJVujFq5wml5aVM=",
+                            PhoneNo = "8825084050",
+                            Salt = "tlsK47PLyZ9vnw4qy699uQfnNQU=",
+                            UpdatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
+                            UpdatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserName = "labour",
+                            UserRole = (byte)5,
+                            UserStatus = (byte)1
+                        },
+                        new
+                        {
+                            Id = new Guid("a6106ea2-7627-45f2-a719-9dd157bc5b1d"),
+                            CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
+                            CreatedOn = new DateTime(2022, 5, 13, 16, 29, 18, 114, DateTimeKind.Local).AddTicks(6959),
+                            DOB = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "contractor@yopmail.com",
+                            ImagePath = "xyz",
+                            Password = "Z6ckFPI/x8hH+ZNE9Ebxz32tTa67Ikx/Yk/rkeLv9Sg=",
+                            PhoneNo = "8825084050",
+                            Salt = "JHFD2F6v7gZYnZ9X2G5/sNV+sqg=",
+                            UpdatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
+                            UpdatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserName = "contractor",
+                            UserRole = (byte)3,
+                            UserStatus = (byte)1
+                        },
+                        new
+                        {
+                            Id = new Guid("1c2c8017-0605-4c91-ade6-b60b5f5f9cb9"),
+                            CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
+                            CreatedOn = new DateTime(2022, 5, 13, 16, 29, 18, 114, DateTimeKind.Local).AddTicks(7009),
+                            DOB = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "manager@yopmail.com",
+                            ImagePath = "xyz",
+                            Password = "2GnnI+FIvruFQZuMuuCrOpp0tznZD3eoEFTCwJ5wmjw=",
+                            PhoneNo = "8825084050",
+                            Salt = "tGs8ekmcq8QssmPNjMiirOavE24=",
+                            UpdatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
+                            UpdatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserName = "manager",
+                            UserRole = (byte)4,
                             UserStatus = (byte)1
                         });
                 });
@@ -637,11 +751,30 @@ namespace DataAccess.Migrations
                         .IsRequired();
 
                     b.HasOne("DataAccess.User", "User")
-                        .WithOne("Participant")
-                        .HasForeignKey("DataAccess.Participant", "PartcipantId")
+                        .WithMany("Participants")
+                        .HasForeignKey("PartcipantId")
                         .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("Bid");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("DataAccess.SiteWorker", b =>
+                {
+                    b.HasOne("DataAccess.Site", "Site")
+                        .WithMany("SiteWorkers")
+                        .HasForeignKey("SiteId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("DataAccess.User", "User")
+                        .WithOne("SiteWorker")
+                        .HasForeignKey("DataAccess.SiteWorker", "WorkerId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Site");
 
                     b.Navigation("User");
                 });
@@ -661,6 +794,11 @@ namespace DataAccess.Migrations
                     b.Navigation("Bids");
                 });
 
+            modelBuilder.Entity("DataAccess.Site", b =>
+                {
+                    b.Navigation("SiteWorkers");
+                });
+
             modelBuilder.Entity("DataAccess.User", b =>
                 {
                     b.Navigation("Contractor");
@@ -671,7 +809,9 @@ namespace DataAccess.Migrations
 
                     b.Navigation("Manager");
 
-                    b.Navigation("Participant");
+                    b.Navigation("Participants");
+
+                    b.Navigation("SiteWorker");
                 });
 #pragma warning restore 612, 618
         }

@@ -121,7 +121,7 @@ namespace BusinessAccess
         {
             List<UserResponse> users = new List<UserResponse>();
 
-            foreach (var item in managerRepository.FindBy<User>(x=>x.Labour.ManagerId==id))
+            foreach (var item in managerRepository.FindBy<User>(x => x.Labour.ManagerId == id))
             {
                 UserResponse response = new UserResponse();
                 response.Id = item.Id;
@@ -134,8 +134,59 @@ namespace BusinessAccess
             };
             return users;
         }
-        
+
+
+        public int TimeIn(Guid labourId)
+        {
+            DateTime dt= DateTime.Now.Date;  
+            var UserId = managerRepository.FindBy<Labour>(x => x.Id == labourId).FirstOrDefault();
+            var checkAttendance = managerRepository.FindBy<Attendance>(x => x.LabourId == UserId.Id && x.Date == dt).SingleOrDefault();
+            if (checkAttendance == null)
+            {
+                Attendance attendance = new Attendance();
+                attendance.LabourId = labourId;
+                attendance.AttendaceId = Guid.NewGuid();
+                attendance.Date = DateTime.Now.Date;
+                attendance.TimeIn = DateTime.Now;
+                return managerRepository.AddandSave(attendance);
+            }
+            else return 0;
+           
+       
+
+           
+
+        }
     
+
+        public int TimeOut(Guid labourId)
+        
+        {
+            var UserId = managerRepository.FindBy<Labour>(x=>x.Id == labourId).FirstOrDefault();
+            var Attendancee = managerRepository.FindBy<Attendance>(x => x.LabourId == UserId.Id).FirstOrDefault();
+            Guid id = Attendancee.AttendaceId;
+            var Out = managerRepository.FindBy<Attendance>(x => x.AttendaceId == id).SingleOrDefault();
+            Attendancee.TimeOut = DateTime.Now;
+            return managerRepository.UpdateAndSave(Attendancee);
+        }
+
+        public IEnumerable<UserAttendanceResponse> GetAttendance(Guid labourId)
+        {
+            //var UserId = managerRepository.FindBy<Labour>(x => x.Id == labourId).FirstOrDefault();
+           // var Attendancee = managerRepository.FindBy<Attendance>(x => x.LabourId == labourId).FirstOrDefault();
+            var res = managerRepository.FindBy<Attendance>(x => x.LabourId == labourId).Select(x => new UserAttendanceResponse
+            {
+                Id=x.AttendaceId,
+                Date=x.Date,
+                In=x.TimeIn,
+                Out=x.TimeOut,
+                LabourId=x.LabourId,
+                TotalWorkingHours = 10-12, /*x.TimeIn.Hour-DateTime.Now.Hour,*/
+            });
+            return res;
+        }
+
+
 
         public string SendLabourRequest(RequestDb requestDb)
         {

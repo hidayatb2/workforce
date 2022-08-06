@@ -12,21 +12,20 @@ namespace DataAccess
     public class Attendance
     {
         [Key]
-
         public Guid AttendaceId { get; set; }
 
 
-        public DateTime AttendanceTime { get; set; }
+        public DateTime Date { get; set; }
+        
+
+        public DateTime TimeIn { get; set; }
 
 
-        public bool CheckAttendance { get; set; }
+        public DateTime TimeOut { get; set; }
 
-
-        public Attendance Attendances { get; set; }
 
 
         public Guid LabourId { get; set; }
-
 
 
         [ForeignKey(nameof(LabourId))]
